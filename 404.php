@@ -28,44 +28,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-
 require_once("models/config.php");
-
-// Public page
-
-setReferralPage(getAbsoluteDocumentPath(__FILE__));
-
-//Forward the user to their default page if he/she is already logged in
-if(isUserLoggedIn()) {
-	addAlert("warning", "You're already logged in!");
-    header("Location: account");
-	exit();
-}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <?php
-	echo renderTemplate("head.html", array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Welcome to UserFrosting"));
+	echo renderTemplate("head.html", array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "404 Oh Noes!"));
   ?>
 
   <body>
     <div class="container">
       <div class="header">
-        <ul class="nav nav-pills navbar pull-right">
-        </ul>
         <h3 class="text-muted">UserFrosting</h3>
       </div>
       <div class="jumbotron">
-        <h1>Welcome to UserFrosting!</h1>
-        <p class="lead">A secure, modern user management system based on UserCake, jQuery, and Bootstrap.</p>
+        <h1>Well dang.</h1>
+        <p class="lead">We are so, so, so, sorry.  That was NOT supposed to happen.  How can we make it up to you?</p>
+        <small>By the way, here's what we think might have happened:</small>
 		<div class="row">
-			<div class="col-sm-12">
-			  <a href="login.php" class="btn btn-success" role="button" value='Login'>Login</a>
+			<div id='display-alerts' class="col-sm-12">
+			  
 			</div>
-        </div>
-        <div class="jumbotron-links">
         </div>
       </div>	
       <?php echo renderTemplate("footer.html"); ?>
@@ -77,12 +62,6 @@ if(isUserLoggedIn()) {
 
 <script>
 	$(document).ready(function() {
-		alertWidget('display-alerts');
-        // Load navigation bar
-        $(".navbar").load("header-loggedout.php", function() {
-            $(".navbar .navitem-home").addClass('active');
-        });
-        // Load jumbotron links
-        $(".jumbotron-links").load("jumbotron_links.php");     
+		alertWidget('display-alerts');  
 	});
 </script>
