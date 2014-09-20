@@ -5,12 +5,12 @@
 <?php
 
 // Include Files
-//include '../includes/DBConnect.inc';
+include '../includes/DBConnect.inc';
 
 $UserName = 'Chris Barrett';
 
 // Query the database
-/*
+
 $sql	=	'SELECT
 				user_fname,
 				user_email 
@@ -25,7 +25,7 @@ $rows_returned = $rs->num_rows;
 
 
 
-*/
+
 //echo $result; 
 ?>
 
