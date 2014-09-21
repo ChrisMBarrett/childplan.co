@@ -1,6 +1,16 @@
 <?php
 
-header("location: ../Dashboard/");
+// Login form values
+	$UserName = $_POST["username"];
+	$Password = $_POST["password"];
+
+// Echo Values
+
+Echo "Username - ".$UserName."<br>"."Password - ".$Password;
+
+// header("location: ../Dashboard/");
+
+
 
 /*
     	
