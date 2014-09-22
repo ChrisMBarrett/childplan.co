@@ -15,7 +15,7 @@ if(!empty($test))
 } 
 else
 {
-	 $conn = mysqli_connect("127.0.0.1","ChrisB","W!zard","childplan");
+	 $conn = mysqli_connect("127.0.0.1","ChrisB","W!zard","childplan201409");
 }
      
 ?>

@@ -7,26 +7,22 @@
 // Include Files
 include '../includes/DBConnect.inc';
 
+// Get Session Variables
+//$UserName = $_SESSION['UserFName'];	
+
+//echo "Test".$_SESSION['UserFName'];
 $UserName = 'Chris Barrett';
 
 // Query the database
-
 $sql	=	'SELECT
-				user_fname,
-				user_email 
+				*
 			FROM 
-				tbl_users
-			WHERE
-				tbl_users_id >2';
+				tblUser';
 
 $rs=$conn->query($sql);
 
 $rows_returned = $rs->num_rows;
 
-
-
-
-//echo $result; 
 ?>
 
     <meta charset="utf-8">
