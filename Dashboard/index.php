@@ -8,10 +8,10 @@
 include '../includes/DBConnect.inc';
 
 // Get Session Variables
-//$UserName = $_SESSION['UserFName'];	
+$UserName = $_SESSION['UserFName'];	
 
-//echo "Test".$_SESSION['UserFName'];
-$UserName = 'Chris Barrett';
+echo "Test - ".$_SESSION['UserFName'];
+//$UserName = 'Chris Barrett';
 
 // Query the database
 $sql	=	'SELECT

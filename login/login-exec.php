@@ -71,7 +71,7 @@ else
 			session_regenerate_id();
 			// Define Session Variables
 			$_SESSION['UserID']			 		= $UserID;
-			$_SESSION['UserFName']		 		= "Chris Barrett";
+			$_SESSION['UserFName']		 		= 'Chris Barrett';
 			$_SESSION['UserLName']		 		= $UserLName;
 			$_SESSION['CentreID']		 		= $CentreID;
 			
