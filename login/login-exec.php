@@ -78,7 +78,6 @@ else
 			session_write_close();			
 	//		$usertableupdate = mysql_query("Update tbl_users set logins=logins+1 where tbl_users_id = $userid");
 	//		$userloginsert = mysql_query("Insert into tbl_user_log (tenant_id,user_id,ip_address,last_login) 
-	
 
 			header("location: ../dashboard/");
 			exit();
