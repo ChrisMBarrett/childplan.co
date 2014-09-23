@@ -13,10 +13,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/dashboard/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a class="active" href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
                         </li>
                         <li>
-                            <a class="active" href="/enquiries/enquiries.php"><i class="fa fa-dashboard fa-fw"></i> Enquiries</a>
+                            <a class="active" href="/Dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashbaord</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

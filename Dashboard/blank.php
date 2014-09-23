@@ -60,16 +60,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../Javascript/jquery-1.11.0.js"></script>
+    <script src="../javascript/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../javascript/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../Javascript/plugins/metisMenu/metisMenu.min.js"></script>
+    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../Javascript/sb-admin-2.js"></script>
+    <script src="../javascript/sb-admin-2.js"></script>
 
 </body>
 
