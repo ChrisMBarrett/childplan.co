@@ -37,7 +37,6 @@
 
 <body>
 
-
 <?php
 // Inlcude the top bar
 	include('../includes/topbar.php');
