@@ -17,15 +17,20 @@ include '../includes/DBConnect.inc';
 
 // Create Login Query
 	$LoginSQLCode =  "SELECT
-					 	UserID,
-					 	CentreID,
-					 	UserName,
-					 	UserFName,
-					 	UserLName,
-					 	UserActiveFlag,
-					 	UserGroupID
+					 	a.UserID,
+					 	a.CentreID,
+					 	b.`CentreName`,
+					 	a.UserName,
+					 	a.UserFName,
+					 	a.UserLName,
+					 	a.UserActiveFlag,
+					 	a.UserGroupID
 					 FROM 
-					 	tblUser
+					 	tblUser a
+					 LEFT JOIN
+						 tblCentre	b
+					ON
+						a.`CentreID` = b.`CentreID`
 					 WHERE
 					 	UserEmailAddress = '$UserName'
 					 AND
@@ -49,6 +54,7 @@ while($row = $result->fetch_assoc())
 	$UserActiveFlag = $row['UserActiveFlag'];
 	$UserGroupID	= $row['UserGroupID'];
 	$CentreID		= $row['CentreID'];
+	$CentreName		= $row['CentreName'];
 }
 }
 /*
@@ -75,6 +81,8 @@ else
 			$_SESSION['UserLName']		 		= $UserLName;
 			$_SESSION['UserName']		 		= $UserFName.' '.$UserLName;
 			$_SESSION['CentreID']		 		= $CentreID;
+			$_SESSION['CentreName']		 		= $CentreName;
+			
 			
 			session_write_close();			
 	//		$usertableupdate = mysql_query("Update tbl_users set logins=logins+1 where tbl_users_id = $userid");

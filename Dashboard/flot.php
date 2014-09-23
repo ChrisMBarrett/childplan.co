@@ -266,7 +266,7 @@
             <!-- /.navbar-top-links -->
 <!-- Left Side Bar -->
 <?php
-include '../includes/sidebar.html';
+	include '../includes/sidebar.php';
 ?> 
 <!-- Main Page -->        <div id="page-wrapper">
             <div class="row">
