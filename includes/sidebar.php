@@ -13,16 +13,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a class="active" href="/dashboard/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="active" href="/enquiries/enquiries.php"><i class="fa fa-dashboard fa-fw"></i> Enquiries</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.php">Flot Charts</a>
+                                    <a href="/dashboard/flot.php">Flot Charts</a>
                                 </li>
                                 <li>
-                                    <a href="morris.php">Morris.js Charts</a>
+                                    <a href="/dashboard/morris.php">Morris.js Charts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -34,7 +37,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.php">Blank Page</a>
+                                    <a href="/dashboard/blank.php">Blank Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
