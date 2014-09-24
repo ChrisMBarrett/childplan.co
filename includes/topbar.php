@@ -6,7 +6,8 @@ include '../includes/auth.php';
 include '../includes/dbconnect.inc';
 
 // Get Session Variables
-$UserName = $_SESSION['UserName'];
+$UserName 	= $_SESSION['UserName'];
+$UserRole 	= $_SESSION['UserRoleID'];
 
 // Centre Name - to be replaced by Session Variable
 //$CentreName = 'The Learning Centre';	
@@ -87,7 +88,14 @@ $CentreName = $_SESSION['CentreName'];
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <?php if ($UserRole == 1){
+                        echo "<li><a href=\"#\"><i class=\"fa fa-gear fa-fw\"></i> Settings</a>";
+                        }
+                        else
+                        {
+                        echo("");
+                        }
+                        ?>
                         </li>
                         <li class="divider"></li>
                         <li><a href="../login/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

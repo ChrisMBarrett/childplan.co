@@ -23,6 +23,7 @@ include '../includes/DBConnect.inc';
 					 	a.UserName,
 					 	a.UserFName,
 					 	a.UserLName,
+					 	a.UserRoleID,
 					 	a.UserActiveFlag,
 					 	a.UserGroupID
 					 FROM 
@@ -52,6 +53,7 @@ while($row = $result->fetch_assoc())
 	$UserFName		= $row['UserFName'];
 	$UserLName		= $row['UserLName'];
 	$UserActiveFlag = $row['UserActiveFlag'];
+	$UserRoleID		= $row['UserRoleID'];
 	$UserGroupID	= $row['UserGroupID'];
 	$CentreID		= $row['CentreID'];
 	$CentreName		= $row['CentreName'];
@@ -80,6 +82,7 @@ else
 			$_SESSION['UserFName']		 		= $UserFName;
 			$_SESSION['UserLName']		 		= $UserLName;
 			$_SESSION['UserName']		 		= $UserFName.' '.$UserLName;
+			$_SESSION['UserRoleID']		 		= $UserRoleID;
 			$_SESSION['CentreID']		 		= $CentreID;
 			$_SESSION['CentreName']		 		= $CentreName;
 			
