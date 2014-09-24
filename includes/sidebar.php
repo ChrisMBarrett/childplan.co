@@ -1,3 +1,5 @@
+<!-- MetisMenu CSS -->
+<link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">           
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -16,7 +18,7 @@
                             <a class="active" href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
                         </li>
                         <li>
-                            <a class="active" href="/Dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
+                            <a href="/Dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -37,7 +39,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/dashboard/blank.php">Blank Page</a>
+                                    <a href="/dashboard/blank.php"> Blank Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -48,3 +50,5 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>        
