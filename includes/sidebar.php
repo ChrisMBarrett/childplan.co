@@ -18,7 +18,7 @@
                             <a class="active" href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
                         </li>
                         <li>
-                            <a href="/Dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
+                            <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
