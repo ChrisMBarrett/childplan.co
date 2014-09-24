@@ -23,7 +23,7 @@ $CentreName = $_SESSION['CentreName'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><?php echo $CentreName.' - '.$UserName; ?></a>
+                <span class="navbar-brand"><?php echo $CentreName.' - '.$UserName; ?></span>
             </div>
             <!-- /.navbar-header -->
 
