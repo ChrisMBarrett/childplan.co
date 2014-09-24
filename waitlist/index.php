@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-	<?php include('../includes/pagetitle.php');?>
+
+<?php include('../includes/pagetitle.php');?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-<!--   <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet"> -->
+    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="../css/plugins/timeline.css" rel="stylesheet">
@@ -54,7 +55,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Overview</h1>
+                    <h1 class="page-header">Centre WaitList</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -154,7 +155,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Open Centre Enquiries
+                            Children on the Waitlist
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -1030,7 +1031,7 @@
     <script src="../javascript/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
- <!--   <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
+    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../javascript/plugins/morris/raphael.min.js"></script>

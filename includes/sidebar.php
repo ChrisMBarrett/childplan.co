@@ -15,32 +15,15 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
+                            <a href="/enquiries/"><i class="fa fa-table fa-fw"></i> Centre Enquiries</a>
                         </li>
                         <li>
-                            <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
+                            <a href="/waitlist/"><i class="fa fa-bar-chart-o fa-fw"></i> Centre Waitlist</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/dashboard/flot.php">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="/dashboard/morris.php">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Centre Dashboard</a>
                         </li>
-                        <li>
-                            <a href="/dashboard/forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/dashboard/blank.php"> Blank Page</a>
-                                </li>
+                        
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
