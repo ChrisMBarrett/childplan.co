@@ -15,7 +15,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!--   <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet"> -->
 
     <!-- Timeline CSS -->
     <link href="../css/plugins/timeline.css" rel="stylesheet">
@@ -1030,7 +1030,7 @@
     <script src="../javascript/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
+ <!--   <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../javascript/plugins/morris/raphael.min.js"></script>

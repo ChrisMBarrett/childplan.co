@@ -15,7 +15,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
+                            <a href="/enquiries/"><i class="fa fa-dashboard fa-fw"></i> Centre Enquiries</a>
                         </li>
                         <li>
                             <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Performance Dashboard</a>
@@ -33,7 +33,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="/dashboard/forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
@@ -50,5 +50,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+<!-- jQuery Version 1.11.0 -->
+<script src="../javascript/jquery-1.11.0.js"></script>
+            
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>        
