@@ -114,13 +114,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">12</div>
-                                    <div>Enquiries to Follow Up</div>
+                                    <div>Centre Tours</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="calendar.php">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">View Tour Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

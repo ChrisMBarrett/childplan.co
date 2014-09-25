@@ -18,7 +18,7 @@
                             <a href="/enquiries/"><i class="fa fa-list-ol fa-fw"></i> Centre Enquiries</a>
                         </li>
                          <li>
-                            <a href="/enquiries/centrevisitscalendar.php"><i class="fa fa-calendar fa-fw"></i> Centre Visit's Calendar</a>
+                            <a href="/enquiries/calendar.php"><i class="fa fa-calendar fa-fw"></i> Centre Visit's Calendar</a>
                         </li>
                         <li>
                             <a href="/waitlist/"><i class="fa fa-list-alt fa-fw"></i> Centre Waitlist</a>
