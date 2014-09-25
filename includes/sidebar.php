@@ -15,10 +15,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/enquiries/"><i class="fa fa-table fa-fw"></i> Centre Enquiries</a>
+                            <a href="/enquiries/"><i class="fa fa-list-ol fa-fw"></i> Centre Enquiries</a>
+                        </li>
+                         <li>
+                            <a href="/enquiries/centrevisitscalendar.php"><i class="fa fa-calendar fa-fw"></i> Centre Visit's Calendar</a>
                         </li>
                         <li>
-                            <a href="/waitlist/"><i class="fa fa-bar-chart-o fa-fw"></i> Centre Waitlist</a>
+                            <a href="/waitlist/"><i class="fa fa-list-alt fa-fw"></i> Centre Waitlist</a>
                         </li>
                         <li>
                             <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Centre Dashboard</a>
