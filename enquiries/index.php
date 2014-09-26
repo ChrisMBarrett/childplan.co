@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="addenquiry.php">
                             <div class="panel-footer">
                                 <span class="pull-left">Add New Enquiry</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -15,7 +15,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/enquiries/"><i class="fa fa-list-ol fa-fw"></i> Centre Enquiries</a>
+                            <a href="/enquiries/"><i class="fa fa-list-ol fa-fw" ></i> Centre Enquiries</a>
                         </li>
                          <li>
                             <a href="/enquiries/calendar.php"><i class="fa fa-calendar fa-fw"></i> Centre Visit's Calendar</a>
