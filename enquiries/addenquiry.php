@@ -83,8 +83,10 @@
                                             <label>Child's Name:</label>
                                             <input class="form-control" placeholder="Child's Name">
                                         </div>
+                <label>Child's DOB:</label>
                 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" data-date-format="MM-DD-YYYY"/>
+                
+                    <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -95,12 +97,28 @@
                 $('#datetimepicker1').datetimepicker({pickTime: false});          
             });
         </script>
-    </div>
-</div>
+ 
                                         <div class="form-group">
                                             <label>Notes</label>
                                             <textarea class="form-control" rows="3"></textarea>
                                         </div>
+                  <div class="col-lg-6">                      
+                                        <label>Tour Details</label>
+                <div class='input-group date' id='datetimepicker2'>
+                
+                    <input type='text' class="form-control"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();          
+            });
+        </script>
+
+                   </div>                     
                                         <div class="form-group">
                                             <label>Checkboxes</label>
                                             <div class="checkbox">
