@@ -54,7 +54,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-            
+            <form action="addenquiryprocess.php">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -83,18 +83,15 @@
                                             <label>Child's Name:</label>
                                             <input class="form-control" placeholder="Child's Name">
                                         </div>
-                <label>Child's DOB:</label>
-                <div class='input-group date' id='datetimepicker1'>
-                
+                <label>Child's DOB (know or expected):</label>
+                <div class='input-group date' id='childdob'>
                     <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-            </div>
-        </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker({pickTime: false});          
+                $('#childdob').datetimepicker({pickTime: false});          
             });
         </script>
  
@@ -102,84 +99,7 @@
                                             <label>Notes</label>
                                             <textarea class="form-control" rows="3"></textarea>
                                         </div>
-                  <div class="col-lg-6">                      
-                                        <label>Tour Details</label>
-                <div class='input-group date' id='datetimepicker2'>
-                
-                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker();          
-            });
-        </script>
-
-                   </div>                     
-                                        <div class="form-group">
-                                            <label>Checkboxes</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 1
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 2
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 3
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Inline Checkboxes</label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">1
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">2
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">3
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Radio Buttons</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Inline Radio Buttons</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
+                                                                                <div class="form-group">
                                             <label>How did you hear about us?</label>
                                             <select class="form-control">
                                                 <option>Word of Mouth</option>
@@ -189,6 +109,32 @@
                                                 <option>Other</option>
                                             </select>
                                         </div>
+                                       </div>
+                                       </div> 
+                  <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <div class="col-lg-6">
+                            Tour Details
+                        </div>
+                                              
+                        <label>Tour Date & Time</label>
+						<div class='input-group date' id='tourtime'>
+                    <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#tourtime').datetimepicker();          
+            });
+        </script>
+
+                   </div>                     
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
                                     </form>
