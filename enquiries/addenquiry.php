@@ -54,7 +54,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-            <form action="addenquiryprocess.php">
+            <form action="addenquiryprocess.php" method="post">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -68,40 +68,41 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Enquirer's Name:</label>
-                                            <input class="form-control" placeholder="Enter name">
+                                            <input class="form-control" placeholder="Enter name" name="enquirername">
                                             <p class="help-block">Example block-level help text here.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Contact Phone:</label>
-                                            <input class="form-control" placeholder="Phone Number">
+                                            <input class="form-control" placeholder="Phone Number" name="contactphone">
                                         </div>
                                          <div class="form-group">
                                             <label>Contact Email Address:</label>
-                                            <input class="form-control" placeholder="Email Address">
+                                            <input class="form-control" placeholder="Email Address" name="contactemail">
                                         </div>
                                          <div class="form-group">
                                             <label>Child's Name:</label>
-                                            <input class="form-control" placeholder="Child's Name">
+                                            <input class="form-control" placeholder="Child's Name" name="childsname">
                                         </div>
                 <label>Child's DOB (know or expected):</label>
                 <div class='input-group date' id='childdob'>
-                    <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
+                    <input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
                     <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
                     </span>
                 </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#childdob').datetimepicker({pickTime: false});          
-            });
-        </script>
- 
+					<script type="text/javascript">
+						$(function () {
+							$('#childdob').datetimepicker({pickTime: false});          
+							});
+							</script>
                                         <div class="form-group">
                                             <label>Notes</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="3" name="enquirynotes"></textarea>
                                         </div>
-                                                                                <div class="form-group">
+                                          <div class="form-group">
                                             <label>How did you hear about us?</label>
-                                            <select class="form-control">
+                                            <select class="form-control" name="enquirysource">
+                                                <option>Please select ...</option>
+                                                <option>Referral</option>
                                                 <option>Word of Mouth</option>
                                                 <option>Web Search</option>
                                                 <option>Website</option>
@@ -121,7 +122,7 @@
                                               
                         <label>Tour Date & Time</label>
 						<div class='input-group date' id='tourtime'>
-                    <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
+                    <input type='text' class="form-control" name="tourdatetime"/>
                     <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
                     </span>
                 </div>
