@@ -86,7 +86,7 @@
                 <label>Child's DOB (know or expected):</label>
                 <div class='input-group date' id='childdob'>
                     <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
                     </span>
                 </div>
         <script type="text/javascript">
@@ -122,7 +122,7 @@
                         <label>Tour Date & Time</label>
 						<div class='input-group date' id='tourtime'>
                     <input type='text' class="form-control" data-date-format="DD-MM-YYYY"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
                     </span>
                 </div>
             </div>
