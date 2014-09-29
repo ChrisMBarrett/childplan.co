@@ -74,31 +74,72 @@
                                         <div class="form-group">
                                             <label>Contact Phone:</label>
                                             <input class="form-control" placeholder="Phone Number" name="contactphone">
+                                            <p class="help-block">Best contact phone number.</p>
                                         </div>
                                          <div class="form-group">
                                             <label>Contact Email Address:</label>
                                             <input class="form-control" placeholder="Email Address" name="contactemail">
+                                            <p class="help-block">Best contact email address.</p>
                                         </div>
-                                         <div class="form-group">
+                                        
+                                     <!-- Children's Details -->   
+                                     
+                                     <!-- Number of Children -->
+                                      <div class="form-group">
+                                      	<label>How Many Children?</label>
+                                            <select class="form-control" name="numberofchildren">
+                                                <option>Please select ...</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5+</option>
+                                            </select>
+                                        </div>
+                                      <!-- Child 1's Details --> 
+                                      	<!-- Child 1's Name -->                                      
+                                        <div class="form-group">
                                             <label>Child's Name:</label>
                                             <input class="form-control" placeholder="Child's Name" name="childsname">
+                                            <p class="help-block">If known.</p>
                                         </div>
-                <label>Child's DOB (know or expected):</label>
-                <div class='input-group date' id='childdob'>
-                    <input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
-                    <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
-                    </span>
-                </div>
-					<script type="text/javascript">
-						$(function () {
-							$('#childdob').datetimepicker({pickTime: false});          
-							});
-							</script>
+                                        
+                                      <!-- Child 1's DOB -->
+                                      <div class="form-group"> 
+									  	<label>Child's DOB (know or expected):</label>
+									  	<div class='input-group date' id='childdob'>
+										  	<input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
+										  	<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+										  	</span>
+									 </div>
+									 	<script type="text/javascript">
+										 	$(function () {
+											$('#childdob').datetimepicker({pickTime: false});          
+											});
+										</script>
+										
+                                   <!-- Child 1's Ideal Start Date -->
+								   	<div class="form-group">
+									   	<label>Ideal Start Date:</label>
+									   	<div class='input-group date' id='startdate'>
+										<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
+										<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+										</span>
+									</div>
+										<script type="text/javascript">
+											$(function () {
+											$('#startdate').datetimepicker({pickTime: false});          
+											});
+										</script>
+										
+									<!-- Enquiry Notes -->	
                                         <div class="form-group">
                                             <label>Notes</label>
                                             <textarea class="form-control" rows="3" name="enquirynotes"></textarea>
                                         </div>
-                                          <div class="form-group">
+                                        
+                                     <!-- How did they hear about us? -->   
+                                         <div class="form-group">
                                             <label>How did you hear about us?</label>
                                             <select class="form-control" name="enquirysource">
                                                 <option>Please select ...</option>
@@ -109,33 +150,26 @@
                                                 <option>Walked Past</option>
                                                 <option>Other</option>
                                             </select>
-                                        </div>
-                                       </div>
-                                       </div> 
-                  <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <div class="col-lg-6">
-                            Tour Details
-                        </div>
-                                              
-                        <label>Tour Date & Time</label>
-						<div class='input-group date' id='tourtime'>
-                    <input type='text' class="form-control" name="tourdatetime"/>
-                    <span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#tourtime').datetimepicker();          
-            });
-        </script>
-
-                   </div>                     
+										</div>
+										
+									<!-- Tour Details -->
+									<!-- Date & Time for the tour -->	
+                                    <label>Tour Date & Time</label>
+										<div class='input-group date' id='tourtime'>
+											<input type='text' class="form-control" name="tourdatetime"/>
+											<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+											</span>
+											</div>
+											</div>
+											</div>
+											</div>
+												<script type="text/javascript">
+													$(function () {
+													$('#tourtime').datetimepicker();          
+													});
+												</script>
+											</div>
+									<!-- Who is the tour being conducted by? -->		                     
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
                                     </form>
