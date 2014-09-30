@@ -156,7 +156,7 @@
 									<!-- Date & Time for the tour -->	
                                     <label>Tour Date & Time</label>
 										<div class='input-group date' id='tourtime'>
-											<input type='text' class="form-control" name="tourdatetime"/>
+											<input type='text' class="form-control" name="tourdatetime" />
 											<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 											</span>
 											</div>
