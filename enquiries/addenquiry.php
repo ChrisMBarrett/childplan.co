@@ -26,7 +26,7 @@ $rows_returned = $TourGuides->num_rows;
 
 $TourGuides->data_seek(0);
 while($row = $TourGuides->fetch_assoc()){
-    echo "<option>".$row['UserID']. ' - '.$row['UserFName'] ."</option>";
+    $TourGuidesOption = '<option value = "'.$row['UserID'].'">'.$row['UserFName'].'</option>';
 }
 
 
@@ -213,8 +213,11 @@ while($row = $TourGuides->fetch_assoc()){
                                          <div class="form-group">
                                             <label>Who is conducting the tour?</label>
                                             <select class="form-control" name="enquirysource">
-                                            <?php Echo $Option; ?>
-                                            </select>
+                                            <option value="0">Please Select ...</option>
+                                            <?php 
+                                            Echo $TourGuidesOption;
+                                            ?> 
+                                           </select>
 										</div>
 												                     
                                         <button type="submit" class="btn btn-default">Submit Button</button>
