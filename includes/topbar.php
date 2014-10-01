@@ -9,8 +9,8 @@ include '../includes/dbconnect.inc';
 $UserName 	= $_SESSION['UserName'];
 $UserRole 	= $_SESSION['UserRoleID'];
 
-// Centre Name - to be replaced by Session Variable
-//$CentreName = 'The Learning Centre';	
+// Centre ID & Name	
+$CentreID	= $_SESSION['CentreID'];
 $CentreName = $_SESSION['CentreName'];
 ?>
 

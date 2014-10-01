@@ -3,7 +3,37 @@
 
 <head>
 
-<?php include('../includes/pagetitle.php');?>
+<?php 
+
+// Include the Page title file
+include('../includes/pagetitle.php');
+	
+// Get the list of staff who can conduct tours
+// Link to the DB file
+include('../includes/dbconnect.inc');
+
+$StaffToursSQL = 	"SELECT
+						UserID,
+						UserFName
+					FROM
+						tblUser
+					WHERE
+						UserConductsToursFlag = 1";
+					
+$TourGuides = mysqli_query($conn, $StaffToursSQL) or die(mysqli_error($conn));
+$rows_returned = $TourGuides->num_rows;
+//echo $rows_returned;
+
+$TourGuides->data_seek(0);
+while($row = $TourGuides->fetch_assoc()){
+    echo "<option>".$row['UserID']. ' - '.$row['UserFName'] ."</option>";
+}
+
+
+	
+?>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -169,7 +199,24 @@
 													});
 												</script>
 											</div>
-									<!-- Who is the tour being conducted by? -->		                     
+									<!-- Who is the tour being conducted by? -->
+                                         <div class="form-group">
+                                            <label>Who is conducting the tour?</label>
+                                            <select class="form-control" name="enquirysource">
+                                                <option>Please select ...</option>
+                                                <option>Staff 1</option>
+												<option>Staff 2</option>
+                                            </select>
+										</div>
+										
+										<!-- Who is the tour being conducted by - Version 2? -->
+                                         <div class="form-group">
+                                            <label>Who is conducting the tour?</label>
+                                            <select class="form-control" name="enquirysource">
+                                            <?php Echo $Option; ?>
+                                            </select>
+										</div>
+												                     
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
                                     </form>
