@@ -10,6 +10,8 @@ echo "Enquirer's Contact Email: ".$_POST["contactemail"]."<br>";
 echo "Children's Details"."<br>";
 echo "Number of Children: ".$_POST["numberofchildren"]."<br>";
 echo "Child's Name: ".$_POST["childsname"]."<p>";
+echo "Child's Gender: ".$_POST["gender"]."<p>";
+
 
 echo "Child's DOB: ".$_POST["childsdob"]."<br>";
 echo "Child's DOB - MySQL Format: "; 
@@ -18,10 +20,20 @@ if ($_POST["childsdob"] == "") {echo ""."<br>";} else {echo date("Y-m-d",strtoti
 
 //else {echo date("Y-m-d",strtotime($_POST["childsdob"]))}; echo "<p>";
 
+
+echo "Days of Week Requested: "; 
+foreach ($_POST["daysofweek"] as $dow){
+echo $dow;
+}
+echo "<br>";
+
+echo 'Number of Days per week: '.count($_POST["daysofweek"])."<br>";
+
 echo "How did you hear about us?: ".$_POST["enquirysource"]."<p>";
 echo "Enquiry Notes: ".str_replace("\n","<br>",$_POST["enquirynotes"])."<p>";
 
 echo "Tour Date & Time: ".$_POST["tourdatetime"]."<br>";
+echo "Tour Guide: ".$_POST["tourguide"]."<br>";
 echo "Tour Date & Time - MySQL Format: ";
 if ($_POST["tourdatetime"] == "") {echo ""."<br>";} else {echo date("Y-m-d H:i:s",strtotime($_POST["tourdatetime"]))."<p>";};
 
