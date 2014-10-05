@@ -177,7 +177,7 @@
 	<label>Ideal Start Date:</label>
 		<div class='input-group date' id='startdate'>
 		<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
-		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
 		</div>
 </div>		
