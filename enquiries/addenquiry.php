@@ -8,7 +8,7 @@
 include('../includes/pagetitle.php');
 
 // Link to the DB file
-include('../includes/dbconnect.inc');
+
 			
 ?>
     <meta charset="utf-8">
@@ -202,7 +202,7 @@ include('../includes/dbconnect.inc');
         	<option value="0">Please Select ...</option>
 			<?php
 				// Get the list of staff who can conduct tours
-
+				include('../includes/dbconnect.inc');
 				$EnquirySourceSQL = 	"SELECT
 						EnquirySourceID,
 						EnquirySourceDesc
