@@ -6,6 +6,9 @@
 
 // Include the Page title file
 include('../includes/pagetitle.php');
+
+// Link to the DB file
+include('../includes/dbconnect.inc');
 			
 ?>
     <meta charset="utf-8">
@@ -59,33 +62,44 @@ include('../includes/pagetitle.php');
             </div>
             
             <form action="addenquiryprocess.php" method="post">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Enter Enquiry Details
-                        </div>
-                        
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>Enquirer's Name:</label>
-                                            <input class="form-control" placeholder="Enter name" name="enquirername">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Contact Phone:</label>
-                                            <input class="form-control" placeholder="Phone Number" name="contactphone">
-                                            <p class="help-block">Best contact phone number.</p>
-                                        </div>
-                                         <div class="form-group">
-                                            <label>Contact Email Address:</label>
-                                            <input class="form-control" placeholder="Email Address" name="contactemail">
-                                            <p class="help-block">Best contact email address.</p>
-                                        </div>
-                                        
+<div class="row">
+	<div class="col-lg-12">
+    	<div class="panel panel-default">
+        	<div class="panel-heading">
+            Enter Enquiry Details
+            </div>       
+            	<div class="panel-body">
+                	<div class="row">
+                    	<div class="col-lg-6">
+                        <form role="form">
+                        	<div class="form-group">
+                            <label>Enquirer's Name:</label>
+                            <input class="form-control" placeholder="Enter name" name="enquirername">
+                            </div>
+                            	<div class="form-group">
+                                <label>Contact Phone:</label>
+                                <input class="form-control" placeholder="Phone Number" name="contactphone">
+                                <p class="help-block">Best contact phone number.</p>
+                                </div>
+                                	<div class="form-group">
+                                    <label>Contact Email Address:</label>
+                                    <input class="form-control" placeholder="Email Address" name="contactemail">
+                                    <p class="help-block">Best contact email address.</p>
+                                    </div>
+                                    
+<!-- Enquiry Date -->	
+<label>Date of Enquiry</label>
+	<div class='input-group date' id='enquirydate'>
+		<input type='text' class="form-control" name="enquirydate" data-date-format="DD-MM-YYYY" />
+		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+		</span>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+		$('#enquirydate').datetimepicker({pickTime: false});          
+		});
+		</script>
+
 <!-- Children's Details -->                                      
 <!-- Number of Children -->
 <div class="form-group">
@@ -104,7 +118,7 @@ include('../includes/pagetitle.php');
 <!-- Child 1's Name -->                                      
 <div class="form-group">
 	<label>Child's Name:</label>
-    	<input class="form-control" placeholder="Child's Name" name="childsname">
+    	<input class="form-control" placeholder="Child's Name" name="child1sname">
         <p class="help-block">If known.</p>
 </div>
                                         
@@ -164,7 +178,7 @@ include('../includes/pagetitle.php');
 	<label>Ideal Start Date:</label>
 		<div class='input-group date' id='startdate'>
 		<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
-		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 		</span>
 		</div>
 </div>		
@@ -180,18 +194,34 @@ include('../includes/pagetitle.php');
     	<textarea class="form-control" rows="3" name="enquirynotes"></textarea>
 </div>
                                      
-<!-- How did they hear about us? -->   
+<!-- How did they hear about us? -->
+<!-- This list is drawn from tblEnquirySource -->   
 <div class="form-group">
 	<label>How did you hear about us?</label>
     	<select class="form-control" name="enquirysource">
-        	<option>Please select ...</option>
-            <option>Referral</option>
-            <option>Word of Mouth</option>
-            <option>Web Search</option>
-            <option>Website</option>
-            <option>Walked Past</option>
-            <option>Other</option>
-		</select>
+        	<option value="0">Please Select ...</option>
+			<?php
+				// Get the list of staff who can conduct tours
+
+				$EnquirySourceSQL = 	"SELECT
+						EnquirySourceID,
+						EnquirySourceDesc
+					FROM
+						tblEnquirySource
+					WHERE
+						CentreID in (0, 1)
+					ORDER BY
+						SortOrder ASC";
+					
+				$EnquirySource = mysqli_query($conn, $EnquirySourceSQL) or die(mysqli_error($conn));
+					
+				$EnquirySource->data_seek(0);
+				while($row = $EnquirySource->fetch_assoc())
+					{
+					echo '<option value ='.$row['EnquirySourceID'].'>'.$row['EnquirySourceDesc'].'</option>';
+					}		
+?>						
+        </select>
 </div>
 										
 <!-- Tour Details -->
@@ -215,8 +245,6 @@ include('../includes/pagetitle.php');
         	<option value="0">Please Select ...</option>
 			<?php
 				// Get the list of staff who can conduct tours
-				// Link to the DB file
-				include('../includes/dbconnect.inc');
 
 				$StaffToursSQL = 	"SELECT
 						UserID,

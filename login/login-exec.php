@@ -16,26 +16,27 @@ include '../includes/DBConnect.inc';
     }
 
 // Create Login Query
-	$LoginSQLCode =  "SELECT
-					 	a.UserID,
-					 	a.CentreID,
-					 	b.`CentreName`,
-					 	a.UserName,
-					 	a.UserFName,
-					 	a.UserLName,
-					 	a.UserRoleID,
-					 	a.UserActiveFlag,
-					 	a.UserGroupID
-					 FROM 
-					 	tblUser a
-					 LEFT JOIN
-						 tblCentre	b
-					ON
-						a.`CentreID` = b.`CentreID`
-					 WHERE
-					 	UserEmailAddress = '$UserName'
-					 AND
-					 	UserPassword = '$Password'";				 	
+$LoginSQLCode =  "
+	SELECT
+		a.UserID,
+		a.CentreID,
+		b.`CentreName`,
+		a.UserName,
+		a.UserFName,
+		a.UserLName,
+		a.UserRoleID,
+		a.UserActiveFlag,
+		a.UserGroupID
+	FROM 
+		tblUser a
+	LEFT JOIN
+		 tblCentre	b
+	ON
+		a.`CentreID` = b.`CentreID`
+	WHERE
+	 	UserEmailAddress = '$UserName'
+	AND
+	 	UserPassword = '$Password'";				 	
 	
 if(!$result = $conn->query($LoginSQLCode)){
     die('There was an error running the query [' . $db->error . ']');
@@ -49,14 +50,14 @@ else
 {
 while($row = $result->fetch_assoc())
 {
-	$UserID 		= $row['UserID'];
-	$UserFName		= $row['UserFName'];
-	$UserLName		= $row['UserLName'];
-	$UserActiveFlag = $row['UserActiveFlag'];
-	$UserRoleID		= $row['UserRoleID'];
-	$UserGroupID	= $row['UserGroupID'];
-	$CentreID		= $row['CentreID'];
-	$CentreName		= $row['CentreName'];
+	$UserID 				= $row['UserID'];
+	$UserFName				= $row['UserFName'];
+	$UserLName				= $row['UserLName'];
+	$UserActiveFlag 		= $row['UserActiveFlag'];
+	$UserRoleID				= $row['UserRoleID'];
+	$UserGroupID			= $row['UserGroupID'];
+	$CentreID				= $row['CentreID'];
+	$CentreName				= $row['CentreName'];
 }
 }
 /*
@@ -76,22 +77,22 @@ while($row = $result->fetch_assoc())
 else
 {
 // If these are both OK, the set session variables up		
-			session_regenerate_id();
-			// Define Session Variables
-			$_SESSION['UserID']			 		= $UserID;
-			$_SESSION['UserFName']		 		= $UserFName;
-			$_SESSION['UserLName']		 		= $UserLName;
-			$_SESSION['UserName']		 		= $UserFName.' '.$UserLName;
-			$_SESSION['UserRoleID']		 		= $UserRoleID;
-			$_SESSION['CentreID']		 		= $CentreID;
-			$_SESSION['CentreName']		 		= $CentreName;
+session_regenerate_id();
+// Define Session Variables
+	$_SESSION['UserID']			 		= $UserID;
+	$_SESSION['UserFName']		 		= $UserFName;
+	$_SESSION['UserLName']		 		= $UserLName;
+	$_SESSION['UserName']		 		= $UserFName.' '.$UserLName;
+	$_SESSION['UserRoleID']		 		= $UserRoleID;
+	$_SESSION['CentreID']		 		= $CentreID;
+	$_SESSION['CentreName']		 		= $CentreName;
 			
 			
-			session_write_close();			
-	//		$usertableupdate = mysql_query("Update tbl_users set logins=logins+1 where tbl_users_id = $userid");
-	//		$userloginsert = mysql_query("Insert into tbl_user_log (tenant_id,user_id,ip_address,last_login) 
+session_write_close();			
+//		$usertableupdate = mysql_query("Update tbl_users set logins=logins+1 where tbl_users_id = $userid");
+//		$userloginsert = mysql_query("Insert into tbl_user_log (tenant_id,user_id,ip_address,last_login) 
 
-			header("location: ../enquiries/");
-			exit();
+	header("location: ../enquiries/");
+	exit();
 }			
 ?>

@@ -1,8 +1,65 @@
 <?php
 
-//$dobdate = mysql_real_escape_string($_POST["childsdob"]);
+include('../includes/pagetitle.php');
+
+
+// Collect All the Variables
+$UserID				= $_SESSION['UserID'];
+$CentreID			= $_SESSION['CentreID'];
+
+$EnquirerName 		= $_POST["enquirername"];
+$EnquirerPhone		= $_POST["contactphone"];
+$EnquirerEmail		= $_POST["contactemail"];
+$EnquiryDate		= date('Y-m-d',strtotime($_POST["enquirydate"]));
+
+$NumberOfChildren	= $_POST["numberofchildren"];
+
+$EnquirySource		= $_POST["enquirysource"];
+
+$Child1sName		= $_POST["child1sname"];
+$Child1DOB			= date('Y-m-d',strtotime($_POST["childsdob"]));
+
+$Child1DOW			= $_POST["daysofweek"];
+$Child1DOWInsert	= implode($Child1DOW);
+
+$Child1NumberDOW	= count($_POST["daysofweek"]);
+
+// Process the records to the database
 
 echo 'Hello'."<br>";
+
+//$conn->autocommit(FALSE);
+
+// Add Values to the Enquiry Table
+include('../includes/dbconnect.inc');
+$EnquiryAddSQL = "
+INSERT INTO
+	tblEnquiry
+	(CentreID, EnquirerName, EnquiryPhoneNumber, EnquiryEmailAddress, NumberOfChildren, EnquirySourceID, EnquiryStatusID, EnquiryDate, AddedByUserID, EnquiryAddedDateTime)
+VALUES
+	($CentreID, '$EnquirerName', '$EnquirerPhone', '$EnquirerEmail', $NumberOfChildren, $EnquirySource, 1, '$EnquiryDate', $UserID, NOW())
+";
+					
+mysqli_query($conn, $EnquiryAddSQL ) or die(mysqli_error($conn));
+//$conn->commit();
+// Get the Insert ID of the Enquiry
+$EnquiryID = $conn->insert_id;
+Echo 'Success? - '.$EnquiryID;
+/*
+// Add Values to the Enquiry History Table
+$EnquiryHistoryAddSQL = "
+INSERT INTO
+	tblEnquiryHistory
+	(EnquiryID,CentreID,FirstChildsName,FirstChildsDoWRequested,FirstChildsNumberOfDaysRequested,AddedByUserID,DateTimeAdded)
+VALUES
+	($EnquiryID,$CentreID,'$Child1sName','$Child1DOWInsert',$Child1NumberDOW,$UserID,Now())
+";
+					
+mysqli_query($conn, $EnquiryHistoryAddSQL ) or die(mysqli_error($conn));
+
+
+
+
 
 echo "Enquirer's Name is: ".$_POST["enquirername"]."<br>";
 echo "Enquirer's Contact Number: ".$_POST["contactphone"]."<br>";
@@ -22,9 +79,10 @@ if ($_POST["childsdob"] == "") {echo ""."<br>";} else {echo date("Y-m-d",strtoti
 
 
 echo "Days of Week Requested: "; 
-foreach ($_POST["daysofweek"] as $dow){
-echo $dow;
-}
+$test = $_POST["daysofweek"];
+
+echo implode($test);
+
 echo "<br>";
 
 echo 'Number of Days per week: '.count($_POST["daysofweek"])."<br>";
@@ -37,6 +95,6 @@ echo "Tour Guide: ".$_POST["tourguide"]."<br>";
 echo "Tour Date & Time - MySQL Format: ";
 if ($_POST["tourdatetime"] == "") {echo ""."<br>";} else {echo date("Y-m-d H:i:s",strtotime($_POST["tourdatetime"]))."<p>";};
 
-
+*/
 ?>
 
