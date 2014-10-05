@@ -203,7 +203,7 @@ include('../includes/dbconnect.inc');
 						EnquirySourceID,
 						EnquirySourceDesc
 					FROM
-						tblEnquirySource
+						tblenquirysource
 					WHERE
 						CentreID in (0, 1)
 					ORDER BY
