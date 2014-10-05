@@ -194,7 +194,7 @@
 </div>
                                      
 <!-- How did they hear about us? -->
-<!-- This list is drawn from tblEnquirySource -->   
+<!-- This list is drawn from tblEnquirySource   
 <div class="form-group">
 	<label>How did you hear about us?</label>
     	<select class="form-control" name="enquirysource">
@@ -221,7 +221,7 @@
 ?>						
         </select>
 </div>
-										
+	--> 									
 <!-- Tour Details -->
 <!-- Date & Time for the tour -->	
 <label>Tour Date & Time</label>
@@ -236,7 +236,7 @@
 		});
 		</script>
 									
-<!-- Who is the tour being conducted by -->
+<!-- Who is the tour being conducted by 
 <label>Who is conducting the tour?</label>
 <div class="form-group">
     	<select class="form-control" name="tourguide">
@@ -265,7 +265,7 @@
 ?>						
         </select>
 </div>
-											                     
+	-->										                     
 <button type="submit" class="btn btn-default">Submit Button</button>
 <button type="reset" class="btn btn-default">Reset Button</button>
 			</form>
