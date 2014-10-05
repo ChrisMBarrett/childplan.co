@@ -3,12 +3,11 @@
 <head>
  
 <?php 
-
 // Include the Page title file
 include('../includes/pagetitle.php');
 
 // Link to the DB file
-
+include('../includes/dbconnect.inc');
 			
 ?>
     <meta charset="utf-8">
@@ -48,8 +47,6 @@ include('../includes/pagetitle.php');
 <?php
 // Inlcude the top bar
 	include('../includes/topbar.php');
-?>
-<?php
     include('../includes/sidebar.php');
 ?>
 
@@ -202,7 +199,6 @@ include('../includes/pagetitle.php');
         	<option value="0">Please Select ...</option>
 			<?php
 				// Get the list of staff who can conduct tours
-				include('../includes/dbconnect.inc');
 				$EnquirySourceSQL = 	"SELECT
 						EnquirySourceID,
 						EnquirySourceDesc
