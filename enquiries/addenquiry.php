@@ -4,10 +4,9 @@
  
 <?php 
 // Include the Page title file
-include('../includes/pagetitle.php');
+	include_once('../includes/pagetitle.php');
 
-// Link to the DB file
-include('../includes/dbconnect.inc');
+
 			
 ?>
     <meta charset="utf-8">
@@ -46,8 +45,11 @@ include('../includes/dbconnect.inc');
 
 <?php
 // Inlcude the top bar
-	include('../includes/topbar.php');
-    include('../includes/sidebar.php');
+	include_once('../includes/topbar.php');
+    include_once('../includes/sidebar.php');
+   
+// Link to the DB file
+   include('../includes/dbconnect.inc'); 
 ?>
 
         <div id="page-wrapper">
