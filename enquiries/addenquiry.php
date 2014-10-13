@@ -46,7 +46,7 @@
 <?php
 
 // Link to the DB file
-   include('../includes/dbconnect.inc'); 
+   include('../includes/DBConnect.inc'); 
 
 // Inlcude the top bar
 	include_once('../includes/topbar.php');
