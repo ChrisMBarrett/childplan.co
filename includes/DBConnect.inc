@@ -11,9 +11,9 @@ if(!empty($test))
 	$password 	= $url["pass"];
 	$db 		= substr($url["path"],1);
     
-	$conn = mysqli_connect($server,$username,$password);
+	$conn = mysqli_connect($server,$username,$password,$db);
 
-	mysqli_select_db($db);
+//	mysqli_select_db($db);
 	
 } 
 else
