@@ -3,7 +3,25 @@
 
 <head>
 
-<?php include('../includes/pagetitle.php');?>
+<?php 
+
+include('../includes/dbconnect.inc');
+include('../includes/pagetitle.php');
+
+// Create Number of Enquiries
+$NumberOfEnquiriesSQL = 'SELECT
+	COUNT(*) AS NumberOpenEnquiries
+FROM
+	tblenquiry
+WHERE
+	CentreID = 1';
+	
+$NumberofEnquiries = mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
+
+$row_cnt = mysqli_num_rows($NumberofEnquiries);
+		
+
+?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,7 +87,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php echo $row_cnt; ?></div>
                                     <div>Active Enquiries!</div>
                                 </div>
                             </div>
