@@ -225,7 +225,7 @@
 
 	 									
 <!-- Tour Details -->
-<!-- Date & Time for the tour -->	
+<!-- Date & Time for the tour	
 <label>Tour Date & Time</label>
 	<div class='input-group date' id='tourtime'>
 		<input type='text' class="form-control" name="tourdatetime" />
@@ -237,7 +237,7 @@
 		$('#tourtime').datetimepicker();          
 		});
 		</script>
-									
+-->									
 <!-- Who is the tour being conducted by 
 <label>Who is conducting the tour?</label>
 <div class="form-group">
