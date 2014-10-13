@@ -10,7 +10,7 @@ include('../includes/pagetitle.php');
 
 // Create Number of Enquiries
 $NumberOfEnquiriesSQL = 'SELECT
-	COUNT(*) AS NumberOpenEnquiries
+	*
 FROM
 	tblenquiry
 WHERE
