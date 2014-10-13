@@ -3,7 +3,7 @@
 // Authorisation File
 include '../includes/auth.php';
 // Database Connection File
-include '../includes/dbconnect.inc';
+//include '../includes/dbconnect.inc';
 
 // Get Session Variables
 $UserName 	= $_SESSION['UserName'];

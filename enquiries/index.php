@@ -5,16 +5,18 @@
 
 <?php 
 
-include('../includes/dbconnect.inc');
 include('../includes/pagetitle.php');
+include('../includes/dbconnect.inc');
+
 
 // Create Number of Enquiries
-$NumberOfEnquiriesSQL = 'SELECT
-	*
-FROM
-	tblenquiry
-WHERE
-	CentreID = 1';
+$NumberOfEnquiriesSQL = "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID = 1";
 	
 $NumberofEnquiries = mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
 
