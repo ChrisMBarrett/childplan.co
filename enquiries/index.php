@@ -6,7 +6,7 @@
 <?php 
 
 include('../includes/pagetitle.php');
-include('../includes/dbconnect.inc');
+include('../includes/DBConnect.inc');
 
 
 // Create Number of Enquiries
