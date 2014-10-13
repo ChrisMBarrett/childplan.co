@@ -26,7 +26,9 @@ $Child1NumberDOW	= count($_POST["daysofweek"]);
 
 // Process the records to the database
 
-echo 'Hello'."<br>";
+echo 'Hello'."<br>".'You Have added some records to the database';
+exit;
+
 
 //$conn->autocommit(FALSE);
 

@@ -44,12 +44,13 @@
 <body>
 
 <?php
+
+// Link to the DB file
+   include('../includes/dbconnect.inc'); 
+
 // Inlcude the top bar
 	include_once('../includes/topbar.php');
     include_once('../includes/sidebar.php');
-   
-// Link to the DB file
-   include('../includes/dbconnect.inc'); 
 ?>
 
         <div id="page-wrapper">
@@ -112,6 +113,163 @@
             <option>5+</option>
          </select>
 </div>
+
+<!-- Child 1's Details --> 
+<!-- Child 1's Name -->                                      
+<div class="form-group">
+	<label>Child's Name:</label>
+    	<input class="form-control" placeholder="Child's Name" name="child1sname">
+        <p class="help-block">If known.</p>
+</div>
+                                        
+<!-- Child 1's DOB -->
+<div class="form-group"> 
+	<label>Child's DOB (know or expected):</label>
+		<div class='input-group date' id='childdob'>
+			<input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
+			<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+			</span>
+		</div>
+</div>		
+	<script type="text/javascript">
+		$(function () {
+		$('#childdob').datetimepicker({pickTime: false});          
+		});
+	</script>
+
+<!-- Child's Gender -->										 
+<div class="form-group">
+	<label>Child's Gender</label>
+    	<select class="form-control" name="gender">
+    		<option value='0'>Please Select ...</option>
+        	<option value='1'>Boy</option>
+			<option value='2'>Girl</option>
+			<option value='3'>Not Known</option>
+		</select>
+</div>
+
+<!-- Days Requested in the week -->										 
+<div class="form-group">
+	<label>Days Requested</label>
+    	<select multiple class="form-control" name="daysofweek[]" size="5">
+        	<option value='M'>Monday</option>
+			<option value='T'>Tuesday</option>
+			<option value='W'>Wednesday</option>
+			<option value='H'>Thursday</option>
+			<option value='F'>Friday</option>
+		</select>
+</div>
+
+<!-- Number of Days Requested -->										 
+<div class="form-group">
+	<label>Number of Days Requested</label>
+    	<select class="form-control" name="numberofdays">
+        	<option>Please select ...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+         </select>
+</div>
+
+<!-- Child 1's Ideal Start Date -->
+<div class="form-group">
+	<label>Ideal Start Date:</label>
+		<div class='input-group date' id='startdate'>
+		<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
+		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+		</span>
+		</div>
+</div>		
+	<script type="text/javascript">
+		$(function () {
+		$('#startdate').datetimepicker({pickTime: false});          
+		});
+	</script>							
+
+<!-- Enquiry Notes -->	
+<div class="form-group">
+	<label>Notes</label>
+    	<textarea class="form-control" rows="3" name="enquirynotes"></textarea>
+</div>
+                                     
+<!-- How did they hear about us? -->
+<!-- This list is drawn from tblEnquirySource    -->
+<div class="form-group">
+	<label>How did you hear about us?</label>
+    	<select class="form-control" name="enquirysource">
+        	<option value="0">Please Select ...</option>
+			<?php
+				// Get the list of staff who can conduct tours
+				$EnquirySourceSQL = 	"SELECT
+						EnquirySourceID,
+						EnquirySourceDesc
+					FROM
+						tblenquirysource
+					WHERE
+						CentreID in (0, 1)
+					ORDER BY
+						SortOrder ASC";
+					
+				$EnquirySource = mysqli_query($conn, $EnquirySourceSQL) or die(mysqli_error($conn));
+					
+				$EnquirySource->data_seek(0);
+				while($row = $EnquirySource->fetch_assoc())
+					{
+					echo '<option value ='.$row['EnquirySourceID'].'>'.$row['EnquirySourceDesc'].'</option>';
+					}		
+?>						
+        </select>
+</div>
+
+	 									
+<!-- Tour Details -->
+<!-- Date & Time for the tour -->	
+<label>Tour Date & Time</label>
+	<div class='input-group date' id='tourtime'>
+		<input type='text' class="form-control" name="tourdatetime" />
+		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
+		</span>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+		$('#tourtime').datetimepicker();          
+		});
+		</script>
+									
+<!-- Who is the tour being conducted by 
+<label>Who is conducting the tour?</label>
+<div class="form-group">
+    	<select class="form-control" name="tourguide">
+        	<option value="0">Please Select ...</option>
+			<?php
+				// Get the list of staff who can conduct tours
+
+				$StaffToursSQL = 	"SELECT
+						UserID,
+						UserFName,
+						CONCAT(UserFName, ' ',UserLName) AS TourGuide
+					FROM
+						tblUser
+					WHERE
+						UserConductsToursFlag = 1
+					AND
+						CentreID = '$CentreID'";
+					
+				$TourGuides = mysqli_query($conn, $StaffToursSQL) or die(mysqli_error($conn));
+					
+				$TourGuides->data_seek(0);
+				while($row = $TourGuides->fetch_assoc())
+					{
+					echo '<option value ='.$row['UserID'].'>'.$row['TourGuide'].'</option>';
+					}		
+?>						
+        </select>
+</div>
+	-->										                     
+<button type="submit" class="btn btn-default">Submit Button</button>
+<button type="reset" class="btn btn-default">Reset Button</button>
 
 			</form>
 		</div>
