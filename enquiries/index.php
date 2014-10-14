@@ -90,7 +90,7 @@ $row_cnt = mysqli_num_rows($NumberofEnquiries);
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $row_cnt; ?></div>
-                                    <div>Active Enquiries!</div>
+                                    <div>Open Enquiries</div>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ $row_cnt = mysqli_num_rows($NumberofEnquiries);
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">2</div>
-                                    <div>Via Website to Action</div>
+                                    <div>From Website</div>
                                 </div>
                             </div>
                         </div>
