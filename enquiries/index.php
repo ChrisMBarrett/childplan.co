@@ -134,7 +134,7 @@ $row_cnt = mysqli_num_rows($NumberofEnquiries);
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">12</div>
-                                    <div>Centre Tours</div>
+                                    <div>Upcoming Tours</div>
                                 </div>
                             </div>
                         </div>
