@@ -25,6 +25,9 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- BootstrapValidator CSS -->
+    <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -61,7 +64,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-            <form action="addenquiryprocess.php" method="post">
+            <form id="AddEnquiryForm" action="addenquiryprocess.php" method="post">
 <div class="row">
 	<div class="col-lg-12">
     	<div class="panel panel-default">
@@ -125,7 +128,7 @@
 <!-- Child 1's DOB -->
 <div class="form-group"> 
 	<label>Child's DOB (know or expected):</label>
-		<div class='input-group date' id='childdob'>
+		<div class='input-group date' id='child1sdob'>
 			<input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
 			<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 			</span>
@@ -140,7 +143,7 @@
 <!-- Child's Gender -->										 
 <div class="form-group">
 	<label>Child's Gender</label>
-    	<select class="form-control" name="gender">
+    	<select class="form-control" name="child1sgender" id="child1sgender">
     		<option value='0'>Please Select ...</option>
         	<option value='1'>Boy</option>
 			<option value='2'>Girl</option>
@@ -280,6 +283,63 @@
 <!-- /.panel -->                 
 <!-- /#wrapper -->
 
+<script>
+$(document).ready(function() {
+    $('#AddEnquiryForm').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            enquirername: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The Enquirer\'s Name is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                }
+            },
+            contactemail: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required and cannot be empty'
+                    },
+                    emailAddress: {
+                        message: 'The email address is not a valid'
+                    }
+                }
+            },
+            enquirydate: {
+                validators: {
+                    notEmpty: {
+                        message: 'The enquiry date is required'
+                    },
+                    date: {
+                        format: 'DD-MM-YYYY',
+                        message: 'The enquiry date is not valid'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'The gender is required'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+
 <!-- jQuery Version 1.11.0 -->
 <script src="../javascript/jquery-1.11.0.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -292,6 +352,8 @@
 <script type="text/javascript" src="../javascript/moment.js"></script>
 <!-- Bootstrap DatePicker -->
 <script type="text/javascript" src="../javascript/bootstrap-datetimepicker.min.js"></script>
+<!-- BootstrapValidator JS -->
+<script type="text/javascript" src="../javascript/bootstrapValidator.min.js"></script>
        
 </body>
 </html>
