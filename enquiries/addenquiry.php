@@ -87,16 +87,18 @@
                                 	<div class="form-group">
                                     <label>Contact Email Address:</label>
                                     <input class="form-control" placeholder="Email Address" name="contactemail">
-                                    <p class="help-block">Best contact email address.</p>
+                                    <!-- <p class="help-block">Best contact email address.</p> -->
                                     </div>
                                     
-<!-- Enquiry Date -->	
+<!-- Enquiry Date -->
+<div class="form-group">	
 <label>Date of Enquiry</label>
 	<div class='input-group date' id='enquirydate'>
 		<input type='text' class="form-control" name="enquirydate" data-date-format="DD-MM-YYYY" />
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
 	</div>
+</div>	
 	<script type="text/javascript">
 		$(function () {
 		$('#enquirydate').datetimepicker({pickTime: false});          
@@ -108,7 +110,7 @@
 <div class="form-group">
 	<label>How Many Children?</label>
     	<select class="form-control" name="numberofchildren">
-        	<option>Please select ...</option>
+        	<option>Please Select ...</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -167,7 +169,7 @@
 <div class="form-group">
 	<label>Number of Days Requested</label>
     	<select class="form-control" name="numberofdays">
-        	<option>Please select ...</option>
+        	<option>Please Select ...</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -229,12 +231,14 @@
 	 									
 <!-- Tour Details -->
 <!-- Date & Time for the tour -->
+<div class="form-group">
 <label>Tour Date & Time</label> 
 	<div class='input-group date' id='tourtime'>
 		<input type='text' class="form-control" name="tourdatetime" />
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
 	</div>
+</div>	
 	<script type="text/javascript">
 		$(function () {
 		$('#tourtime').datetimepicker();          
@@ -319,7 +323,7 @@ $(document).ready(function() {
             enquirydate: {
                 validators: {
                     notEmpty: {
-                        message: 'The enquiry date is required'
+                        message: 'The date of enquiry is required'
                     },
                     date: {
                         format: 'DD-MM-YYYY',
