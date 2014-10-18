@@ -19,8 +19,7 @@ $EnquirySource		= $_POST["enquirysource"];
 // First Childs Details
 $Child1sName		= $_POST["child1sname"];
 $Child1sGender		= $_POST["child1sgender"];
-$Child1sDOB			= date('Y-m-d',strtotime($_POST["childs1sdob"]));
-
+$Child1sDOB			= date('Y-m-d',strtotime($_POST["child1sdob"]));
 
 $Child1DOW			= $_POST["daysofweek"];
 $Child1DOWInsert	= implode($Child1DOW);
@@ -29,14 +28,26 @@ $Child1NumberDOW	= count($_POST["daysofweek"]);
 
 $EnquiryNotes		= $_POST["enquirynotes"];
 
+// Tour Information
+$TourDateTime		= date('Y-m-d H:i:s',strtotime($_POST["tourdatetime"]));
+$TourGuide			= $_POST["tourguide"];
+
+/*
+If ($TourGuide != ""){
+echo "There's a tour to enter"."<br>"."Date & Time = ".$TourDateTime."<br>"."Tour Guide = ".$TourGuide;
+}
+else
+{
+echo	"boo - no tour :(";
+	
+}
+//echo "Tour Date & Time: ".$TourDate."<br>"."Tour Guide is: ".$TourGuide;
+exit;
+*/
 
 // Process the records to the database
 
-//echo 'Hello'."<br>".'You Have added some records to the database';
-//exit;
-
-
-//$conn->autocommit(FALSE);
+$conn->autocommit(FALSE);
 
 // Add Values to the Enquiry Table
 $EnquiryAddSQL = "
@@ -72,7 +83,8 @@ VALUES
 ";
 					
 mysqli_query($conn, $EnquiryAddSQL ) or die(mysqli_error($conn));
-//$conn->commit();
+
+
 // Get the Insert ID of the Enquiry
 $EnquiryID = $conn->insert_id;
 //Echo 'Success? - '.$EnquiryID;
@@ -110,6 +122,42 @@ VALUES
 ";
 					
 mysqli_query($conn, $EnquiryHistoryAddSQL ) or die(mysqli_error($conn));
+
+// Add the Tour Information (if one was select)
+
+If($TourGuide != ""){
+
+// Add Values to the Enquiry Table
+$TourAddSQL = "
+INSERT INTO
+	tblTours
+	(
+	CentreID 
+	,EnquiryID
+ 	,TourWithUserID
+	,TourDateTime
+	,AddedByUserID
+	,DateTimeAdded
+	)
+VALUES
+	(
+	$CentreID 
+	,$EnquiryID
+	,$TourGuide
+	,'$TourDateTime'
+	,$UserID
+	,NOW() 
+	)
+";
+					
+mysqli_query($conn, $TourAddSQL ) or die(mysqli_error($conn));	
+$conn->commit();
+}
+else
+{
+// Commite the 2 Query results (excluding the tours)
+$conn->commit();
+}
 
 echo "Success?";
 

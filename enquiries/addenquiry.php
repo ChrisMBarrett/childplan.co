@@ -42,10 +42,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
-
+</head>	
 <body>
 
+<!--  php include files -->
 <?php
 
 // Link to the DB file
@@ -56,35 +56,41 @@
     include_once('../includes/sidebar.php');
 ?>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Add New Enquiry</h1>
-                </div>
-                <!-- /.col-lg-12 -->
+<div id="page-wrapper">
+	<div class="row">
+    	<div class="col-lg-12">
+        <h1 class="page-header">Add New Enquiry</h1>
+        </div>
+        <!-- /.col-lg-12 -->
             </div>
-            
-            <form id="AddEnquiryForm" action="addenquiryprocess.php" method="post">
+<!-- Set Up Form -->                
+<form id="AddEnquiryForm" action="addenquiryprocess.php" method="post">
 <div class="row">
 	<div class="col-lg-12">
     	<div class="panel panel-default">
         	<div class="panel-heading">
             Enter Enquiry Details
             </div>       
-            	<div class="panel-body">
-                	<div class="row">
-                    	<div class="col-lg-6">
-                        <form role="form">
-                        	<div class="form-group">
+            <div class="panel-body">
+                <div class="row">
+                	<div class="col-lg-6">
+	                        
+<!-- Enquirier's Name -->
+<div class="form-group">
+
                             <label>Enquirer's Name:</label>
                             <input class="form-control" placeholder="Enter name" name="enquirername">
                             </div>
-                            	<div class="form-group">
+
+<!-- Contact Phone Number -->	
+<div class="form-group">
                                 <label>Contact Phone:</label>
                                 <input class="form-control" placeholder="Phone Number" name="contactphone">
                                 <p class="help-block">Best contact phone number.</p>
                                 </div>
-                                	<div class="form-group">
+
+<!-- Contact Email Address -->   	
+<div class="form-group">
                                     <label>Contact Email Address:</label>
                                     <input class="form-control" placeholder="Email Address" name="contactemail">
                                     <!-- <p class="help-block">Best contact email address.</p> -->
@@ -97,25 +103,25 @@
 		<input type='text' class="form-control" name="enquirydate" data-date-format="DD-MM-YYYY" />
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
-	</div>
-</div>	
-	<script type="text/javascript">
+		<script type="text/javascript">
 		$(function () {
-		$('#enquirydate').datetimepicker({pickTime: false});          
+		$('#enquirydate').datetimepicker({pickTime: false,defaultDate:""});          
 		});
 		</script>
+	</div>
+</div>	
 
 <!-- Children's Details -->                                      
 <!-- Number of Children -->
 <div class="form-group">
 	<label>How Many Children?</label>
     	<select class="form-control" name="numberofchildren">
-        	<option>Please Select ...</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5+</option>
+        	<option value="">Please Select ...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5+</option>
          </select>
 </div>
 
@@ -131,25 +137,25 @@
 <div class="form-group"> 
 	<label>Child's DOB (know or expected):</label>
 		<div class='input-group date' id='child1sdob'>
-			<input type='text' class="form-control" name="childsdob" data-date-format="DD-MM-YYYY"/>
+			<input type='text' class="form-control" name="child1sdob" data-date-format="DD-MM-YYYY"/>
 			<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 			</span>
+				<script type="text/javascript">
+				$(function () {
+				$('#child1sdob').datetimepicker({pickTime: false});          
+				});
+	</script>
 		</div>
 </div>		
-	<script type="text/javascript">
-		$(function () {
-		$('#childdob').datetimepicker({pickTime: false});          
-		});
-	</script>
 
-<!-- Child's Gender -->										 
+<!-- Child 1's Gender -->										 
 <div class="form-group">
 	<label>Child's Gender</label>
     	<select class="form-control" name="child1sgender" id="child1sgender">
-    		<option value='0'>Please Select ...</option>
-        	<option value='1'>Boy</option>
-			<option value='2'>Girl</option>
-			<option value='3'>Not Known</option>
+    		<option value="">Please Select ...</option>
+        	<option value="1">Boy</option>
+			<option value="2">Girl</option>
+			<option value="3">Not Known</option>
 		</select>
 </div>
 
@@ -169,12 +175,12 @@
 <div class="form-group">
 	<label>Number of Days Requested</label>
     	<select class="form-control" name="numberofdays">
-        	<option>Please Select ...</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        	<option value="">Please Select ...</option>
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
+            <option value ="5">5</option>
          </select>
 </div>
 
@@ -185,14 +191,14 @@
 		<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
-		</div>
-</div>		
-	<script type="text/javascript">
+		<script type="text/javascript">
 		$(function () {
 		$('#startdate').datetimepicker({pickTime: false});          
 		});
-	</script>							
-
+	</script>
+		</div>
+</div>		
+							
 <!-- Enquiry Notes -->	
 <div class="form-group">
 	<label>Notes</label>
@@ -227,9 +233,8 @@
 ?>						
         </select>
 </div>
-
-	 									
-<!-- Tour Details -->
+ 									
+<!-- Tour Information & Details -->
 <!-- Date & Time for the tour -->
 <div class="form-group">
 <label>Tour Date & Time</label> 
@@ -237,19 +242,19 @@
 		<input type='text' class="form-control" name="tourdatetime" />
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
-	</div>
-</div>	
-	<script type="text/javascript">
+		<script type="text/javascript">
 		$(function () {
 		$('#tourtime').datetimepicker();          
 		});
 		</script>
+	</div>
+</div>		
 										
 <!-- Who is the tour being conducted by -->
-<label>Who is conducting the tour?</label>
+<label>Which Staff Member is Conducting the Tour?</label>
 <div class="form-group">
     	<select class="form-control" name="tourguide">
-        	<option value="0">Please Select ...</option>
+        	<option value="">Please Select ...</option>
 			<?php
 				// Get the list of staff who can conduct tours
 
@@ -273,8 +278,7 @@
 					}		
 ?>						
         </select>
-</div>
-	
+</div>	
 											                     
 <button type="submit" class="btn btn-default">Submit Button</button>
 <button type="reset" class="btn btn-default">Reset Button</button>
@@ -287,6 +291,7 @@
 <!-- /.panel -->                 
 <!-- /#wrapper -->
 
+<!-- Form Validation Script -->
 <script>
 $(document).ready(function() {
     $('#AddEnquiryForm').bootstrapValidator({
@@ -331,7 +336,14 @@ $(document).ready(function() {
                     }
                 }
             },
-            gender: {
+            numberofchildren: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a number of children'
+                    },
+                }
+            },          
+            child2sgender: {
                 validators: {
                     notEmpty: {
                         message: 'The gender is required'
@@ -342,7 +354,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
 
 <!-- jQuery Version 1.11.0 -->
 <script src="../javascript/jquery-1.11.0.js"></script>
