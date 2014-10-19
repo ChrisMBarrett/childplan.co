@@ -50,14 +50,14 @@ else
 {
 while($row = $result->fetch_assoc())
 {
-	$UserID 				= $row['UserID'];
-	$UserFName				= $row['UserFName'];
-	$UserLName				= $row['UserLName'];
-	$UserActiveFlag 		= $row['UserActiveFlag'];
-	$UserRoleID				= $row['UserRoleID'];
-	$UserGroupID			= $row['UserGroupID'];
-	$CentreID				= $row['CentreID'];
-	$CentreName				= $row['CentreName'];
+	$UserID 						= $row['UserID'];
+	$UserFName						= $row['UserFName'];
+	$UserLName						= $row['UserLName'];
+	$UserActiveFlag 				= $row['UserActiveFlag'];
+	$UserRoleID						= $row['UserRoleID'];
+	$UserGroupID					= $row['UserGroupID'];
+	$CentreID						= $row['CentreID'];
+	$CentreName						= $row['CentreName'];
 }
 }
 /*
@@ -70,7 +70,7 @@ while($row = $result->fetch_assoc())
 
 // Check to see if the user has been blocked - direct to the access denied page.
 		if ($UserActiveFlag != 1){
-		echo - 'Sorry - Your account is blocked!';
+		echo - 'Sorry - Your account is currently blocked!';
 		//header("location: login-denied.php");
 		exit();
 		}		
@@ -79,20 +79,26 @@ else
 // If these are both OK, the set session variables up		
 session_regenerate_id();
 // Define Session Variables
-	$_SESSION['UserID']			 		= $UserID;
-	$_SESSION['UserFName']		 		= $UserFName;
-	$_SESSION['UserLName']		 		= $UserLName;
-	$_SESSION['UserName']		 		= $UserFName.' '.$UserLName;
-	$_SESSION['UserRoleID']		 		= $UserRoleID;
-	$_SESSION['CentreID']		 		= $CentreID;
-	$_SESSION['CentreName']		 		= $CentreName;
+	$_SESSION['UserID']			 	= $UserID;
+	$_SESSION['UserFName']		 	= $UserFName;
+	$_SESSION['UserLName']		 	= $UserLName;
+	$_SESSION['UserName']		 	= $UserFName.' '.$UserLName;
+	$_SESSION['UserRoleID']		 	= $UserRoleID;
+	$_SESSION['CentreID']		 	= $CentreID;
+	$_SESSION['CentreName']		 	= $CentreName;			
 			
-			
-session_write_close();			
-//		$usertableupdate = mysql_query("Update tbl_users set logins=logins+1 where tbl_users_id = $userid");
-//		$userloginsert = mysql_query("Insert into tbl_user_log (tenant_id,user_id,ip_address,last_login) 
+session_write_close();
 
-	header("location: ../enquiries/");
-	exit();
+// Update the UserLog Table			
+$UserLogUpdateSQL = "INSERT INTO tblUserLog 
+			(UserId, CentreID, IPAddress, LoginDate)
+	VALUES
+			($UserID,$CentreID,'$ip_address',now())";
+
+mysqli_query($conn,$UserLogUpdateSQL);
+
+// Direct the User to the main site page
+header("location: ../enquiries/");
+exit();
 }			
 ?>
