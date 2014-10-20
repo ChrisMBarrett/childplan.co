@@ -2,6 +2,7 @@
 <html lang="en">	
 <head>
 
+<!-- Queries that build the number of enquries etc. -->
 <?php 
 
 include('../includes/DBConnect.inc');
@@ -232,26 +233,33 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 <!-- Build Table from Query Results -->
 <?php
 $OpenEnquiriesSQL = "SELECT
-	 					EnquirerName											AS EnquirerName
-	 					,EnquiryPhoneNumber										AS ContactPhone
-	 					,''														AS ChildsName
-	 					,''														AS ChildsAge
+						a.EnquiryID												AS EnquiryID
+	 					,a.EnquirerName											AS EnquirerName
+	 					,a.EnquiryPhoneNumber									AS ContactPhone
+	 					,a.EnquiryEmailAddress									AS ContactEmail
+	 					,b.`FirstChildsName`									AS ChildsName
+	 					,b.`FirstChildsDOB`										AS ChildsDOB
 	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')				AS EnquiryDate
+	 					,b.`EnquiryNotes`										AS EnquiryNotes
 	 				FROM
-	 					tblEnquiry
+	 					tblEnquiry a
+	 				LEFT JOIN
+	 					tblEnquiryHistory b
+	 				ON
+	 					a.EnquiryID = b.EnquiryID	
 	 				WHERE
-	 					CentreID = '$CentreID'
+	 					a.CentreID = '$CentreID'
 	 				AND
-	 					EnquiryStatusID = 1";
+	 					a.EnquiryStatusID = 1";
 	 					
 $ListOfEnquiries = mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error($conn));
 
 while($row = $ListOfEnquiries->fetch_assoc()){
     echo '<tr>'.
-    		'<td>'.$row['EnquirerName'].'</td>'.
+    		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['EnquirerName'].'</a>'.'</td>'.
     		'<td>'.$row['ContactPhone'].'</td>'.
-    		'<td>'.$row['ChildsName'].'</td>'.
-    		'<td>'.$row['ChildsAge'].'</td>'.
+    		'<td>'.$row['ChildsDOB'].'</td>'.
+    		'<td>'.$row['ChildsDOB'].'</td>'.
     		'<td>'.$row['EnquiryDate'].'</td>'.
           '</tr>';
 }

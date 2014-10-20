@@ -89,7 +89,7 @@ $CentreName = $_SESSION['CentreName'];
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <?php if ($UserRole == 1){
-                        echo "<li><a href=\"/admin/\"><i class=\"fa fa-gear fa-fw\"></i> Settings</a>";
+                        echo "<li><a href=\"/admin/\"><i class=\"fa fa-gear fa-fw\"></i> Admin Settings</a>";
                         }
                         else
                         {
