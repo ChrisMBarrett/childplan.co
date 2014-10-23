@@ -159,7 +159,7 @@ else
 $conn->commit();
 }
 
-echo "Success?";
+header("Location: /enquiries/")
 
 /*
 
