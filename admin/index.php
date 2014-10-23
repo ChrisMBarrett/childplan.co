@@ -61,10 +61,7 @@
                     <h1 class="page-header">User Admin</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-
-            
+            </div> 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">

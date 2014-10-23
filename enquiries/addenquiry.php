@@ -105,7 +105,7 @@
 		</span>
 		<script type="text/javascript">
 		$(function () {
-		$('#enquirydate').datetimepicker({pickTime: false,defaultDate:""});          
+		$('#enquirydate').datetimepicker({pickTime: false});          
 		});
 		</script>
 	</div>
@@ -210,7 +210,7 @@
 <div class="form-group">
 	<label>How did you hear about us?</label>
     	<select class="form-control" name="enquirysource">
-        	<option value="0">Please Select ...</option>
+        	<option value="">Please Select ...</option>
 			<?php
 				// Get the list of staff who can conduct tours
 				$EnquirySourceSQL = 	"SELECT
@@ -343,10 +343,17 @@ $(document).ready(function() {
                     },
                 }
             },          
-            child2sgender: {
+            enquirysource: {
                 validators: {
                     notEmpty: {
-                        message: 'The gender is required'
+                        message: 'The Enquiry Source is required'
+                    }
+                }
+            },
+            child1sgender: {
+                validators: {
+                    notEmpty: {
+                        message: 'The childs gender is required, select \'Not known\' if required.'
                     }
                 }
             }
