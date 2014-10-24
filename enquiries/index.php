@@ -166,7 +166,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                    <i class="fa fa-heart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">?</div>
@@ -190,7 +190,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
+                                    <i class="fa fa-warning fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $NumberofOverDueEnquiries; ?></div>
@@ -333,6 +333,7 @@ while($row = $ListOfEnquiries->fetch_assoc()){
                         <!-- /.panel-body -->
                                 </span>
                             </div>
+
                         </div>
                         <!-- /.panel-footer -->
                     </div>
