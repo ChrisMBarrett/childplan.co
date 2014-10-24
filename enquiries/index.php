@@ -232,34 +232,49 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                     <tbody>
 <!-- Build Table from Query Results -->
 <?php
-$OpenEnquiriesSQL = "SELECT
-						a.EnquiryID												AS EnquiryID
-	 					,a.EnquirerName											AS EnquirerName
-	 					,a.EnquiryPhoneNumber									AS ContactPhone
-	 					,a.EnquiryEmailAddress									AS ContactEmail
-	 					,b.`FirstChildsName`									AS ChildsName
-	 					,b.`FirstChildsDOB`										AS ChildsDOB
-	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')				AS EnquiryDate
-	 					,b.`EnquiryNotes`										AS EnquiryNotes
-	 				FROM
-	 					tblEnquiry a
-	 				LEFT JOIN
-	 					tblEnquiryHistory b
-	 				ON
-	 					a.EnquiryID = b.EnquiryID	
-	 				WHERE
-	 					a.CentreID = '$CentreID'
-	 				AND
-	 					a.EnquiryStatusID = 1";
+$OpenEnquiriesSQL = "SELECT 
+		EnquiryID									AS EnquiryID
+	,	EnquirerName								AS ContactName
+	,	EnquiryPhoneNumber							AS ContactPhone
+	,	DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y') 	AS EnquiryDate
+	,	FirstChildsName								AS FirstChildsName
+    ,	FirstChildsDOB								AS FirstChildsDOB
+    ,	'No'										AS TourBooked
+    ,	CONCAT_WS
+            ( ', '
+            , CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
+            , CASE WHEN months = 0 THEN NULL ELSE CONCAT(months, ' months') END
+            ) AS ChildsAge
+  FROM
+     ( SELECT 
+            	a.EnquiryID
+            ,	b.EnquirerName
+            ,	b.EnquiryPhoneNumber
+            ,	b.EnquiryDate
+            ,	a.FirstChildsName
+            , 	FirstChildsDOB
+            , 	FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365) years
+            , 	FLOOR((DATEDIFF(CURDATE(),a.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365))* 12) months
+         FROM 
+         	tblenquiryhistory a
+         LEFT JOIN
+         	tblEnquiry b
+         ON
+         	a.EnquiryID = b.EnquiryID
+         WHERE
+         	a.CentreID = $CentreID
+         AND
+         	b.EnquiryStatusID = 1		
+     ) x;";
 	 					
 $ListOfEnquiries = mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error($conn));
 
 while($row = $ListOfEnquiries->fetch_assoc()){
     echo '<tr>'.
-    		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['EnquirerName'].'</a>'.'</td>'.
+    		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
     		'<td>'.$row['ContactPhone'].'</td>'.
-    		'<td>'.$row['ChildsDOB'].'</td>'.
-    		'<td>'.$row['ChildsDOB'].'</td>'.
+    		'<td>'.$row['ChildsAge'].'</td>'.
+    		'<td>'.$row['TourBooked'].'</td>'.
     		'<td>'.$row['EnquiryDate'].'</td>'.
           '</tr>';
 }

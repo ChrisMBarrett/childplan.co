@@ -90,15 +90,19 @@ $UserLoginSQL = "SELECT
 					COUNT(*)											AS TotalLoginCount,
 					COUNT(*)											AS LoginsThisMonth,
 					Date_Format(MAX(LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate,
-					Date_Format(now(),'%D %M %Y - %l:%i %p')			AS SignUpDate
+					Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
 				FROM
 					tblUserLog b
-				LEFT JOIN
+				RIGHT JOIN
 					tblUser a
 				ON 
-					b.UserID = a.UserID	
+					b.UserID = a.UserID
+				WHERE 
+					a.centreid = $CentreID
+				AND
+					b.UserID IS NOT NULL			
 				GROUP BY
-					b.UserID ";
+					b.UserID";
 	 					
 $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 

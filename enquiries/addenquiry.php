@@ -135,7 +135,7 @@
                                         
 <!-- Child 1's DOB -->
 <div class="form-group"> 
-	<label>Child's DOB (know or expected):</label>
+	<label>Child's DOB (actual or expected):</label>
 		<div class='input-group date' id='child1sdob'>
 			<input type='text' class="form-control" name="child1sdob" data-date-format="DD-MM-YYYY"/>
 			<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
