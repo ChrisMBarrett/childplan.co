@@ -49,7 +49,7 @@ $NumberOfOverdueEnquiriesSQL 	= "
 	AND
 		EnquiryStatusID 			= 1
 	AND
-		DATEDIFF(EnquiryDate,now()) >=5 ";
+		DATEDIFF(EnquiryDate,now()) >= 5 ";
 	
 $NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
 $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
@@ -224,6 +224,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                         <tr>
                                             <th>Enquirer's Name</th>
                                             <th>Contact Phone</th>
+                                            <th>Child's Name</th>
                                             <th>Child's Age</th>
                                             <th>Tour Booked</th>
                                             <th>Enquiry Date</th>
@@ -267,12 +268,13 @@ $OpenEnquiriesSQL = "SELECT
          	b.EnquiryStatusID = 1		
      ) x;";
 	 					
-$ListOfEnquiries = mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error($conn));
+$ListOfEnquiries 		= mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error($conn));
 
 while($row = $ListOfEnquiries->fetch_assoc()){
     echo '<tr>'.
     		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
     		'<td>'.$row['ContactPhone'].'</td>'.
+    		'<td>'.$row['FirstChildsName'].'</td>'.
     		'<td>'.$row['ChildsAge'].'</td>'.
     		'<td>'.$row['TourBooked'].'</td>'.
     		'<td>'.$row['EnquiryDate'].'</td>'.

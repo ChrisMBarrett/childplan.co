@@ -58,7 +58,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User Admin</h1>
+                    <h1 class="page-header">Admin Section</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div> 
@@ -85,24 +85,23 @@
 <!-- Create table from Query -->
 <?php
 $UserLoginSQL = "SELECT
-					b.UserID											AS UserID,
-					concat(a.UserFName,' ',a.UserLName) 				AS UserName,
-					COUNT(*)											AS TotalLoginCount,
-					COUNT(*)											AS LoginsThisMonth,
-					Date_Format(MAX(LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate,
-					Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
+					A.USERID
+					,	CONCAT(a.UserFName,' ',a.UserLName) 				AS UserName
+					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
+					,	COUNT(*)											AS TotalLoginCount
+					,	Date_Format(MAX(B.LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate
 				FROM
-					tblUserLog b
-				RIGHT JOIN
 					tblUser a
-				ON 
-					b.UserID = a.UserID
+				LEFT OUTER JOIN
+					tblUserLog b
+				ON
+					a.UserID = b.UserID
 				WHERE 
-					a.centreid = $CentreID
-				AND
-					b.UserID IS NOT NULL			
+					a.centreid = 1			
 				GROUP BY
-					b.UserID";
+					a.UserID
+				ORDER BY
+					a.UserID ASC";
 	 					
 $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 
@@ -111,7 +110,7 @@ while($row = $ListOfUsers->fetch_assoc()){
     		'<td>'.$row['UserName'].'</td>'.
     		'<td>'.$row['SignUpDate'].'</td>'.
     		'<td>'.$row['LastLoginDate'].'</td>'.
-    		'<td>'.$row['LoginsThisMonth'].'</td>'.
+    		'<td>'.$row['TotalLoginCount'].'</td>'.
     		'<td>'.$row['TotalLoginCount'].'</td>'.
           '</tr>';
 }
