@@ -17,7 +17,7 @@ $NumberOfEnquiriesSQL 			= "
 	WHERE
 		CentreID 				= $CentreID
 	AND
-		EnquiryStatusID 		= 1 ";
+		EnquiryStatusID 		= 1";
 	
 $NumberofEnquiries 				= mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
 $OpenEnquiriesCount 			= mysqli_num_rows($NumberofEnquiries);
