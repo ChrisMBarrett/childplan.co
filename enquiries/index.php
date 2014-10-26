@@ -64,7 +64,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
     <?php echo $PageTitle; ?>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -274,10 +274,10 @@ while($row = $ListOfEnquiries->fetch_assoc()){
     echo '<tr>'.
     		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
     		'<td>'.$row['ContactPhone'].'</td>'.
-    		'<td>'.$row['FirstChildsName'].'</td>'.
-    		'<td>'.$row['ChildsAge'].'</td>'.
-    		'<td>'.$row['TourBooked'].'</td>'.
-    		'<td>'.$row['EnquiryDate'].'</td>'.
+    		'<td class="td-center">'.$row['FirstChildsName'].'</td>'.
+    		'<td class="td-center">'.$row['ChildsAge'].'</td>'.
+    		'<td class="td-center">'.$row['TourBooked'].'</td>'.
+    		'<td class="td-center">'.$row['EnquiryDate'].'</td>'.
           '</tr>';
 }
 

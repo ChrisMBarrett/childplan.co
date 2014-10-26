@@ -1399,7 +1399,11 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: center;
+}
+
+.td-center {
+	text-align: center;
 }
 
 .table {
