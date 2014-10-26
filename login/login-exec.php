@@ -84,6 +84,7 @@ session_regenerate_id();
 	$_SESSION['UserLName']		 	= $UserLName;
 	$_SESSION['UserName']		 	= $UserFName.' '.$UserLName;
 	$_SESSION['UserRoleID']		 	= $UserRoleID;
+	$_SESSION['UserGroupID']		= $UserGroupID;
 	$_SESSION['CentreID']		 	= $CentreID;
 	$_SESSION['CentreName']		 	= $CentreName;			
 			

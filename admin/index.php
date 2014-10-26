@@ -6,6 +6,7 @@
 <?php 
 	include('../includes/pagetitle.php');
 	include('../includes/DBConnect.inc');
+
 ?>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,7 +62,7 @@
 <!-- User Logins Section -->        
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Admin Section</h1>
+            <h1 class="page-header">User Admin Section</h1>
         </div>
                 <!-- /.col-lg-12 -->
          </div> 
@@ -222,6 +223,17 @@ while($row = $ListOfUsers->fetch_assoc()){
   </div>
 </div>
 
+
+<?php
+	if ($UserGroupID == 1)
+	{
+	include ('../includes/centreadmin.php');
+	}
+	else
+	{
+	echo "";
+	}
+?>	          
         </div>
 </div>
 
