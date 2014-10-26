@@ -137,7 +137,7 @@ while($row = $ListOfUsers->fetch_assoc()){
             <!-- /.row -->
         </div>
 
-<!-- Edit User Section -->
+<!-- Update Existing User Section -->
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -203,9 +203,9 @@ while($row = $ListOfUsers->fetch_assoc()){
             <!-- /.row -->          
             </div>
 <!-- /.row -->
-</div>
-      </div>
-    </div>
+
+
+<!-- Add New User Section -->
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
