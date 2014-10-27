@@ -87,7 +87,7 @@
                                             <th>Name</th>
                                             <th>Sign Up Date</th>
                                             <th>Last Login Date</th>
-                                            <th>Login's This Month</th>
+                                            <th>Password</th>
                                             <th>Total Login's</th>
                                         </tr>
                                     </thead>
@@ -97,6 +97,7 @@
 $UserLoginSQL = "SELECT
 					A.USERID
 					,	CONCAT(a.UserFName,' ',a.UserLName) 				AS UserName
+					,	UserPAssword										AS UserPassword
 					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
 					,	COUNT(*)											AS TotalLoginCount
 					,	Date_Format(MAX(B.LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate
@@ -120,7 +121,7 @@ while($row = $ListOfUsers->fetch_assoc()){
     		'<td>'.$row['UserName'].'</td>'.
     		'<td class="td-center">'.$row['SignUpDate'].'</td>'.
     		'<td class="td-center">'.$row['LastLoginDate'].'</td>'.
-    		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
+    		'<td class="td-center">'.$row['UserPassword'].'</td>'.
     		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
           '</tr>';
 }
