@@ -4,7 +4,7 @@
 
 <?php 
 
-include('../includes/DBConnect.inc');
+include('../includes/dbconnect.inc');
 include('../includes/pagetitle.php');
 
 // Get the Enquiry ID from the previous page
@@ -25,6 +25,8 @@ $EnquiryDetailSQL = "SELECT
 	 					,b.EnquiryNotes																			AS EnquiryNotes
 	 					,a.EnquirySourceID																		AS EnquirySourceID
 	 					,c.EnquirySourceDesc																	AS EnquirySource
+	 					,a.EnquiryStatusID																		AS EnquiryStatusID
+	 					,d.EnquiryStatusDesc																	AS EnquiryStatus
 	 				FROM
 	 					tblEnquiry a
 	 				LEFT JOIN
@@ -35,6 +37,10 @@ $EnquiryDetailSQL = "SELECT
 	 					tblEnquirySource c	
 	 				ON
 	 					a.EnquirySourceID = c.EnquirySourceID
+	 				LEFT JOIN
+	 					tblEnquiryStatus d
+	 				ON
+	 					a.EnquiryStatusID = d.EnquiryStatusID
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
@@ -44,18 +50,19 @@ $EnquiryDetail = mysqli_query($conn, $EnquiryDetailSQL) or die(mysqli_error($con
 
 while($row = $EnquiryDetail->fetch_assoc()){
 
-	$EnquiryName			=	$row['EnquirerName'];
-	$EnquiryPhone			=	$row['ContactPhone'];
-	$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
-	$FirstChildsName		= 	$row['FirstChildsName'];
-	$FirstChildsDOB			=	$row['FirstChildsDOB'];
-	$FirstChildsAge			= 	$row['FirstChildsAge'];
-	$FirstChildsGender		= 	$row['FirstChildsGender'];
-	$FirstChildsDOW			=	$row['FirstChildsDOW'];
-	$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
-	$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
-	$EnquiryDate			=	$row['EnquiryDate'];	
-	$EnquirySource			=	$row['EnquirySource'];
+					$EnquiryName			=	$row['EnquirerName'];
+					$EnquiryPhone			=	$row['ContactPhone'];
+					$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
+					$FirstChildsName		= 	$row['FirstChildsName'];
+					$FirstChildsDOB			=	$row['FirstChildsDOB'];
+					$FirstChildsAge			= 	$row['FirstChildsAge'];
+					$FirstChildsGender		= 	$row['FirstChildsGender'];
+					$FirstChildsDOW			=	$row['FirstChildsDOW'];
+					$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
+					$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
+					$EnquiryDate			=	$row['EnquiryDate'];	
+					$EnquirySource			=	$row['EnquirySource'];
+					$EnquiryStatus			=	$row['EnquiryStatus'];
 }
 
 
@@ -172,6 +179,10 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				<tr>
 	 						 				<td>Enquiry Date:</td>
 	 						 				<td><?php echo $EnquiryDate; ?></td>
+ 						 				</tr>
+ 						 				 						 				<tr>
+	 						 				<td>Enquiry Status:</td>
+	 						 				<td><?php echo $EnquiryStatus; ?></td>
  						 				</tr>						                                                       
                                     </tbody>
                                 </table>
