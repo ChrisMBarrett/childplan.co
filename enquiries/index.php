@@ -266,7 +266,8 @@ $OpenEnquiriesSQL = "SELECT
          	a.CentreID = $CentreID
          AND
          	b.EnquiryStatusID = 1		
-     ) x;";
+     ) x
+     ;";
 	 					
 $ListOfEnquiries 		= mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error($conn));
 

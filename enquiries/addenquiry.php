@@ -187,13 +187,13 @@
 <!-- Child 1's Ideal Start Date -->
 <div class="form-group">
 	<label>Ideal Start Date:</label>
-		<div class='input-group date' id='startdate'>
-		<input type='text' class="form-control" name="startdate" data-date-format="DD-MM-YYYY"/>
+		<div class='input-group date' id='child1startdate'>
+		<input type='text' class="form-control" name="child1startdate" data-date-format="DD-MM-YYYY"/>
 		<span class="input-group-addon"><span class="fa fa-calendar fa-fw"></span>
 		</span>
 		<script type="text/javascript">
 		$(function () {
-		$('#startdate').datetimepicker({pickTime: false});          
+		$('#child1startdate').datetimepicker({pickTime: false});          
 		});
 	</script>
 		</div>

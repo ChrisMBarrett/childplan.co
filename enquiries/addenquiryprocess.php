@@ -4,33 +4,37 @@ include('../includes/pagetitle.php');
 include('../includes/DBConnect.inc');
 
 // Collect All the Variables
-$UserID				= $_SESSION['UserID'];
-$CentreID			= $_SESSION['CentreID'];
+$UserID						= $_SESSION['UserID'];
+$CentreID					= $_SESSION['CentreID'];
 
-$EnquirerName 		= $_POST["enquirername"];
-$EnquirerPhone		= $_POST["contactphone"];
-$EnquirerEmail		= $_POST["contactemail"];
-$EnquiryDate		= date('Y-m-d',strtotime($_POST["enquirydate"]));
+$EnquirerName 				= $_POST["enquirername"];
+$EnquirerPhone				= $_POST["contactphone"];
+$EnquirerEmail				= $_POST["contactemail"];
+$EnquiryDate				= date('Y-m-d',strtotime($_POST["enquirydate"]));
 
-$NumberOfChildren	= $_POST["numberofchildren"];
+$NumberOfChildren			= $_POST["numberofchildren"];
 
-$EnquirySource		= $_POST["enquirysource"];
+$EnquirySource				= $_POST["enquirysource"];
 
 // First Childs Details
-$Child1sName		= $_POST["child1sname"];
-$Child1sGender		= $_POST["child1sgender"];
-$Child1sDOB			= date('Y-m-d',strtotime($_POST["child1sdob"]));
+$Child1sName				= $_POST["child1sname"];
+$Child1sGender				= $_POST["child1sgender"];
+$Child1sDOB					= date('Y-m-d',strtotime($_POST["child1sdob"]));
 
-$Child1DOW			= $_POST["daysofweek"];
-$Child1DOWInsert	= implode($Child1DOW);
+$Child1DOW					= $_POST["daysofweek"];
+$Child1DOWInsert			= implode($Child1DOW);
 
-$Child1NumberDOW	= count($_POST["daysofweek"]);
+$Child1NumberDOW			= count($_POST["daysofweek"]);
 
-$EnquiryNotes		= $_POST["enquirynotes"];
+// Start Date
+$Child1sIdealStartDate		= date('Y-m-d',strtotime($_POST["child1startdate"]));
+
+// Enquiry Notes
+$EnquiryNotes				= $_POST["enquirynotes"];
 
 // Tour Information
-$TourDateTime		= date('Y-m-d H:i:s',strtotime($_POST["tourdatetime"]));
-$TourGuide			= $_POST["tourguide"];
+$TourDateTime				= date('Y-m-d H:i:s',strtotime($_POST["tourdatetime"]));
+$TourGuide					= $_POST["tourguide"];
 
 /*
 If ($TourGuide != ""){
@@ -102,6 +106,7 @@ INSERT INTO
 	,FirstChildsDOB
 	,FirstChildsDoWRequested
 	,FirstChildsNumberOfDaysRequested
+	,FirstChildsRequestedStartDate
 	,EnquiryNotes
 	,AddedByUserID
 	,DateTimeAdded
@@ -115,6 +120,7 @@ VALUES
 	,'$Child1sDOB'
 	,'$Child1DOWInsert'
 	,$Child1NumberDOW
+	,'$Child1sIdealStartDate'
 	,'$EnquiryNotes'
 	,$UserID
 	,Now()

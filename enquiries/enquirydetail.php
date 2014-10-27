@@ -21,7 +21,7 @@ $EnquiryDetailSQL = "SELECT
 	 					,b.FirstChildsGenderID																	AS FirstChildsGenderID
 	 					,e.GenderDesc																			AS FirstChildsGender
 	 					,concat(b.FirstChildsDOWRequested,' (',FirstChildsNumberofDaysRequested, ' Days)')		AS FirstChildsDOW
-	 					,'Soon (in X months time)'																AS FirstChildsIdealStartDate
+	 					,DATE_FORMAT(FirstChildsRequestedStartDate,'%W, %D %M \'%y')							AS FirstChildsIdealStartDate
 	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
 	 					,b.EnquiryNotes																			AS EnquiryNotes
 	 					,a.EnquirySourceID																		AS EnquirySourceID
@@ -64,6 +64,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$FirstChildsGender		= 	$row['FirstChildsGender'];
 					$FirstChildsDOW			=	$row['FirstChildsDOW'];
 					$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
+					
 					$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
 					$EnquiryDate			=	$row['EnquiryDate'];	
 					$EnquirySource			=	$row['EnquirySource'];
