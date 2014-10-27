@@ -46,10 +46,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
 	$EnquiryName			=	$row['EnquirerName'];
 	$EnquiryPhone			=	$row['ContactPhone'];
-	$EnquiryEmail			=	$row['ContactEmail'];
+	$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
 	$FirstChildsName		= 	$row['FirstChildsName'];
 	$FirstChildsDOB			=	$row['FirstChildsDOB'];
 	$FirstChildsAge			= 	$row['FirstChildsAge'];
+	$FirstChildsGender		= 	$row['FirstChildsGender'];
 	$FirstChildsDOW			=	$row['FirstChildsDOW'];
 	$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
 	$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
@@ -151,7 +152,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Gender:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsGender; ?></td>
  						 				</tr>						                                    						                                    						                                    						                        <tr>
 	 						 				<td>Day's of Week Requested:</td>
 	 						 				<td><?php echo $FirstChildsDOW; ?></td>
