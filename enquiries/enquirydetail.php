@@ -11,14 +11,18 @@ include('../includes/pagetitle.php');
 $EnquiryID = intval($_REQUEST['ID']);
 
 $EnquiryDetailSQL = "SELECT
-						a.EnquiryID												AS EnquiryID
-	 					,a.EnquirerName											AS EnquirerName
-	 					,a.EnquiryPhoneNumber									AS ContactPhone
-	 					,a.EnquiryEmailAddress									AS ContactEmail
-	 					,''														AS ChildsName
-	 					,''														AS ChildsAge
-	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')				AS EnquiryDate
-	 					,b.`EnquiryNotes`										AS EnquiryNotes
+						a.EnquiryID																				AS EnquiryID
+	 					,a.EnquirerName																			AS EnquirerName
+	 					,a.EnquiryPhoneNumber																	AS ContactPhone
+	 					,a.EnquiryEmailAddress																	AS ContactEmail
+	 					,b.FirstChildsName																		AS FirstChildsName
+	 					,DATE_FORMAT(b.FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
+	 					,b.FirstChildsDOB																		AS FirstChildsAge
+	 					,b.FirstChildsGenderID																	AS FirstChildsGender
+	 					,concat(b.FirstChildsDOWRequested,' (',FirstChildsNumberofDaysRequested, ' Days)')		AS FirstChildsDOW
+	 					,'Soon (in X months time)'																AS FirstChildsIdealStartDate
+	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
+	 					,b.`EnquiryNotes`																		AS EnquiryNotes
 	 				FROM
 	 					tblEnquiry a
 	 				LEFT JOIN
@@ -34,11 +38,16 @@ $EnquiryDetail = mysqli_query($conn, $EnquiryDetailSQL) or die(mysqli_error($con
 
 while($row = $EnquiryDetail->fetch_assoc()){
 
-	$EnquiryName		=	$row['EnquirerName'];
-	$EnquiryPhone		=	$row['ContactPhone'];
-	$EnquiryEmail		=	$row['ContactEmail'];
-	$EnquiryNotes		=	$row['EnquiryNotes'];
-	$EnquiryDate		=	$row['EnquiryDate'];	
+	$EnquiryName			=	$row['EnquirerName'];
+	$EnquiryPhone			=	$row['ContactPhone'];
+	$EnquiryEmail			=	$row['ContactEmail'];
+	$FirstChildsName		= 	$row['FirstChildsName'];
+	$FirstChildsDOB			=	$row['FirstChildsDOB'];
+	$FirstChildsAge			= 	$row['FirstChildsAge'];
+	$FirstChildsDOW			=	$row['FirstChildsDOW'];
+	$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
+	$EnquiryNotes			=	$row['EnquiryNotes'];
+	$EnquiryDate			=	$row['EnquiryDate'];	
 
 }
 
@@ -124,26 +133,26 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Name:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsName; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Date of Birth:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsDOB; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Age:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsAge; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Gender:</td>
 	 						 				<td><?php echo $EnquiryEmail; ?></td>
  						 				</tr>						                                    						                                    						                                    						                        <tr>
 	 						 				<td>Day's of Week Requested:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsDOW; ?></td>
  						 				</tr> 
  						 				<tr>
 	 						 				<td>Ideal Start Date</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $FirstChildsStartDate; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>How did you hear about us?:</td>
