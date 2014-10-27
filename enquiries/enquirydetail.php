@@ -52,7 +52,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 	$FirstChildsAge			= 	$row['FirstChildsAge'];
 	$FirstChildsDOW			=	$row['FirstChildsDOW'];
 	$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
-	$EnquiryNotes			=	$row['EnquiryNotes'];
+	$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
 	$EnquiryDate			=	$row['EnquiryDate'];	
 	$EnquirySource			=	$row['EnquirySource'];
 }
