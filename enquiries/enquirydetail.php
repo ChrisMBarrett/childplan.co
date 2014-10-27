@@ -18,7 +18,8 @@ $EnquiryDetailSQL = "SELECT
 	 					,b.FirstChildsName																		AS FirstChildsName
 	 					,DATE_FORMAT(b.FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
 	 					,b.FirstChildsDOB																		AS FirstChildsAge
-	 					,b.FirstChildsGenderID																	AS FirstChildsGender
+	 					,b.FirstChildsGenderID																	AS FirstChildsGenderID
+	 					,e.GenderDesc																			AS FirstChildsGender
 	 					,concat(b.FirstChildsDOWRequested,' (',FirstChildsNumberofDaysRequested, ' Days)')		AS FirstChildsDOW
 	 					,'Soon (in X months time)'																AS FirstChildsIdealStartDate
 	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
@@ -41,6 +42,10 @@ $EnquiryDetailSQL = "SELECT
 	 					tblEnquiryStatus d
 	 				ON
 	 					a.EnquiryStatusID = d.EnquiryStatusID
+	 				LEFT JOIN
+	 					tblGender e
+	 					ON
+	 				b.FirstChildsGenderID = e.GenderID
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
