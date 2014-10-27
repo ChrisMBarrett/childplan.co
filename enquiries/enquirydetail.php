@@ -22,13 +22,19 @@ $EnquiryDetailSQL = "SELECT
 	 					,concat(b.FirstChildsDOWRequested,' (',FirstChildsNumberofDaysRequested, ' Days)')		AS FirstChildsDOW
 	 					,'Soon (in X months time)'																AS FirstChildsIdealStartDate
 	 					,DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
-	 					,b.`EnquiryNotes`																		AS EnquiryNotes
+	 					,b.EnquiryNotes																			AS EnquiryNotes
+	 					,a.EnquirySourceID																		AS EnquirySourceID
+	 					,c.EnquirySourceDesc																	AS EnquirySource
 	 				FROM
 	 					tblEnquiry a
 	 				LEFT JOIN
 	 					tblEnquiryHistory b
 	 				ON
 	 					a.EnquiryID = b.EnquiryID
+	 				LEFT JOIN
+	 					tblEnquirySource c	
+	 				ON
+	 					a.EnquirySourceID = c.EnquirySourceID
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
@@ -48,7 +54,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 	$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
 	$EnquiryNotes			=	$row['EnquiryNotes'];
 	$EnquiryDate			=	$row['EnquiryDate'];	
-
+	$EnquirySource			=	$row['EnquirySource'];
 }
 
 
@@ -156,7 +162,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>How did you hear about us?:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><?php echo $EnquirySource; ?></td>
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>
