@@ -198,7 +198,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 	 						 				<td><?php echo $FirstChildsDOW; ?></td>
  						 				</tr> 
  						 				<tr>
-	 						 				<td>Ideal Start Date</td>
+	 						 				<td>Ideal Start Date:</td>
 	 						 				<td><?php echo $FirstChildsStartDate; ?></td>
  						 				</tr>
  						 				<tr>

@@ -227,7 +227,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                             <th>Child's Name</th>
                                             <th>Child's Age</th>
                                             <th>Tour Booked</th>
-                                            <th>Enquiry Date</th>
+                                            <th>Last Contact Date</th>
                                         </tr>
                                     </thead>                               
                                     <tbody>
