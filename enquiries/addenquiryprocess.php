@@ -19,7 +19,28 @@ $EnquirySource				= $_POST["enquirysource"];
 // First Childs Details
 $Child1sName				= $_POST["child1sname"];
 $Child1sGender				= $_POST["child1sgender"];
+
+// First Childs DOB
+//if($_POST["child1sdob" != "")
+//{
 $Child1sDOB					= date('Y-m-d',strtotime($_POST["child1sdob"]));
+
+if ($Child1sDOB == '1970-01-01'){
+//echo 'Yeah';
+//exit;
+	$Child1sDOBInsert 		=	'NULL';
+}
+else
+{
+	$Child1sDOBInsert 		= $Child1sDOB;
+}
+
+// $Child1sDOB 				= !empty($Child1sDOB) ? "'$Child1sDOB'" : "NULL";
+//}
+//else
+//{
+//	$Child1sDOB				= "NULL";
+//}	
 
 $Child1DOW					= $_POST["daysofweek"];
 $Child1DOWInsert			= implode($Child1DOW);
@@ -117,7 +138,7 @@ VALUES
 	,$CentreID
 	,'$Child1sName'
 	,$Child1sGender
-	,'$Child1sDOB'
+	,$Child1sDOBInsert
 	,'$Child1DOWInsert'
 	,$Child1NumberDOW
 	,'$Child1sIdealStartDate'

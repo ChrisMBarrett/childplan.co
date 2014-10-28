@@ -265,7 +265,9 @@ $OpenEnquiriesSQL = "SELECT
          WHERE
          	a.CentreID = $CentreID
          AND
-         	b.EnquiryStatusID = 1		
+         	b.EnquiryStatusID = 1
+         ORDER BY
+		 	EnquiryAddedDateTime DESC			
      ) x
      ;";
 	 					
