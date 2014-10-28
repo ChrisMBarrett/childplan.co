@@ -194,7 +194,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $NumberofOverDueEnquiries; ?></div>
-                                    <div>Overdue Follow Ups!</div>
+                                    <div>Follow Up</div>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +332,6 @@ while($row = $ListOfEnquiries->fetch_assoc()){
                         </div>
                         <!-- /.panel-body -->
                     </div>
-
 
 <!-- Donut Chart - Enquiry Outcome -->
 <div class="panel panel-default">
