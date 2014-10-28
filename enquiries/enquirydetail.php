@@ -4,7 +4,7 @@
 
 <?php 
 
-include('../includes/dbconnect.inc');
+include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
 // Get the Enquiry ID from the previous page
