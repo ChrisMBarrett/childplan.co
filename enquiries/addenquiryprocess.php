@@ -21,34 +21,48 @@ $Child1sName				= $_POST["child1sname"];
 $Child1sGender				= $_POST["child1sgender"];
 
 // First Childs DOB
-//if($_POST["child1sdob" != "")
-//{
-$Child1sDOB					= date('Y-m-d',strtotime($_POST["child1sdob"]));
+if (empty($_POST["child1sdob"]))
+ {      
+   $Child1sDOBInsert = NULL;
+ }
+ else
+ {
+   $Child1sDOBInsert = date('Y-m-d',strtotime($_POST["child1sdob"]));
+//   $child1sDOBinsert = date("Y-m-d H:i:s", $Date1);
+ }
 
-if ($Child1sDOB == '1970-01-01'){
-//echo 'Yeah';
-//exit;
-	$Child1sDOBInsert 		=	'NULL';
+// Surround it in quotes if it isn't NULL.
+if ($Child1sDOBInsert === NULL) {
+  // Make a string NULL with no extra quotes
+  $Child1sDOBInsert = 'NULL';
 }
-else
-{
-	$Child1sDOBInsert 		= $Child1sDOB;
-}
+// For non-null values, surround the existing value in quotes...
+else $Child1sDOBInsert = "'$Child1sDOBInsert'";
 
-// $Child1sDOB 				= !empty($Child1sDOB) ? "'$Child1sDOB'" : "NULL";
-//}
-//else
-//{
-//	$Child1sDOB				= "NULL";
-//}	
 
 $Child1DOW					= $_POST["daysofweek"];
 $Child1DOWInsert			= implode($Child1DOW);
 
 $Child1NumberDOW			= count($_POST["daysofweek"]);
 
-// Start Date
-$Child1sIdealStartDate		= date('Y-m-d',strtotime($_POST["child1startdate"]));
+// First Childs Requested Start Date
+if (empty($_POST["child1startdate"]))
+ {      
+   $Child1sIdealStartDateInsert = NULL;
+ }
+ else
+ {
+   $Child1sIdealStartDateInsert = date('Y-m-d',strtotime($_POST["child1startdate"]));
+//   $child1sDOBinsert = date("Y-m-d H:i:s", $Date1);
+ }
+
+// Surround it in quotes if it isn't NULL.
+if ($Child1sIdealStartDateInsert === NULL) {
+  // Make a string NULL with no extra quotes
+  $Child1sIdealStartDateInsert = 'NULL';
+}
+// For non-null values, surround the existing value in quotes...
+else $Child1sIdealStartDateInsert = "'$Child1sIdealStartDateInsert'";
 
 // Enquiry Notes
 $EnquiryNotes				= $_POST["enquirynotes"];
@@ -110,41 +124,39 @@ VALUES
 mysqli_query($conn, $EnquiryAddSQL ) or die(mysqli_error($conn));
 
 
-// Get the Insert ID of the Enquiry
+// Get the Insert ID of the Enquiry that has just been added in the previous step
 $EnquiryID = $conn->insert_id;
-//Echo 'Success? - '.$EnquiryID;
-
 
 // Add Values to the Enquiry History Table
 $EnquiryHistoryAddSQL = "
 INSERT INTO
 	tblEnquiryHistory
 	(
-	 EnquiryID
-	,CentreID
-	,FirstChildsName
-	,FirstChildsGenderID
-	,FirstChildsDOB
-	,FirstChildsDoWRequested
-	,FirstChildsNumberOfDaysRequested
-	,FirstChildsRequestedStartDate
-	,EnquiryNotes
-	,AddedByUserID
-	,DateTimeAdded
+	 	EnquiryID
+	,	CentreID
+	,	FirstChildsName
+	,	FirstChildsGenderID
+	,	FirstChildsDOB
+	,	FirstChildsDoWRequested
+	,	FirstChildsNumberOfDaysRequested
+	,	FirstChildsRequestedStartDate
+	,	EnquiryNotes
+	,	AddedByUserID
+	,	DateTimeAdded
 	)
 VALUES
 	(
-	 $EnquiryID
-	,$CentreID
-	,'$Child1sName'
-	,$Child1sGender
-	,$Child1sDOBInsert
-	,'$Child1DOWInsert'
-	,$Child1NumberDOW
-	,'$Child1sIdealStartDate'
-	,'$EnquiryNotes'
-	,$UserID
-	,Now()
+	 	$EnquiryID
+	, 	$CentreID
+	, 	'$Child1sName'
+	, 	$Child1sGender
+	, 	$Child1sDOBInsert
+	, 	'$Child1DOWInsert'
+	, 	$Child1NumberDOW
+	,	$Child1sIdealStartDateInsert
+	, 	'$EnquiryNotes'
+	, 	$UserID
+	, 	Now()
 	)
 ";
 					
@@ -154,7 +166,7 @@ mysqli_query($conn, $EnquiryHistoryAddSQL ) or die(mysqli_error($conn));
 
 If($TourGuide != ""){
 
-// Add Values to the Enquiry Table
+// Add Values to the Tours Table
 $TourAddSQL = "
 INSERT INTO
 	tblTours
