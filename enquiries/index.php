@@ -244,7 +244,7 @@ $OpenEnquiriesSQL = "SELECT
     ,	CONCAT_WS
             ( ', '
             , CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
-            , CASE WHEN months = 0 THEN NULL ELSE CONCAT(months, ' months') END
+            ,  CONCAT(months, ' months')
             ) AS ChildsAge
   FROM
      ( SELECT 
@@ -254,8 +254,12 @@ $OpenEnquiriesSQL = "SELECT
             ,	b.EnquiryDate
             ,	a.FirstChildsName
             , 	FirstChildsDOB
-            , 	FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365) years
-            , 	FLOOR((DATEDIFF(CURDATE(),a.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365))* 12) months
+            , 	IF (Curdate() > FirstChildsDOB,
+            		FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365) ,	
+            		'') AS Years
+            ,	IF (Curdate() > FirstChildsDOB,
+            		FLOOR((DATEDIFF(CURDATE(),a.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365))* 12) ,	
+            		MONTH(CURDATE())-month(a.FirstChildsDOB) ) AS Months
          FROM 
          	tblenquiryhistory a
          LEFT JOIN
