@@ -10,7 +10,8 @@ include('../includes/pagetitle.php');
 // Get the Enquiry ID from the previous page
 $EnquiryID = intval($_REQUEST['ID']);
 
-$EnquiryDetailSQL = "SELECT
+$EnquiryDetailSQL = "
+					SELECT
 							EnquiryID																				AS EnquiryID
 	 					,	EnquirerName																			AS EnquirerName
 	 					,	EnquiryPhoneNumber																		AS ContactPhone
@@ -33,6 +34,8 @@ $EnquiryDetailSQL = "SELECT
 	 					,	EnquirySourceDesc																		AS EnquirySource
 	 					,	EnquiryStatusID																			AS EnquiryStatusID
 	 					,	EnquiryStatusDesc																		AS EnquiryStatus
+	 					,	EnquiryAddedByUserID																	AS EnquiryAddedByUserID
+	 					,	EnquiryAddedDateTime																	AS EnquiryAddedDateTime
 	 				FROM
 	 					(SELECT
 	 						a.EnquiryID																				AS EnquiryID
@@ -53,8 +56,14 @@ $EnquiryDetailSQL = "SELECT
 	 					,	c.EnquirySourceDesc																		AS EnquirySourceDesc
 	 					,	a.EnquiryStatusID																		AS EnquiryStatusID
 	 					,	d.EnquiryStatusDesc																		AS EnquiryStatusDesc
-	 					,	FLOOR(DATEDIFF(CURDATE(),b.FirstChildsDOB)/365) years
-            			, 	FLOOR((DATEDIFF(CURDATE(),b.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),b.FirstChildsDOB)/365))* 12) months				
+	 					,	b.AddedByUserID																			AS EnquiryAddedByUserID
+	 					,	b.DateTimeAdded																			AS EnquiryAddedDateTime
+	 					,	IF (Curdate() > FirstChildsDOB,
+	 							FLOOR(DATEDIFF(CURDATE(),b.FirstChildsDOB)/365) ,	
+	 							'') AS Years
+	 					,	IF (Curdate() > FirstChildsDOB,
+	 							FLOOR((DATEDIFF(CURDATE(),b.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),b.FirstChildsDOB)/365))* 12) ,	
+	 							MONTH(CURDATE())-month(b.FirstChildsDOB) ) AS Months				
 	 				FROM	
 	 					tblEnquiry a
 	 				LEFT JOIN
@@ -76,7 +85,8 @@ $EnquiryDetailSQL = "SELECT
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
-	 					a.EnquiryID = $EnquiryID) X";
+	 					a.EnquiryID = $EnquiryID) X
+	 				";
 	 					
 $EnquiryDetail = mysqli_query($conn, $EnquiryDetailSQL) or die(mysqli_error($conn));
 
