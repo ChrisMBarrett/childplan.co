@@ -113,15 +113,15 @@ $UserLoginSQL = "SELECT
 $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 
 while($row = $ListOfUsers->fetch_assoc()){
-
+/*
 					$LastLoginDate = new DateTime($row['LastLoginDate'], new DateTimeZone('UTC'));
 					$LastLoginDate	->setTimezone(new DateTimeZone('Pacific/Auckland'));
 					$LastLoginDate	 = $LastLoginDate->format('D, jS F \'y g:i a'); 					
-	
+*/	
     echo '<tr>'.
     		'<td>'.$row['UserName'].'</td>'.
     		'<td class="td-center">'.$row['SignUpDate'].'</td>'.
-    		'<td class="td-center">'.$LastLoginDate.'</td>'.
+    		'<td class="td-center">'.$row['LastLoginDate'].'</td>'.
     		'<td class="td-center">'.$row['UserPassword'].'</td>'.
     		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
           '</tr>';                  
