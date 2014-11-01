@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <?php 
+	include('../includes/DBConnect.inc');
 	include('../includes/pagetitle.php');
-	include('../includes/dbconnect.inc');
 	
 //	$centre_tz = "Pacific/Auckland";
-
 ?>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,9 +18,6 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -232,15 +227,11 @@ while($row = $ListOfUsers->fetch_assoc()){
         </div>
 </div>
 
-
     <!-- jQuery Version 1.11.0 -->
     <script src="../javascript/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../javascript/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../javascript/sb-admin-2.js"></script>
