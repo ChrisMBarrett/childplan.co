@@ -248,20 +248,10 @@ while($row = $ListOfUsers->fetch_assoc()){
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
-    
-    <!-- DataTables JavaScript -->
-    <script src="../javascript/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="../javascript/plugins/dataTables/dataTables.bootstrap.js"></script> 
 
     <!-- Custom Theme JavaScript -->
     <script src="../javascript/sb-admin-2.js"></script>
-    
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
-    </script>
+
     
 </body>
 
