@@ -20,7 +20,8 @@ $LoginSQLCode =  "
 	SELECT
 		a.UserID,
 		a.CentreID,
-		b.`CentreName`,
+		b.CentreName,
+		b.CentreTimeZone,
 		a.UserName,
 		a.UserFName,
 		a.UserLName,
@@ -58,6 +59,7 @@ while($row = $result->fetch_assoc())
 	$UserGroupID					= $row['UserGroupID'];
 	$CentreID						= $row['CentreID'];
 	$CentreName						= $row['CentreName'];
+	$CentreTimeZone					= $row['CentreTimeZone'];
 }
 }
 /*
@@ -86,7 +88,8 @@ session_regenerate_id();
 	$_SESSION['UserRoleID']		 	= $UserRoleID;
 	$_SESSION['UserGroupID']		= $UserGroupID;
 	$_SESSION['CentreID']		 	= $CentreID;
-	$_SESSION['CentreName']		 	= $CentreName;			
+	$_SESSION['CentreName']		 	= $CentreName;
+	$_SESSION['CentreTimeZone']	 	= $CentreTimeZone;			
 			
 session_write_close();
 
@@ -94,7 +97,7 @@ session_write_close();
 $UserLogUpdateSQL = "INSERT INTO tblUserLog 
 			(UserId, CentreID, IPAddress, LoginDate)
 	VALUES
-			($UserID,$CentreID,'$ip_address',now())";
+			($UserID,$CentreID,'$ip_address',UTC_TIMESTAMP())";
 
 mysqli_query($conn,$UserLogUpdateSQL);
 

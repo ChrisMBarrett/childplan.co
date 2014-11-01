@@ -2,16 +2,7 @@
 // Include Files
 // Authorisation File
 include '../includes/auth.php';
-// Database Connection File
-//include '../includes/dbconnect.inc';
 
-// Get Session Variables
-$UserName 	= $_SESSION['UserName'];
-$UserRole 	= $_SESSION['UserRoleID'];
-
-// Centre ID & Name	
-$CentreID	= $_SESSION['CentreID'];
-$CentreName = $_SESSION['CentreName'];
 ?>
 
 <div id="wrapper">

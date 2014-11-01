@@ -35,7 +35,7 @@ $EnquiryDetailSQL = "
 	 					,	EnquiryStatusID																			AS EnquiryStatusID
 	 					,	EnquiryStatusDesc																		AS EnquiryStatus
 	 					,	EnquiryAddedByUserID																	AS EnquiryAddedByUserID
-	 					,	EnquiryAddedDateTime																	AS EnquiryAddedDateTime
+	 					,	EnquiryAddedDateTime																	AS EnquiryUpdateDateTime
 	 				FROM
 	 					(SELECT
 	 						a.EnquiryID																				AS EnquiryID
@@ -106,7 +106,12 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquiryDate			=	$row['EnquiryDate'];	
 					$EnquirySource			=	$row['EnquirySource'];
 					$EnquiryStatus			=	$row['EnquiryStatus'];
+					$EnquiryUpdatedDateTime	=	$row['EnquiryUpdateDateTime'];
 }
+
+					$EnquiryUpdatedDateTime = new DateTime($EnquiryUpdatedDateTime, new DateTimeZone("UTC"));
+					$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
+					$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, dS F \'y g:i a');
 
 
 ?>
@@ -159,7 +164,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Enquiry Detail - <?php echo $EnquiryName; ?></h1>
+                    <h1 class="page-header">Enquiry Detail - <?php echo $CentreTimeZone;//$EnquiryName; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -217,11 +222,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>
-	 						 				<td><?php echo $EnquiryNotes; ?></td>
+	 						 				<td><?php echo $Notes; ?></td>
  						 				</tr>
  						 				<tr>
-	 						 				<td>Enquiry Date:</td>
-	 						 				<td><?php echo $EnquiryDate; ?></td>
+	 						 				<td>Original Enquiry Date:</td>
+	 						 				<td><?php echo $EnquiryUpdatedDateTime; ?></td>
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>

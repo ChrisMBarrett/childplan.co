@@ -117,7 +117,7 @@ VALUES
 	,1					-- 1 = User Entered 
 	,'$EnquiryDate'
 	,$UserID
-	,NOW() 
+	,UTC_TIMESTAMP() 
 	)
 ";
 					
@@ -156,7 +156,7 @@ VALUES
 	,	$Child1sIdealStartDateInsert
 	, 	'$EnquiryNotes'
 	, 	$UserID
-	, 	Now()
+	, 	UTC_TIMESTAMP()
 	)
 ";
 					
@@ -185,7 +185,7 @@ VALUES
 	,$TourGuide
 	,'$TourDateTime'
 	,$UserID
-	,NOW() 
+	,UTC_TIMESTAMP() 
 	)
 ";
 					

@@ -5,7 +5,9 @@
 
 <?php 
 	include('../includes/pagetitle.php');
-	include('../includes/DBConnect.inc');
+	include('../includes/dbconnect.inc');
+	
+//	$centre_tz = "Pacific/Auckland";
 
 ?>	
     <meta charset="utf-8">
@@ -97,10 +99,10 @@
 $UserLoginSQL = "SELECT
 					A.USERID
 					,	CONCAT(a.UserFName,' ',a.UserLName) 				AS UserName
-					,	UserPAssword										AS UserPassword
+					,	UserPassword										AS UserPassword
 					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
 					,	COUNT(*)											AS TotalLoginCount
-					,	Date_Format(MAX(B.LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate
+					,	MAX(B.LoginDate)									AS LastLoginDate
 				FROM
 					tblUser a
 				LEFT OUTER JOIN
@@ -117,13 +119,19 @@ $UserLoginSQL = "SELECT
 $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 
 while($row = $ListOfUsers->fetch_assoc()){
+
+					$LastLoginDate = new DateTime($row['LastLoginDate'], new DateTimeZone('UTC'));
+					$LastLoginDate	->setTimezone(new DateTimeZone($CentreTimeZone));
+					$LastLoginDate	 = $LastLoginDate->format('D, jS F \'y g:i a'); 					
+	
     echo '<tr>'.
     		'<td>'.$row['UserName'].'</td>'.
     		'<td class="td-center">'.$row['SignUpDate'].'</td>'.
-    		'<td class="td-center">'.$row['LastLoginDate'].'</td>'.
+    		'<td class="td-center">'.$LastLoginDate.'</td>'.
     		'<td class="td-center">'.$row['UserPassword'].'</td>'.
     		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
-          '</tr>';
+          '</tr>';                  
+          
 }
 
 ?>

@@ -246,6 +246,8 @@ $OpenEnquiriesSQL = "SELECT
             , CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
             ,  CONCAT(months, ' months')
             ) AS ChildsAge
+    ,	DateTimeAdded								AS DateTimeAdded1
+    ,	DateTimeAdded								AS DateTimeAdded2        
   FROM
      ( SELECT 
             	a.EnquiryID
@@ -253,7 +255,8 @@ $OpenEnquiriesSQL = "SELECT
             ,	b.EnquiryPhoneNumber
             ,	b.EnquiryDate
             ,	a.FirstChildsName
-            , 	FirstChildsDOB
+            , 	a.FirstChildsDOB
+            ,	a.DateTimeAdded
             , 	IF (Curdate() > FirstChildsDOB,
             		FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365) ,	
             		'') AS Years
@@ -283,8 +286,8 @@ while($row = $ListOfEnquiries->fetch_assoc()){
     		'<td>'.$row['ContactPhone'].'</td>'.
     		'<td class="td-center">'.$row['FirstChildsName'].'</td>'.
     		'<td class="td-center">'.$row['ChildsAge'].'</td>'.
-    		'<td class="td-center">'.$row['TourBooked'].'</td>'.
-    		'<td class="td-center">'.$row['EnquiryDate'].'</td>'.
+    		'<td class="td-center">'.$row['DateTimeAdded1'].'</td>'.
+    		'<td class="td-center">'.$row['DateTimeAdded2'].'</td>'.
           '</tr>';
 }
 
