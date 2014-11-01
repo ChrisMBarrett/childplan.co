@@ -217,7 +217,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>
-	 						 				<td><?php echo 'Enquiry Notes Added By: '.$EnquiryNotesAddedBy.'<br>'.$EnquiryUpdatedDateTime.'<br>'.'<hr>'.$EnquiryNotes; ?></td>
+	 						 				<td><?php echo '<b>'.'Enquiry Notes Added By: '.'</b><p>'.$EnquiryNotesAddedBy.' - '.$EnquiryUpdatedDateTime.'<br>'.'<hr>'.$EnquiryNotes; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Original Enquiry Date:</td>
