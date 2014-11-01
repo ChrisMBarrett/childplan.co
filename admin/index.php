@@ -24,14 +24,8 @@
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="../css/plugins/timeline.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Data Tables -->    
-    <link href="../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -51,7 +45,6 @@
 	include('../includes/topbar.php');
     include('../includes/sidebar.php');
 ?>
-
 
 <div id="page-wrapper">
 <!-- User Admin Section -->        	
