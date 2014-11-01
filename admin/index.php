@@ -30,9 +30,6 @@
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
-
     <!-- Data Tables -->    
     <link href="../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
@@ -47,14 +44,11 @@
     <![endif]-->
 
 </head>
-
 <body>
 
 <?php
 // Inlcude the top bar
 	include('../includes/topbar.php');
-?>
-<?php
     include('../includes/sidebar.php');
 ?>
 
@@ -135,7 +129,6 @@ while($row = $ListOfUsers->fetch_assoc()){
 }
 
 ?>
-
                                     </tbody>
                                 </table>
                             </div>
