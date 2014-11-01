@@ -110,7 +110,7 @@ $UserLoginSQL = "SELECT
 				ON
 					a.UserID = b.UserID
 				WHERE 
-					a.centreid = 1			
+					a.centreid = $CentreID			
 				GROUP BY
 					a.UserID
 				ORDER BY
@@ -121,7 +121,7 @@ $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 while($row = $ListOfUsers->fetch_assoc()){
 
 					$LastLoginDate = new DateTime($row['LastLoginDate'], new DateTimeZone('UTC'));
-					$LastLoginDate	->setTimezone(new DateTimeZone($CentreTimeZone));
+					$LastLoginDate	->setTimezone(new DateTimeZone('Pacific/Auckland'));
 					$LastLoginDate	 = $LastLoginDate->format('D, jS F \'y g:i a'); 					
 	
     echo '<tr>'.
