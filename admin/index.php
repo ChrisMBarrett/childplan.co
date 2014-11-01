@@ -96,7 +96,7 @@ $UserLoginSQL = "SELECT
 					,	UserPassword										AS UserPassword
 					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
 					,	COUNT(*)											AS TotalLoginCount
-					,	MAX(B.LoginDate)									AS LastLoginDate
+					,	MAX(b.LoginDate)									AS LastLoginDate
 				FROM
 					tblUser a
 				LEFT OUTER JOIN
@@ -248,11 +248,6 @@ while($row = $ListOfUsers->fetch_assoc()){
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../javascript/plugins/morris/raphael.min.js"></script>
-    <script src="../javascript/plugins/morris/morris.min.js"></script>
-    <script src="../javascript/plugins/morris/morris-data.js"></script>
     
     <!-- DataTables JavaScript -->
     <script src="../javascript/plugins/dataTables/jquery.dataTables.js"></script>
