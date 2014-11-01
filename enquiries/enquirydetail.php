@@ -35,6 +35,7 @@ $EnquiryDetailSQL = "
 	 					,	EnquiryStatusID																			AS EnquiryStatusID
 	 					,	EnquiryStatusDesc																		AS EnquiryStatus
 	 					,	EnquiryAddedByUserID																	AS EnquiryAddedByUserID
+	 					,	EnquiryAddedByUserName																	AS EnquiryAddedByUserName
 	 					,	EnquiryAddedDateTime																	AS EnquiryUpdateDateTime
 	 				FROM
 	 					(SELECT
@@ -57,6 +58,7 @@ $EnquiryDetailSQL = "
 	 					,	a.EnquiryStatusID																		AS EnquiryStatusID
 	 					,	d.EnquiryStatusDesc																		AS EnquiryStatusDesc
 	 					,	b.AddedByUserID																			AS EnquiryAddedByUserID
+	 					,	CONCAT(f.UserFName,' ',f.UserLName)														AS EnquiryAddedByUserName
 	 					,	b.DateTimeAdded																			AS EnquiryAddedDateTime
 	 					,	IF (Curdate() > FirstChildsDOB,
 	 							FLOOR(DATEDIFF(CURDATE(),b.FirstChildsDOB)/365) ,	
@@ -82,6 +84,10 @@ $EnquiryDetailSQL = "
 	 					tblGender e
 	 				ON
 	 					b.FirstChildsGenderID = e.GenderID
+	 				LEFT JOIN
+	 					tblUser f
+	 				ON
+	 					b.AddedByUserID = f.UserID	
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
@@ -107,6 +113,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquirySource			=	$row['EnquirySource'];
 					$EnquiryStatus			=	$row['EnquiryStatus'];
 					$EnquiryUpdatedDateTime	=	$row['EnquiryUpdateDateTime'];
+					$EnquiryNotesAddedBy	= 	$row['EnquiryAddedByUserName'];
 }
 
 					$EnquiryUpdatedDateTime = new DateTime($EnquiryUpdatedDateTime, new DateTimeZone("UTC"));
@@ -126,20 +133,8 @@ while($row = $EnquiryDetail->fetch_assoc()){
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../css/plugins/timeline.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Data Tables -->    
-    <link href="../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -164,7 +159,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Enquiry Detail - <?php echo $CentreTimeZone;//$EnquiryName; ?></h1>
+                    <h1 class="page-header">Enquiry Detail - <?php echo $EnquiryName; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -222,11 +217,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>
-	 						 				<td><?php echo $Notes; ?></td>
+	 						 				<td><?php echo 'Enquiry Notes Added By: '.$EnquiryNotesAddedBy.'<br>'.$EnquiryUpdatedDateTime.'<br>'.'<hr>'.$EnquiryNotes; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Original Enquiry Date:</td>
-	 						 				<td><?php echo $EnquiryUpdatedDateTime; ?></td>
+	 						 				<td><?php echo $EnquiryDate; ?></td>
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>
@@ -267,9 +262,6 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../javascript/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../javascript/sb-admin-2.js"></script>
