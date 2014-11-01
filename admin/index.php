@@ -69,7 +69,7 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Sign Up Date</th>
+                                            <th>User Sign Up Date</th>
                                             <th>Last Login Date</th>
                                             <th>Password</th>
                                             <th>Total Login's</th>
@@ -82,7 +82,7 @@ $UserLoginSQL = "SELECT
 					A.USERID
 					,	CONCAT(a.UserFName,' ',a.UserLName) 				AS UserName
 					,	UserPassword										AS UserPassword
-					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
+					,	a.UserAddedDate										AS UserSignUpDate
 					,	COUNT(*)											AS TotalLoginCount
 					,	MAX(b.LoginDate)									AS LastLoginDate
 				FROM
@@ -104,11 +104,15 @@ while($row = $ListOfUsers->fetch_assoc()){
 
 					$LastLoginDate = new DateTime($row['LastLoginDate'], new DateTimeZone('UTC'));
 					$LastLoginDate	->setTimezone(new DateTimeZone('Pacific/Auckland'));
-					$LastLoginDate	 = $LastLoginDate->format('D, jS F \'y g:i a'); 					
-
+					$LastLoginDate	 = $LastLoginDate->format('D, jS F \'y g:i a');
+					
+					$UserSignUpDate = new DateTime($row['UserSignUpDate'], new DateTimeZone('UTC'));
+					$UserSignUpDate	->setTimezone(new DateTimeZone($CentreTimeZone));
+					$UserSignUpDate	 = $UserSignUpDate->format('D, jS F \'y');
+					 					
     echo '<tr>'.
     		'<td>'.$row['UserName'].'</td>'.
-    		'<td class="td-center">'.$row['SignUpDate'].'</td>'.
+    		'<td class="td-center">'.$UserSignUpDate.'</td>'.
     		'<td class="td-center">'.$LastLoginDate.'</td>'.
     		'<td class="td-center">'.$row['UserPassword'].'</td>'.
     		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
