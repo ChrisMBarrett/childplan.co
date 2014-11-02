@@ -247,7 +247,8 @@ $OpenEnquiriesSQL = "SELECT
             ,  CONCAT(months, ' months')
             ) AS ChildsAge
     ,	DateTimeAdded								AS DateTimeAdded1
-    ,	DateTimeAdded								AS DateTimeAdded2        
+    ,	DateTimeAdded								AS DateTimeAdded2
+    ,	IF (TourDateTime IS NULL, 'No', DATE_FORMAT(TourDateTime,'%W, %D %M \'%y  - %l:%i %p')) AS TourBooked 
   FROM
      ( SELECT 
             	a.EnquiryID
@@ -262,13 +263,18 @@ $OpenEnquiriesSQL = "SELECT
             		'') AS Years
             ,	IF (Curdate() > FirstChildsDOB,
             		FLOOR((DATEDIFF(CURDATE(),a.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365))* 12) ,	
-            		MONTH(CURDATE())-month(a.FirstChildsDOB) ) AS Months
+            		MONTH(CURDATE())-month(a.FirstChildsDOB) ) 	AS Months
+            , 	c.`TourDateTime`								AS TourDateTime
          FROM 
          	tblenquiryhistory a
          LEFT JOIN
          	tblEnquiry b
          ON
          	a.EnquiryID = b.EnquiryID
+         LEFT JOIN
+         	tblTours c
+         ON
+         	b.`EnquiryID` = c.`EnquiryID`
          WHERE
          	a.CentreID = $CentreID
          AND
@@ -286,7 +292,7 @@ while($row = $ListOfEnquiries->fetch_assoc()){
     		'<td>'.$row['ContactPhone'].'</td>'.
     		'<td class="td-center">'.$row['FirstChildsName'].'</td>'.
     		'<td class="td-center">'.$row['ChildsAge'].'</td>'.
-    		'<td class="td-center">'.$row['DateTimeAdded1'].'</td>'.
+    		'<td class="td-center">'.$row['TourBooked'].'</td>'.
     		'<td class="td-center">'.$row['DateTimeAdded2'].'</td>'.
           '</tr>';
 }
