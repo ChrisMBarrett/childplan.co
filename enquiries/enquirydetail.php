@@ -118,7 +118,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
 					$EnquiryUpdatedDateTime = new DateTime($EnquiryUpdatedDateTime, new DateTimeZone("UTC"));
 					$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
-					$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, dS F \'y g:i a');
+					$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, jS F \'y g:i a');
 
 
 ?>
@@ -232,6 +232,72 @@ while($row = $EnquiryDetail->fetch_assoc()){
                             </div>
         </div>
 <!-- Tour Details -->
+
+<?php
+$TourDetailSQL = "
+	SELECT
+		a.TourID												AS TourID
+	,	a.EnquiryID												AS EnquiryID
+	,	a.TourWithUserID										AS TourWithUserID
+	,	b.UserName												AS TourWithUserName
+	,	CONCAT(b.UserFName,' ',b.UserLName)						AS TourWithName
+	,	DATE_FORMAT(a.TourDateTime,'%W, %D %M \'%y - %l:%i %p')	AS TourDateTime
+	,	a.DateTimeAdded											AS TourAddedDateTime
+	,	a.AddedByUserID											AS TourAddedByUserID
+	,	CONCAT(c.UserFName,' ',c.UserLName)						AS TourAddedByName
+	,	a.TourNotes												AS TourNotes
+FROM
+	tblTours a
+LEFT JOIN
+	tblUser b
+ON
+	a.`TourWithUserID`= b.`UserID`
+LEFT JOIN
+	tblUser c
+ON
+	a.`AddedByUserID` = c.`UserID`		
+WHERE
+	EnquiryID = $EnquiryID
+AND
+	a.CentreID = $CentreID
+	";
+
+$TourDetail = mysqli_query($conn, $TourDetailSQL) or die(mysqli_error($conn));
+
+if (mysqli_affected_rows($conn) != 1)
+{
+	
+	echo "<div class=\"col-lg-12\">
+                    <div class=\"panel panel-default\">
+                        <div class=\"panel-heading\">
+                            Tour Details - None Booked Yet
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class=\"panel-body\">
+        </div>        
+     </div>
+ </div>";
+	exit;
+}
+else 
+{
+while($row = $TourDetail->fetch_assoc()){
+
+
+					$TourID					= 	$row['TourID'];
+					$TourWithname			=	$row['TourWithName'];
+					$TourDateTime			= 	$row['TourDateTime'];
+					$TourAddedByName		= 	$row['TourAddedByName'];
+					$FirstChildsDOW			=	$row['FirstChildsDOW'];
+					$TourAddedDateTime2		=	$row['TourAddedDateTime'];					
+					$TourNotes				=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['TourNotes']));  
+}
+
+					$TourAddedDateTime = new DateTime($TourAddedDateTime2, new DateTimeZone("UTC"));
+					$TourAddedDateTime ->setTimezone(new DateTimeZone($CentreTimeZone));
+					$TourAddedDateTime = $TourAddedDateTime->format('D, jS F \'y g:i a');
+}	
+?>	
 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -244,17 +310,22 @@ while($row = $EnquiryDetail->fetch_assoc()){
                                     <tbody>
  						 				<tr>
 	 						 				<td>Tour Date & Time:</td>
-	 						 				<td><?php echo $EnquiryName; ?></td>
+	 						 				<td><?php echo $TourDateTime; ?></td>
 	 						 			<tr>
 	 						 				<td>Tour Guide:</td>
-	 						 				<td><?php echo $EnquiryPhone; ?></td>
- 						 				</tr>						                                    
+	 						 				<td><?php echo $TourWithname; ?></td>
+ 						 				</tr>
+ 						 				<tr>
+	 						 				<td><b>Tour Added By:</b> <?php echo $TourAddedByName; ?> </td>						                                    
+	 						 				<td><b>Date Added:</b> <?php echo $TourAddedDateTime; ?> </td>						                                    
+ 						 				</tr>
                                     </tbody>
                                 </table>
                             </div>
         </div>        
      </div>
  </div>
+ 
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->

@@ -194,7 +194,7 @@ $conn->commit();
 }
 else
 {
-// Commite the 2 Query results (excluding the tours)
+// Commit the 3 Queries results (excluding the tours)
 $conn->commit();
 }
 
