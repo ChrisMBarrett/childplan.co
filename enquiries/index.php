@@ -82,12 +82,6 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../css/plugins/timeline.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
@@ -243,7 +237,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                             <th>Child's Name</th>
                                             <th>Child's Age</th>
                                             <th>Tour Booked</th>
-                                            <th>Last Update Date</th>
+                                            <th>Last Update</th>
                                         </tr>
                                     </thead>                               
                                     <tbody>
@@ -251,18 +245,18 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 <?php
 $OpenEnquiriesSQL = "
 	SELECT	
-		EnquiryID									AS EnquiryID
-	,	EnquirerName								AS ContactName
-	,	EnquiryPhoneNumber							AS ContactPhone
-	,	DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y') 	AS EnquiryDate
-	,	FirstChildsName								AS FirstChildsName
-    ,	FirstChildsDOB								AS FirstChildsDOB
-    ,	CONCAT_WS
+		EnquiryID												AS EnquiryID
+	,	EnquirerName											AS ContactName
+	,	EnquiryPhoneNumber										AS ContactPhone
+	,	DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y') 				AS EnquiryDate
+	,	IF (FirstChildsName ='', '-',FirstChildsName)			AS FirstChildsName
+    ,	FirstChildsDOB											AS FirstChildsDOB
+    ,	IF (FirstChildsDOB IS NULL,'-', CONCAT_WS
             ( ', '
             , CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
             ,  CONCAT(months, ' months')
-            ) AS ChildsAge
-    ,	EnquiryUpdateDateTime						AS EnquiryUpdatedDateTime
+            )) AS ChildsAge
+    ,	EnquiryUpdateDateTime									AS EnquiryUpdateDateTime
     ,	IF (TourDateTime IS NULL, 'No', DATE_FORMAT(TourDateTime,'%a, %D %b \'%y  - %l:%i %p')) AS TourBooked 
   FROM
      ( SELECT 
@@ -270,7 +264,7 @@ $OpenEnquiriesSQL = "
             ,	b.EnquirerName
             ,	b.EnquiryPhoneNumber
             ,	b.EnquiryDate
-            ,	b.EnquiryLatestUpdateDateTime		AS EnquiryUpdateDateTime
+            ,	b.EnquiryLatestUpdateDateTime					AS EnquiryUpdateDateTime
             ,	a.FirstChildsName
             , 	a.FirstChildsDOB
             ,	a.DateTimeAdded
@@ -295,8 +289,9 @@ $OpenEnquiriesSQL = "
          	a.CentreID = $CentreID
          AND
          	b.EnquiryStatusID = 1
+         	
          ORDER BY
-		 	EnquiryAddedDateTime DESC			
+		 	EnquiryUpdateDateTime DESC			
      ) x
      ;";
 
@@ -312,7 +307,7 @@ while($row = $ListOfEnquiries->fetch_assoc()){
 	
     echo '<tr>'.
     		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
-    		'<td>'.$row['ContactPhone'].'</td>'.
+    		'<td class="td-center">'.$row['ContactPhone'].'</td>'.
     		'<td class="td-center">'.$row['FirstChildsName'].'</td>'.
     		'<td class="td-center">'.$row['ChildsAge'].'</td>'.
     		'<td class="td-center">'.$row['TourBooked'].'</td>'.
