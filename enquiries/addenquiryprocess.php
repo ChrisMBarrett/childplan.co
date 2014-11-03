@@ -103,7 +103,8 @@ INSERT INTO
 	,EnquiryType 
 	,EnquiryDate
 	,AddedByUserID
-	,EnquiryAddedDateTime 
+	,EnquiryAddedDateTime
+	,EnquiryLatestUpdateDateTime 
 	)
 VALUES
 	(
@@ -118,6 +119,7 @@ VALUES
 	,'$EnquiryDate'
 	,$UserID
 	,UTC_TIMESTAMP() 
+	,UTC_TIMESTAMP()
 	)
 ";
 					
