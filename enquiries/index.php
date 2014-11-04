@@ -184,7 +184,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                 </div>
                             </div>
                         </div>
-                        <a href="calendar.php">
+                        <a href="../tours/">
                             <div class="panel-footer">
                                 <span class="pull-left">View Tour Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
