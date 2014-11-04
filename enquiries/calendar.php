@@ -17,15 +17,10 @@
 
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../css/plugins/timeline.css" rel="stylesheet">
+\
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Data Tables -->    
     <link href="../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
@@ -108,12 +103,7 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../javascript/plugins/morris/raphael.min.js"></script>
-    <script src="../javascript/plugins/morris/morris.min.js"></script>
-    <script src="../javascript/plugins/morris/morris-data.js"></script>
-    
+   
     <!-- DataTables JavaScript -->
     <script src="../javascript/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="../javascript/plugins/dataTables/dataTables.bootstrap.js"></script> 
