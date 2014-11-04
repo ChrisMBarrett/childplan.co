@@ -20,6 +20,7 @@ include '../includes/auth.php';
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+	        <!-- Drop Down with Messages    
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -68,7 +69,7 @@ include '../includes/auth.php';
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
+                    dropdown-messages -->
                 </li>  
  
                 <!-- /.dropdown -->
