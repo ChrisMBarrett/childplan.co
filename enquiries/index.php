@@ -114,7 +114,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Upcoming Centre Tours</h1>
+                    <h1 class="page-header">Centre Enquiries</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -288,8 +288,7 @@ $OpenEnquiriesSQL = "
          WHERE
          	a.CentreID = $CentreID
          AND
-         	b.EnquiryStatusID = 1
-         	
+         	b.EnquiryStatusID = 1     	
          ORDER BY
 		 	EnquiryUpdateDateTime DESC			
      ) x
@@ -301,7 +300,7 @@ $ListOfEnquiries 		= mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error(
 
 while($row = $ListOfEnquiries->fetch_assoc()){
 	
-	$EnquiryUpdatedDateTime = new DateTime($row['EnquiryUpdatedDateTime'], new DateTimeZone("UTC"));
+	$EnquiryUpdatedDateTime = new DateTime($row['EnquiryUpdateDateTime'], new DateTimeZone("UTC"));
 	$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
 	$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, jS M \'y');	
 	
