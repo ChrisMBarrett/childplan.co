@@ -8,7 +8,35 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
+// Create Number of Enquiries
+$NumberOfEnquiriesSQL 			= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1";
+	
+$NumberofEnquiries 				= mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
+$OpenEnquiriesCount 			= mysqli_num_rows($NumberofEnquiries);
 
+// Enquiries from Entered Directly on the Website
+$NumberOfEnquiriesWebsiteSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1
+	AND
+		EnquiryType 			= 0	";
+	
+$NumberofEnquiriesWebsite 		= mysqli_query($conn, $NumberOfEnquiriesWebsiteSQL) or die(mysqli_error($conn));
+$EnquiriesWebsiteCount 			= mysqli_num_rows($NumberofEnquiriesWebsite);
 
 // Number of Tours
 $NumberOfToursSQL 	= "
@@ -24,6 +52,23 @@ $NumberOfToursSQL 	= "
 	
 $NumberofTours 					= mysqli_query($conn, $NumberOfToursSQL) or die(mysqli_error($conn));
 $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
+
+
+// Get Overdue Enquiries
+$NumberOfOverdueEnquiriesSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 					= $CentreID
+	AND
+		EnquiryStatusID 			= 1
+	AND
+		DATEDIFF(EnquiryDate,now()) >= 5 ";
+	
+$NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
+$NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 
 ?>
     <meta charset="utf-8">
@@ -69,7 +114,7 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Upcoming Centre Tours</h1>
+                    <h1 class="page-header">Centre Enquiries Overview</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -172,7 +217,7 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
                         </a>
                     </div>
                 </div>
-</div>	                                         
+</div>
 
 <!-- Table of Open Enquiries -->                            
 <div class="row">
@@ -279,10 +324,62 @@ while($row = $ListOfEnquiries->fetch_assoc()){
             <!-- /.row -->
 
 <!-- Chart Example -->            
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Enquiries By Week
+                            
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class="col-lg-12">
+                                    <div id="morris-bar-chart"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+                       
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
 
 <!-- Donut Chart - Enquiry Outcome -->
-
+<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>Enquiry Outcome - Last 12 Months
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                         <!-- Link to Results Details   
+	                         <a href="#" class="btn btn-default btn-block">View Details</a> -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                        </div>
                         <!-- /.panel-body -->
                                 </span>
                             </div>
