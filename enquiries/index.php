@@ -8,7 +8,35 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
+// Create Number of Enquiries
+$NumberOfEnquiriesSQL 			= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1";
+	
+$NumberofEnquiries 				= mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
+$OpenEnquiriesCount 			= mysqli_num_rows($NumberofEnquiries);
 
+// Enquiries from Entered Directly on the Website
+$NumberOfEnquiriesWebsiteSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1
+	AND
+		EnquiryType 			= 0	";
+	
+$NumberofEnquiriesWebsite 		= mysqli_query($conn, $NumberOfEnquiriesWebsiteSQL) or die(mysqli_error($conn));
+$EnquiriesWebsiteCount 			= mysqli_num_rows($NumberofEnquiriesWebsite);
 
 // Number of Tours
 $NumberOfToursSQL 	= "
@@ -24,6 +52,23 @@ $NumberOfToursSQL 	= "
 	
 $NumberofTours 					= mysqli_query($conn, $NumberOfToursSQL) or die(mysqli_error($conn));
 $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
+
+
+// Get Overdue Enquiries
+$NumberOfOverdueEnquiriesSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 					= $CentreID
+	AND
+		EnquiryStatusID 			= 1
+	AND
+		DATEDIFF(EnquiryDate,now()) >= 5 ";
+	
+$NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
+$NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 
 ?>
     <meta charset="utf-8">
@@ -141,7 +186,7 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
                         </div>
                         <a href="../tours/">
                             <div class="panel-footer">
-                                <span class="pull-left">View Tour Details</span>
+                                <span class="pull-left">View Tours</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
