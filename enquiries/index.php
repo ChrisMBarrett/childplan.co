@@ -61,11 +61,9 @@ $NumberOfOverdueEnquiriesSQL 	= "
 	FROM
 		tblenquiry
 	WHERE
-		CentreID 					= $CentreID
+		CentreID 				= 1
 	AND
-		EnquiryStatusID 			= 1
-	AND
-		DATEDIFF(EnquiryDate,now()) >= 5 ";
+		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= 2 ";
 	
 $NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
 $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
