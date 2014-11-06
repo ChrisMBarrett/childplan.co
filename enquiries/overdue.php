@@ -289,7 +289,9 @@ $OpenEnquiriesSQL = "
          WHERE
          	a.CentreID = $CentreID
          AND
-         	b.EnquiryStatusID = 1     	
+         	b.EnquiryStatusID = 1
+         AND	
+		 	DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= $OverDueValue 	     	
          ORDER BY
 		 	EnquiryUpdateDateTime DESC			
      ) x
