@@ -8,6 +8,8 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
+$OverDueValue					= 2;
+
 // Create Number of Enquiries
 $NumberOfEnquiriesSQL 			= "
 	SELECT
@@ -63,7 +65,8 @@ $NumberOfOverdueEnquiriesSQL 	= "
 	WHERE
 		CentreID 				= 1
 	AND
-		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= 2 ";
+		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= $OverDueValue 
+		";
 	
 $NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
 $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
@@ -206,7 +209,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="overdue.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

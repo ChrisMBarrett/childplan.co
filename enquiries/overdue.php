@@ -8,7 +8,37 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
+$OverDueValue					= 2;
 
+// Create Number of Enquiries
+$NumberOfEnquiriesSQL 			= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1";
+	
+$NumberofEnquiries 				= mysqli_query($conn, $NumberOfEnquiriesSQL) or die(mysqli_error($conn));
+$OpenEnquiriesCount 			= mysqli_num_rows($NumberofEnquiries);
+
+// Enquiries from Entered Directly on the Website
+$NumberOfEnquiriesWebsiteSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= $CentreID
+	AND
+		EnquiryStatusID 		= 1
+	AND
+		EnquiryType 			= 0	";
+	
+$NumberofEnquiriesWebsite 		= mysqli_query($conn, $NumberOfEnquiriesWebsiteSQL) or die(mysqli_error($conn));
+$EnquiriesWebsiteCount 			= mysqli_num_rows($NumberofEnquiriesWebsite);
 
 // Number of Tours
 $NumberOfToursSQL 	= "
@@ -24,6 +54,22 @@ $NumberOfToursSQL 	= "
 	
 $NumberofTours 					= mysqli_query($conn, $NumberOfToursSQL) or die(mysqli_error($conn));
 $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
+
+
+// Get Overdue Enquiries
+$NumberOfOverdueEnquiriesSQL 	= "
+	SELECT
+		*
+	FROM
+		tblenquiry
+	WHERE
+		CentreID 				= 1
+	AND
+		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= $OverDueValue 
+		";
+	
+$NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
+$NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 
 ?>
     <meta charset="utf-8">
@@ -69,12 +115,110 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Upcoming Centre Tours</h1>
+                    <h1 class="page-header">Overdue Enquiries</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">                             
+            <div class="row">
+	            
+<!-- Open Enquiries Box -->	            
+<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $OpenEnquiriesCount; ?></div>
+                                    <div>Open Enquiries</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="addenquiry.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">Add New Enquiry</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+	</div>
+</div>
+                
+<!-- Direct Enquiries Box -->                
+<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $EnquiriesWebsiteCount; ?></div>
+                                    <div>From Website</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+<!-- Upcoming Tours Box-->                
+<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-heart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $NumberOfToursCount; ?></div>
+                                    <div>Upcoming Tours</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="../tours/">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Tours</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+<!-- Overdue Enquries Box -->                                
+<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-warning fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $NumberofOverDueEnquiries; ?></div>
+                                    <div>Follow Up</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+</div>	                                         
 
 <!-- Table of Open Enquiries -->                            
 <div class="row">
@@ -93,8 +237,8 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
                                             <th>Contact Phone</th>
                                             <th>Child's Name</th>
                                             <th>Child's Age</th>
-                                            <th>Tour Date</th>
-                                            <th>Tour Guide</th>
+                                            <th>Tour Booked</th>
+                                            <th>Last Update</th>
                                         </tr>
                                     </thead>                               
                                     <tbody>
@@ -112,11 +256,9 @@ $OpenEnquiriesSQL = "
             ( ', '
             , CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
             ,  CONCAT(months, ' months')
-            )) 													AS ChildsAge
+            )) AS ChildsAge
     ,	EnquiryUpdateDateTime									AS EnquiryUpdateDateTime
-    ,	IF (TourDateTime IS NULL, 'No', DATE_FORMAT(TourDateTime,'%a, %D %b \'%y  - %l:%i %p')) AS TourBooked
-    ,	TourWithUserID
-    ,	TourWithUserName 
+    ,	IF (TourDateTime IS NULL, 'No', DATE_FORMAT(TourDateTime,'%a, %D %b \'%y  - %l:%i %p')) AS TourBooked 
   FROM
      ( SELECT 
             	a.EnquiryID
@@ -134,8 +276,6 @@ $OpenEnquiriesSQL = "
             		FLOOR((DATEDIFF(CURDATE(),a.FirstChildsDOB)/365 - FLOOR(DATEDIFF(CURDATE(),a.FirstChildsDOB)/365))* 12) ,	
             		MONTH(CURDATE())-month(a.FirstChildsDOB) ) 	AS Months
             , 	c.`TourDateTime`								AS TourDateTime
-            ,	c.TourWithUserID								AS TourWithUserID
-            ,	CONCAT(d.UserFName,' ',d.UserLName)				AS TourWithUserName
          FROM 
          	tblenquiryhistory a
          LEFT JOIN
@@ -146,19 +286,13 @@ $OpenEnquiriesSQL = "
          	tblTours c
          ON
          	b.`EnquiryID` = c.`EnquiryID`
-         LEFT JOIN
-         	tblUser d
-		ON
-			c.`TourWithUserID`= d.`UserID`	
          WHERE
          	a.CentreID = $CentreID
          AND
-         	c.TourDateTime IS NOT NULL	
-         AND
-         	b.EnquiryStatusID = 1
+         	b.EnquiryStatusID = 1     	
          ORDER BY
-		 	EnquiryUpdateDateTime DESC
-		 	) x
+		 	EnquiryUpdateDateTime DESC			
+     ) x
      ;";
 
 
@@ -167,17 +301,17 @@ $ListOfEnquiries 		= mysqli_query($conn, $OpenEnquiriesSQL) or die(mysqli_error(
 
 while($row = $ListOfEnquiries->fetch_assoc()){
 	
-	$EnquiryUpdatedDateTime = new DateTime($row['EnquiryUpdatedDateTime'], new DateTimeZone("UTC"));
+	$EnquiryUpdatedDateTime = new DateTime($row['EnquiryUpdateDateTime'], new DateTimeZone("UTC"));
 	$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
 	$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, jS M \'y');	
 	
     echo '<tr>'.
-    		'<td>'.'<a href="../enquiries/enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
+    		'<td>'.'<a href="enquirydetail.php?ID='.$row['EnquiryID'].'">'.$row['ContactName'].'</a>'.'</td>'.
     		'<td class="td-center">'.$row['ContactPhone'].'</td>'.
     		'<td class="td-center">'.$row['FirstChildsName'].'</td>'.
     		'<td class="td-center">'.$row['ChildsAge'].'</td>'.
     		'<td class="td-center">'.$row['TourBooked'].'</td>'.
-    		'<td class="td-center">'.$row['TourWithUserName'].'</td>'.
+    		'<td class="td-center">'.$EnquiryUpdatedDateTime.'</td>'.
           '</tr>';
 }
 
