@@ -98,6 +98,7 @@ $EnquiryDetail = mysqli_query($conn, $EnquiryDetailSQL) or die(mysqli_error($con
 
 while($row = $EnquiryDetail->fetch_assoc()){
 
+					$EnquiryID				=	$row['EnquiryID'];
 					$EnquiryName			=	$row['EnquirerName'];
 					$EnquiryPhone			=	$row['ContactPhone'];
 					$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
@@ -132,18 +133,19 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
+	
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// 
+    <!--[if lt IE 9]
+    <!--    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <!--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -179,10 +181,10 @@ while($row = $EnquiryDetail->fetch_assoc()){
                                     <tbody>
  						 				<tr>
 	 						 				<td>Enquirers Name:</td>
-	 						 				<td><?php echo $EnquiryName; ?></td>
+	 						 				<td><a href="#" id="enquiryname" data-type="text" data-url="/post" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
-	 						 				<td><?php echo $EnquiryPhone; ?></td>
+	 						 				<td><a href="#" id="contactphone" data-type="text" data-url="/post" data-placement="right" data-title="Enter Phone Number"><?php echo $EnquiryPhone; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Contact Email:</td>
@@ -205,7 +207,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 	 						 				<td><?php echo $FirstChildsGender; ?></td>
  						 				</tr>						                                    						                                    						                                    						                        <tr>
 	 						 				<td>Day's of Week Requested:</td>
-	 						 				<td><?php echo $FirstChildsDOW; ?></td>
+	 						 				<td></td>
  						 				</tr> 
  						 				<tr>
 	 						 				<td>Ideal Start Date:</td>
@@ -225,7 +227,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>
-	 						 				<td><?php echo $EnquiryStatus; ?></td>
+	 						 				<td><a href="#" id="enquirystatus"></a><?php echo $EnquiryStatus; ?></td>
  						 				</tr>						                                                       
                                     </tbody>
                                 </table>
@@ -324,18 +326,28 @@ while($row = $TourDetail->fetch_assoc()){
                             </div>
         </div>        
      </div>
+     
  </div>
  
     <!-- /#wrapper -->
-
     <!-- jQuery Version 1.11.0 -->
     <script src="../javascript/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../javascript/bootstrap.min.js"></script>
 
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script> 
+
     <!-- Custom Theme JavaScript -->
     <script src="../javascript/sb-admin-2.js"></script>
+    
+    <!-- x-editable (bootstrap version) -->
+    <script  src="../javascript/bootstrap-editable.min.js"></script>
+    <link href="../css/bootstrap-editable.css" rel="stylesheet">
+    
+<!-- main.js -->
+<script src="main.js"></script>
     
 </body>
 </html>
