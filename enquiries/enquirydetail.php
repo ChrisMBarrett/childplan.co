@@ -133,13 +133,12 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-	
+    
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// 
@@ -147,8 +146,17 @@ while($row = $EnquiryDetail->fetch_assoc()){
     <!--    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <!--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+       <!-- jQuery Version 1.11.0 -->
+    <script src="../javascript/jquery-1.11.0.js"></script>
 
-</head>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../javascript/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../javascript/sb-admin-2.js"></script>
+
+ </head>
 <body>
 
 <!-- PHP Includes the Top & Side Bar -->
@@ -180,11 +188,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
                                 <table class="table table-striped table-bordered table-hover">                            
                                     <tbody>
  						 				<tr>
-	 						 				<td>Enquirers Name:</td>
-	 						 				<td><a href="#" id="enquiryname" data-type="text" data-url="/post" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
+	 						 				<td width="30%">Enquirers Name:</td>
+	 						 				<td><a href="#" id="enquiryname" data-type="text" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
-	 						 				<td><a href="#" id="contactphone" data-type="text" data-url="/post" data-placement="right" data-title="Enter Phone Number"><?php echo $EnquiryPhone; ?></td>
+	 						 				<td><?php echo $EnquiryPhone; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Contact Email:</td>
@@ -227,7 +235,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>
-	 						 				<td><a href="#" id="enquirystatus"></a><?php echo $EnquiryStatus; ?></td>
+	 						 				<td><?php echo $EnquiryStatus; ?></td>
  						 				</tr>						                                                       
                                     </tbody>
                                 </table>
@@ -279,9 +287,9 @@ if (mysqli_affected_rows($conn) != 1)
         </div>        
      </div>
  </div>";
-	exit;
+
 }
-else 
+else
 {
 while($row = $TourDetail->fetch_assoc()){
 
@@ -298,56 +306,43 @@ while($row = $TourDetail->fetch_assoc()){
 					$TourAddedDateTime = new DateTime($TourAddedDateTime2, new DateTimeZone("UTC"));
 					$TourAddedDateTime ->setTimezone(new DateTimeZone($CentreTimeZone));
 					$TourAddedDateTime = $TourAddedDateTime->format('D, jS F \'y g:i a');
-}	
-?>	
-<div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+	
+echo "<div class=\"col-lg-12\">
+                    <div class=\"panel panel-default\">
+                        <div class=\"panel-heading\">
                             Tour Details
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">                            
+                        <div class=\"panel-body\">
+                            <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\">                            
                                     <tbody>
  						 				<tr>
-	 						 				<td>Tour Date & Time:</td>
-	 						 				<td><?php echo $TourDateTime; ?></td>
+	 						 				<td width=\"29%\">Tour Date & Time:</td>
+	 						 				<td>$TourDateTime</td>
 	 						 			<tr>
 	 						 				<td>Tour Guide:</td>
-	 						 				<td><?php echo $TourWithname; ?></td>
+	 						 				<td>$TourWithname</td>
  						 				</tr>
  						 				<tr>
-	 						 				<td><b>Tour Added By:</b> <?php echo $TourAddedByName; ?> </td>						                                    
-	 						 				<td><b>Date Added:</b> <?php echo $TourAddedDateTime; ?> </td>						                                    
+	 						 				<td><b>Tour Added By:</b>$TourAddedByName</td>						                                    
+	 						 				<td><b>Date Added:</b>$TourAddedDateTime </td>						                                    
  						 				</tr>
                                     </tbody>
                                 </table>
                             </div>
-        </div>        
+        </div> ";
+        } 
+        ?>       
      </div>
-     
- </div>
- 
-    <!-- /#wrapper -->
-    <!-- jQuery Version 1.11.0 -->
-    <script src="../javascript/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../javascript/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script> 
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../javascript/sb-admin-2.js"></script>
-    
-    <!-- x-editable (bootstrap version) -->
-    <script  src="../javascript/bootstrap-editable.min.js"></script>
-    <link href="../css/bootstrap-editable.css" rel="stylesheet">
+</div>
+<!-- /#wrapper -->
+<!-- x-editable (bootstrap version) -->
+<script  src="../javascript/bootstrap-editable.js"></script>
+<link href="../css/bootstrap-editable.css" rel="stylesheet">   
     
 <!-- main.js -->
-<script src="main.js"></script>
-    
+<script src="../javascript/main.js"></script> 
+ 
 </body>
 </html>
