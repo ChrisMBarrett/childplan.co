@@ -3,7 +3,11 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';     
     
     //make username editable
-    $('#enquiryname').editable();
+    $('#enquiryname').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
   
     //make status editable
     $('#enquirystatus').editable({

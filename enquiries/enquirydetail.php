@@ -189,7 +189,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
                                     <tbody>
  						 				<tr>
 	 						 				<td width="30%">Enquirers Name:</td>
-	 						 				<td><a href="#" id="enquiryname" data-type="text" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
+	 						 				<td><a href="#" id="enquiryname" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updateenquiry.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
 	 						 				<td><?php echo $EnquiryPhone; ?></td>
@@ -342,7 +342,7 @@ echo "<div class=\"col-lg-12\">
 <link href="../css/bootstrap-editable.css" rel="stylesheet">   
     
 <!-- main.js -->
-<script src="../javascript/main.js"></script> 
+<script src="../javascript/updateenquiry.js"></script> 
  
 </body>
 </html>
