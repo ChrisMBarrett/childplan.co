@@ -13,8 +13,11 @@ include('../includes/DBConnect.inc');
 							UPDATE
 								tblEnquiry
 							SET
-								EnquirerName	 	= 	'$EnquirerName'
-							WHERE  EnquiryID		= 	$ID";
+								EnquirerName	 				= 	'$EnquirerName'
+							,	EnquiryLatestUpdateDateTime		= 	UTC_TIMESTAMP()
+							WHERE  EnquiryID					= 	$ID
+							AND
+								CentreID = $CentreID";
 	$UpdateEnquiry = mysqli_query($conn, $UpdateEnquirySQL) or die(mysqli_error($conn));
 		
 ?>
