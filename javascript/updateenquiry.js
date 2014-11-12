@@ -1,9 +1,28 @@
+    //enable / disable
+    $('#enable').click(function() {
+        $('#user .editable').editable('toggleDisabled');
+    });
+
 $(document).ready(function() {
     //toggle `popup` / `inline` mode
     $.fn.editable.defaults.mode = 'inline';     
     
     //make username editable
     $('#enquiryname').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
+    //make phone number editable
+    $('#enquiryphone').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
+    // Make Childs Name editable
+    $('#childsname').editable({
     ajaxOptions : {
         type : 'post'
     }

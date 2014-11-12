@@ -16,6 +16,7 @@ $EnquiryDetailSQL = "
 	 					,	EnquirerName																			AS EnquirerName
 	 					,	EnquiryPhoneNumber																		AS ContactPhone
 	 					,	EnquiryEmailAddress																		AS ContactEmail
+	 					,	EnquiryHistoryID																		AS EnquiryHistoryID
 	 					,	FirstChildsName																			AS FirstChildsName
 	 					,	DATE_FORMAT(FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
 	 					,	FirstChildsDOB																			AS FirstChildsDOB
@@ -43,6 +44,7 @@ $EnquiryDetailSQL = "
 	 					,	a.EnquirerName																			AS EnquirerName
 	 					,	a.EnquiryPhoneNumber																	AS EnquiryPhoneNumber
 	 					,	a.EnquiryEmailAddress																	AS EnquiryEmailAddress
+	 					,	b.EnquiryHistoryID																		AS EnquiryHistoryID
 	 					,	b.FirstChildsName																		AS FirstChildsName
 	 					,	DATE_FORMAT(b.FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
 	 					,	b.FirstChildsDOB																		AS FirstChildsAge
@@ -102,6 +104,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquiryName			=	$row['EnquirerName'];
 					$EnquiryPhone			=	$row['ContactPhone'];
 					$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
+					$EnquiryHistoryID		= 	$row['EnquiryHistoryID'];
 					$FirstChildsName		= 	$row['FirstChildsName'];
 					$FirstChildsDOB			=	$row['FirstChildsDOB'];
 					$FirstChildsAge			= 	$row['FirstChildsAge'];
@@ -181,18 +184,22 @@ while($row = $EnquiryDetail->fetch_assoc()){
 	                    
                         <div class="panel-heading">
                             Details
+                            <div style="float: right;">
+                            	<button id="enable" class="btn btn-default">Edit Enquiry</button>
+                            </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+	                        
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">                            
+                                <table id="user" class="table table-striped table-bordered table-hover">                            
                                     <tbody>
  						 				<tr>
 	 						 				<td width="30%">Enquirers Name:</td>
-	 						 				<td><a href="#" id="enquiryname" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updateenquiry.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
+	 						 				<td><a href="#" id="enquiryname" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
-	 						 				<td><?php echo $EnquiryPhone; ?></td>
+	 						 				<td><a href="#" id="enquiryphone" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerPhone" data-url="updatephone.php" data-placement="right" data-title="Enter Contact Phone"><?php echo $EnquiryPhone; ?></a></td>	
  						 				</tr>
  						 				<tr>
 	 						 				<td>Contact Email:</td>
@@ -200,7 +207,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Name:</td>
-	 						 				<td><?php echo $FirstChildsName; ?></td>
+	 						 				<td><a href="#" id="childsname" data-type="text" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsName" data-url="updatechildsname.php" data-placement="right" data-title="Enter Childs Name"><?php echo $FirstChildsName; ?></a></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Date of Birth:</td>
@@ -325,8 +332,8 @@ echo "<div class=\"col-lg-12\">
 	 						 				<td>$TourWithname</td>
  						 				</tr>
  						 				<tr>
-	 						 				<td><b>Tour Added By:</b>$TourAddedByName</td>						                                    
-	 						 				<td><b>Date Added:</b>$TourAddedDateTime </td>						                                    
+	 						 				<td><b>Tour Added By: </b>$TourAddedByName</td>						                                    
+	 						 				<td><b>Date Added: </b>$TourAddedDateTime </td>						                                    
  						 				</tr>
                                     </tbody>
                                 </table>
