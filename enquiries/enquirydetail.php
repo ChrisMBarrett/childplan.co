@@ -124,6 +124,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					
 					$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
 					$EnquirySource			=	$row['EnquirySource'];
+					$EnquirySourceID		=	$row['EnquirySourceID'];
 					$EnquiryStatus			=	$row['EnquiryStatus'];
 					$EnquiryStatusID		=	$row['EnquiryStatusID'];
 					$EnquiryUpdatedDateTime	=	$row['EnquiryUpdateDateTime'];
@@ -134,6 +135,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
 					$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, jS F \'y g:i a');
 
+// How did you hear about us
 
 ?>
     <meta charset="utf-8">
@@ -243,7 +245,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>How did you hear about us?:</td>
-	 						 				<td><?php echo $EnquirySource; ?></td>
+	 						 				<td><a href="#" id="enquirysource" data-source="[{value: 1, text: 'Existing Parent'},{value: 2, text: 'Word of Mouth'},{value: 3, text: 'Walking Past'},{value: 4, text: 'Online Search'},{value: 5, text: 'Website'},{value: 6, text: 													'Other'},{value: 7, text: 'Unknown'}]" data-value="<?php echo $EnquirySourceID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updatesource.php" data-title="Select Enquiry Source"></a></td>
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>

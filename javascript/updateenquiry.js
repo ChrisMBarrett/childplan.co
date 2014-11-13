@@ -60,11 +60,6 @@ $(document).ready(function() {
             {value: 2, text: 'Female'},
 			{value: 3, text: 'Unknown'},
         ]
-        /*
-        //uncomment these lines to send data on server
-        ,pk: 1
-        ,url: '/post'
-        */
     });
 
     // Make Enquiry Date editable
@@ -84,11 +79,24 @@ $(document).ready(function() {
             {value: 1, text: 'Open'},
             {value: 2, text: 'Closed'},
         ]
-        /*
-        //uncomment these lines to send data on server
-        ,pk: 1
-        ,url: '/post'
-        */
     });
+    
+     //make 'How did you hear about us' editable
+    $('#enquirysource').editable({
+        type: 'select',
+        title: 'Select Enquiry Status',
+        placement: 'right',
+        value: 1,
+       /* source: [
+            {value: 1, text: 'Existing Parent'},
+            {value: 2, text: 'Word of Mouth'},
+            {value: 3, text: 'Walking Past'},
+            {value: 4, text: 'Online Search'},
+            {value: 5, text: 'Website'},
+            {value: 6, text: 'Other'},                        
+            {value: 7, text: 'Unknown'},
+                        
+        ]*/
+    });   
     
 });
