@@ -118,6 +118,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$FirstChildsDOB2		=	$row['FirstChildsDOB2'];
 					$FirstChildsAge			= 	$row['FirstChildsAge'];
 					$FirstChildsGender		= 	$row['FirstChildsGender'];
+					$FirstChildsGenderID	= 	$row['FirstChildsGenderID'];
 					$FirstChildsDOW			=	$row['FirstChildsDOW'];
 					$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
 					
@@ -231,7 +232,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Gender:</td>
-	 						 				<td><?php echo $FirstChildsGender; ?></td>
+	 						 				<td><a href="#" id="childsgender" data-type="select" data-value="<?php echo $FirstChildsGenderID; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-url="updategender.php" data-title="Select status"></a></td>
  						 				</tr>						                                    						                                    						                                    						                        <tr>
 	 						 				<td>Day's of Week Requested:</td>
 	 						 				<td></td>

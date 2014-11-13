@@ -1,4 +1,4 @@
-    //enable / disable
+     //enable / disable
     $('#enable').click(function() {
         $('#user .editable').editable('toggleDisabled');
     });
@@ -42,12 +42,30 @@ $(document).ready(function() {
     }
 });
 
-    // Make Childs DOB editable
+    // Make Start Date editable
     $('#startdate').editable({
     ajaxOptions : {
         type : 'post'
     }
 });
+
+    //make Childs Gender
+    $('#childsgender').editable({
+        type: 'select',
+        title: 'Select Childs Gender',
+        placement: 'right',
+        value: 3,
+        source: [
+            {value: 1, text: 'Male'},
+            {value: 2, text: 'Female'},
+			{value: 3, text: 'Unknown'},
+        ]
+        /*
+        //uncomment these lines to send data on server
+        ,pk: 1
+        ,url: '/post'
+        */
+    });
 
     // Make Enquiry Date editable
     $('#enquirydate').editable({
