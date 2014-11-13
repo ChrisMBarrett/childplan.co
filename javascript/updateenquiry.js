@@ -21,17 +21,45 @@ $(document).ready(function() {
     }
 });
 
+    //make email address editable
+    $('#enquiryemail').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
     // Make Childs Name editable
     $('#childsname').editable({
     ajaxOptions : {
         type : 'post'
     }
 });
-  
+
+    // Make Childs DOB editable
+    $('#childsdob').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
+    // Make Childs DOB editable
+    $('#startdate').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
+    // Make Enquiry Date editable
+    $('#enquirydate').editable({
+    ajaxOptions : {
+        type : 'post'
+    }
+});
+
     //make status editable
     $('#enquirystatus').editable({
         type: 'select',
-        title: 'Select status',
+        title: 'Select Enquiry Status',
         placement: 'right',
         value: 1,
         source: [

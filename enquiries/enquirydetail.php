@@ -16,10 +16,12 @@ $EnquiryDetailSQL = "
 	 					,	EnquirerName																			AS EnquirerName
 	 					,	EnquiryPhoneNumber																		AS ContactPhone
 	 					,	EnquiryEmailAddress																		AS ContactEmail
+	 					,	EnquiryDate																				AS EnquiryDate
+	 					,	EnquiryDate2																			AS EnquiryDate2
 	 					,	EnquiryHistoryID																		AS EnquiryHistoryID
 	 					,	FirstChildsName																			AS FirstChildsName
-	 					,	DATE_FORMAT(FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
 	 					,	FirstChildsDOB																			AS FirstChildsDOB
+	 					,	FirstChildsDOB2																			AS FirstChildsDOB2
 	 					,	CONCAT_WS
             				( ', '
             				, CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END
@@ -28,8 +30,8 @@ $EnquiryDetailSQL = "
 	 					,	FirstChildsGenderID																		AS FirstChildsGenderID
 	 					,	GenderDesc																				AS FirstChildsGender
 	 					,	concat(FirstChildsDOWRequested,' (',FirstChildsNumberofDaysRequested, ' Days)')			AS FirstChildsDOW
-	 					,	DATE_FORMAT(FirstChildsRequestedStartDate,'%W, %D %M \'%y')								AS FirstChildsIdealStartDate
-	 					,	DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
+	 					,	FirstChildsRequestedStartDate															AS FirstChildsIdealStartDate
+	 					,	FirstChildsRequestedStartDate2															AS FirstChildsIdealStartDate2
 	 					,	EnquiryNotes																			AS EnquiryNotes
 	 					,	EnquirySourceID																			AS EnquirySourceID
 	 					,	EnquirySourceDesc																		AS EnquirySource
@@ -45,15 +47,18 @@ $EnquiryDetailSQL = "
 	 					,	a.EnquiryPhoneNumber																	AS EnquiryPhoneNumber
 	 					,	a.EnquiryEmailAddress																	AS EnquiryEmailAddress
 	 					,	b.EnquiryHistoryID																		AS EnquiryHistoryID
+	 					,	DATE_FORMAT(a.EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
+	 					,	DATE_FORMAT(a.EnquiryDate,'%d-%m-%Y')													AS EnquiryDate2
 	 					,	b.FirstChildsName																		AS FirstChildsName
 	 					,	DATE_FORMAT(b.FirstChildsDOB,'%W, %D %M \'%y')											AS FirstChildsDOB
+	 					,	DATE_FORMAT(b.FirstChildsDOB,'%d-%m-%Y')												AS FirstChildsDOB2
 	 					,	b.FirstChildsDOB																		AS FirstChildsAge
 	 					,	b.FirstChildsGenderID																	AS FirstChildsGenderID
 	 					,	e.GenderDesc																			AS GenderDesc
 	 					,	b.FirstChildsDOWRequested																AS FirstChildsDOWRequested
 	 					,	b.FirstChildsNumberofDaysRequested														AS FirstChildsNumberofDaysRequested
-	 					,	FirstChildsRequestedStartDate															AS FirstChildsRequestedStartDate
-	 					,	DATE_FORMAT(EnquiryDate,'%W, %D %M \'%y')												AS EnquiryDate
+	 					,	DATE_FORMAT(FirstChildsRequestedStartDate,'%W, %D %M \'%y')								AS FirstChildsRequestedStartDate
+	 					,	DATE_FORMAT(FirstChildsRequestedStartDate,'%d-%m-%Y')									AS FirstChildsRequestedStartDate2	 					
 	 					,	b.EnquiryNotes																			AS EnquiryNotes
 	 					,	a.EnquirySourceID																		AS EnquirySourceID
 	 					,	c.EnquirySourceDesc																		AS EnquirySourceDesc
@@ -89,7 +94,7 @@ $EnquiryDetailSQL = "
 	 				LEFT JOIN
 	 					tblUser f
 	 				ON
-	 					b.AddedByUserID = f.UserID	
+	 					b.AddedByUserID = f.UserID		
 	 				WHERE
 	 					a.CentreID = $CentreID
 	 				AND
@@ -103,19 +108,23 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquiryID				=	$row['EnquiryID'];
 					$EnquiryName			=	$row['EnquirerName'];
 					$EnquiryPhone			=	$row['ContactPhone'];
-					$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
+					//$EnquiryEmail			=	'<a href="mailto:'.$row['ContactEmail'].'">'.$row['ContactEmail'].'</a>';
+					$EnquiryDate			=	$row['EnquiryDate'];
+					$EnquiryDate2			=	$row['EnquiryDate2'];
+					$EnquiryEmail			=	$row['ContactEmail'];
 					$EnquiryHistoryID		= 	$row['EnquiryHistoryID'];
 					$FirstChildsName		= 	$row['FirstChildsName'];
 					$FirstChildsDOB			=	$row['FirstChildsDOB'];
+					$FirstChildsDOB2		=	$row['FirstChildsDOB2'];
 					$FirstChildsAge			= 	$row['FirstChildsAge'];
 					$FirstChildsGender		= 	$row['FirstChildsGender'];
 					$FirstChildsDOW			=	$row['FirstChildsDOW'];
 					$FirstChildsStartDate	=	$row['FirstChildsIdealStartDate'];
 					
 					$EnquiryNotes			=	stripcslashes(ereg_replace("(\r\n|\n|\r)", "<br />", $row['EnquiryNotes']));  
-					$EnquiryDate			=	$row['EnquiryDate'];	
 					$EnquirySource			=	$row['EnquirySource'];
 					$EnquiryStatus			=	$row['EnquiryStatus'];
+					$EnquiryStatusID		=	$row['EnquiryStatusID'];
 					$EnquiryUpdatedDateTime	=	$row['EnquiryUpdateDateTime'];
 					$EnquiryNotesAddedBy	= 	$row['EnquiryAddedByUserName'];
 }
@@ -158,6 +167,9 @@ while($row = $EnquiryDetail->fetch_assoc()){
 
     <!-- Custom Theme JavaScript -->
     <script src="../javascript/sb-admin-2.js"></script>
+    
+    <!-- Moment JavaScript -->
+    <script src="../javascript/moment.js"></script>
 
  </head>
 <body>
@@ -203,7 +215,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Contact Email:</td>
-	 						 				<td><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><a href="#" id="enquiryemail" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryEmailAddress" data-url="updateemail.php" data-placement="right" data-title="Enter Email Address"><?php echo $EnquiryEmail; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Name:</td>
@@ -211,7 +223,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Date of Birth:</td>
-	 						 				<td><?php echo $FirstChildsDOB; ?></td>
+	 						 				<td><a href="#" id="childsdob" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsDOB2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsDOB" data-url="updatechildsdob.php" data-placement="right" data-title="Enter Childs DOB"><?php echo $FirstChildsDOB; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Age:</td>
@@ -226,7 +238,7 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr> 
  						 				<tr>
 	 						 				<td>Ideal Start Date:</td>
-	 						 				<td><?php echo $FirstChildsStartDate; ?></td>
+	 						 				<td><a href="#" id="startdate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsRequestedStartDate2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsRequestedStartDate" data-url="updatestartdate.php" data-placement="right" data-title="Enter ideal Start Date"><?php echo $FirstChildsStartDate; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>How did you hear about us?:</td>
@@ -238,11 +250,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Original Enquiry Date:</td>
-	 						 				<td><?php echo $EnquiryDate; ?></td>
+	 						 				<td><a href="#" id="enquirydate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $EnquiryDate2; ?>" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryDate" data-url="updateenquirydate.php" data-placement="right" data-title="Enter Enquiry Date"><?php echo $EnquiryDate; ?></td>
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>
-	 						 				<td><?php echo $EnquiryStatus; ?></td>
+	 						 				<td><a href="#" id="enquirystatus" data-type="select" data-value="<?php echo $EnquiryStatusID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updatestatus.php" data-title="Select status"></a></td>
  						 				</tr>						                                                       
                                     </tbody>
                                 </table>
