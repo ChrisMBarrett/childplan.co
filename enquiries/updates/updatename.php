@@ -1,7 +1,7 @@
 <?php
 	
-include('../includes/DBConnect.inc');
-include '../includes/auth.php';
+include('../../includes/DBConnect.inc');
+include '../../includes/auth.php';
 
 	$ID				= $_POST['pk'];
 	$FieldName		= $_POST['name'];

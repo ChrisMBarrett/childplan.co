@@ -1,25 +1,23 @@
 <?php
 	
-// Update Enquiry Source
-	
-include('../includes/DBConnect.inc');
-include '../includes/auth.php';
-	
+include('../../includes/DBConnect.inc');
+include '../../includes/auth.php';
+
 	$ID				= $_POST['pk'];
 	$FieldName		= $_POST['name'];
-	$EnquirySource	= $_POST['value'];
+	$EnquiryStatus	= $_POST['value'];
 	
-	// Update Enquiries Name
+	// Update Enquiry Status
 	
 	$UpdateEnquirySQL 	= " 
 							UPDATE
 								tblEnquiry
 							SET
-								EnquirySourceID 				= 	'$EnquirySource'
+								EnquiryStatusID	 				= 	'$EnquiryStatus'
 							WHERE  
 								EnquiryID						= 	$ID
 							AND
-								CentreID 						= $CentreID";
+								CentreID 						= 	$CentreID";
 								
 	$UpdateEnquiry = mysqli_query($conn, $UpdateEnquirySQL) or die(mysqli_error($conn));
 		

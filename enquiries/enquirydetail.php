@@ -135,8 +135,32 @@ while($row = $EnquiryDetail->fetch_assoc()){
 					$EnquiryUpdatedDateTime	->setTimezone(new DateTimeZone($CentreTimeZone));
 					$EnquiryUpdatedDateTime	 = $EnquiryUpdatedDateTime->format('D, jS F \'y g:i a');
 
-// How did you hear about us
 
+// How did you hear about us
+/*
+$EnquirySourceListSQL = "
+					SELECT
+							EnquirySourceID
+						,	EnquirySourceDesc
+					FROM
+						tblEnquirySource
+					WHERE
+						CentreID 
+					IN
+						(0,$CentreID)
+					ORDER BY
+						SortOrder ASC
+						";			
+
+$EnquirySourceListResults = mysqli_query($conn, $EnquirySourceListSQL) or die(mysqli_error($conn));	
+
+while($row = $EnquirySourceListResults->fetch_assoc()){
+	$EnquirySourceList[] = "[{value:".$row['EnquirySourceID'].", text:"."'".$row['EnquirySourceDesc']."'";
+	}				
+
+var_dump($EnquirySourceList);
+exit;
+*/
 ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -211,22 +235,22 @@ while($row = $EnquiryDetail->fetch_assoc()){
                                     <tbody>
  						 				<tr>
 	 						 				<td width="30%">Enquirers Name:</td>
-	 						 				<td><a href="#" id="enquiryname" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
+	 						 				<td><a href="#" id="enquiryname" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updates/updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
-	 						 				<td><a href="#" id="enquiryphone" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerPhone" data-url="updatephone.php" data-placement="right" data-title="Enter Contact Phone"><?php echo $EnquiryPhone; ?></a></td>	
+	 						 				<td><a href="#" id="enquiryphone" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerPhone" data-url="updates/updatephone.php" data-placement="right" data-title="Enter Contact Phone"><?php echo $EnquiryPhone; ?></a></td>	
  						 				</tr>
  						 				<tr>
 	 						 				<td>Contact Email:</td>
-	 						 				<td><a href="#" id="enquiryemail" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryEmailAddress" data-url="updateemail.php" data-placement="right" data-title="Enter Email Address"><?php echo $EnquiryEmail; ?></td>
+	 						 				<td><a href="#" id="enquiryemail" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryEmailAddress" data-url="updates/updateemail.php" data-placement="right" data-title="Enter Email Address"><?php echo $EnquiryEmail; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Name:</td>
-	 						 				<td><a href="#" id="childsname" data-type="text" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsName" data-url="updatechildsname.php" data-placement="right" data-title="Enter Childs Name"><?php echo $FirstChildsName; ?></a></td>
+	 						 				<td><a href="#" id="childsname" data-type="text" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsName" data-url="updates/updatechildsname.php" data-placement="right" data-title="Enter Childs Name"><?php echo $FirstChildsName; ?></a></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Date of Birth:</td>
-	 						 				<td><a href="#" id="childsdob" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsDOB2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsDOB" data-url="updatechildsdob.php" data-placement="right" data-title="Enter Childs DOB"><?php echo $FirstChildsDOB; ?></td>
+	 						 				<td><a href="#" id="childsdob" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsDOB2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsDOB" data-url="updates/updatechildsdob.php" data-placement="right" data-title="Enter Childs DOB"><?php echo $FirstChildsDOB; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Age:</td>
@@ -241,11 +265,12 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr> 
  						 				<tr>
 	 						 				<td>Ideal Start Date:</td>
-	 						 				<td><a href="#" id="startdate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsRequestedStartDate2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsRequestedStartDate" data-url="updatestartdate.php" data-placement="right" data-title="Enter ideal Start Date"><?php echo $FirstChildsStartDate; ?></td>
+	 						 				<td><a href="#" id="startdate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $FirstChildsRequestedStartDate2; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-name = "FirstChildsRequestedStartDate" data-url="updates/updatestartdate.php" data-placement="right" data-title="Enter ideal Start Date"><?php echo $FirstChildsStartDate; ?></td>
  						 				</tr>
  						 				<tr>
 	 						 				<td>How did you hear about us?:</td>
-	 						 				<td><a href="#" id="enquirysource" data-source="[{value: 1, text: 'Existing Parent'},{value: 2, text: 'Word of Mouth'},{value: 3, text: 'Walking Past'},{value: 4, text: 'Online Search'},{value: 5, text: 'Website'},{value: 6, text: 													'Other'},{value: 7, text: 'Unknown'}]" data-value="<?php echo $EnquirySourceID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updatesource.php" data-title="Select Enquiry Source"></a></td>
+	 						 				<td><a href="#" id="enquirysource" data-source="[{value: 1, text: 'Existing Parent'},{value: 2, text: 'Word of Mouth'},{value: 3, text: 'Walking Past'},{value: 4, text: 'Online Search'},{value: 5, text: 'Website'},{value: 6, text:'Other'},{value: 7, text: 'Unknown'}]" data-value="<?php echo $EnquirySourceID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updates/updatesource.php" data-title="Select Enquiry Source"></a></td>
+	 						 			
  						 				</tr>						                                    						                                               
  						 				<tr>
 	 						 				<td>Notes:</td>
@@ -253,11 +278,11 @@ while($row = $EnquiryDetail->fetch_assoc()){
  						 				</tr>
  						 				<tr>
 	 						 				<td>Original Enquiry Date:</td>
-	 						 				<td><a href="#" id="enquirydate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $EnquiryDate2; ?>" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryDate" data-url="updateenquirydate.php" data-placement="right" data-title="Enter Enquiry Date"><?php echo $EnquiryDate; ?></td>
+	 						 				<td><a href="#" id="enquirydate" data-type="combodate" data-format="DD-MM-YYYY" data-value="<?php echo $EnquiryDate2; ?>" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquiryDate" data-url="updates/updateenquirydate.php" data-placement="right" data-title="Enter Enquiry Date"><?php echo $EnquiryDate; ?></td>
  						 				</tr>
  						 				 						 				<tr>
 	 						 				<td>Enquiry Status:</td>
-	 						 				<td><a href="#" id="enquirystatus" data-type="select" data-value="<?php echo $EnquiryStatusID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updatestatus.php" data-title="Select status"></a></td>
+	 						 				<td><a href="#" id="enquirystatus" data-type="select" data-value="<?php echo $EnquiryStatusID; ?>" data-pk="<?php echo $EnquiryID; ?>" data-url="updates/updatestatus.php" data-title="Select status"></a></td>
  						 				</tr>						                                                       
                                     </tbody>
                                 </table>

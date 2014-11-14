@@ -1,13 +1,13 @@
 <?php
 	
-// Update Email Address
+// Update Phone Number
 	
-include('../includes/DBConnect.inc');
-include '../includes/auth.php';
+include('../../includes/DBConnect.inc');
+include '../../includes/auth.php';
 	
 	$ID				= $_POST['pk'];
 	$FieldName		= $_POST['name'];
-	$EmailAddress	= $_POST['value'];
+	$PhoneNumber	= $_POST['value'];
 	
 	// Update Enquiries Name
 	
@@ -15,9 +15,8 @@ include '../includes/auth.php';
 							UPDATE
 								tblEnquiry
 							SET
-								EnquiryEmailAddress				= 	'$EmailAddress'
-							WHERE  
-								EnquiryID						= 	$ID
+								EnquiryPhoneNumber 				= 	'$PhoneNumber'
+							WHERE  EnquiryID					= 	$ID
 							AND
 								CentreID 						= $CentreID";
 	$UpdateEnquiry = mysqli_query($conn, $UpdateEnquirySQL) or die(mysqli_error($conn));

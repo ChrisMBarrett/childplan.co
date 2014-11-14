@@ -1,21 +1,25 @@
 <?php
 	
-// Update Phone Number
+// Update Childs DOB
 	
-include('../includes/DBConnect.inc');
-include '../includes/auth.php';
+include('../../includes/DBConnect.inc');
+include '../../includes/auth.php';
 	
 	$ID					= $_POST['pk'];
 	$FieldName			= $_POST['name'];
-	$FirstChildsGender	= $_POST['value'];
 	
-	// Update Childs Gender
+	
+	$FirstChildsDOB		= date('Y-m-d',strtotime($_POST['value']));
+	
+	//$_POST['value'];
+	
+	// Update Childs Name
 	
 	$UpdateEnquirySQL 	= " 
 							UPDATE
 								tblEnquiryHistory
 							SET
-								FirstChildsGenderID				= 	'$FirstChildsGender'
+								FirstChildsDOB 					= 	'$FirstChildsDOB'
 							WHERE  
 								EnquiryHistoryID				= 	$ID
 							AND
