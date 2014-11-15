@@ -61,6 +61,18 @@ $(document).ready(function() {
 			{value: 3, text: 'Unknown'},
         ]
     });
+    
+    // Make Childs DOW editable
+	$('#childsdow').editable({
+        value: [2, 3],    
+        source: [
+              {value: 1, text: 'option1'},
+              {value: 2, text: 'option2'},
+              {value: 3, text: 'option3'}
+           ]
+    });
+   
+    
 
     // Make Enquiry Date editable
     $('#enquirydate').editable({
