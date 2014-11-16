@@ -15,13 +15,26 @@ $(document).ready(function() {
     }
 });
 
-    //Make Tour Guide Editable
+//Make Tour Guide Editable
     $('.tourguide').editable({
         type: 'select',
-        title: 'Select Childs Gender',
+         source: [
+            {value: 0, text: 'No'},
+            {value: 1, text: 'Yes'},
+        ],
         placement: 'right',
         showbuttons: false
-
     });
-    
+
+// Staff Member Active
+    $('.useractive').editable({
+        type: 'select',
+         source: [
+            {value: 0, text: 'No'},
+            {value: 1, text: 'Yes'},
+        ],
+        placement: 'right',
+        showbuttons: false
+    });
+     
 });

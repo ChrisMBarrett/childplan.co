@@ -267,6 +267,8 @@
 					WHERE
 						UserConductsToursFlag = 1
 					AND
+						UserActiveFlag = 1	
+					AND
 						CentreID = '$CentreID'";
 					
 				$TourGuides = mysqli_query($conn, $StaffToursSQL) or die(mysqli_error($conn));

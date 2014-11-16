@@ -201,26 +201,10 @@ while($row = $ListOfUsers->fetch_assoc()) : ?>
 	<td class="td-center"><?php echo $row['UserName']; ?></td>	
 	<td class="td-center"><?php echo $row['UserRole']; ?></td>	
 	<td class="td-center"><?php echo $row['UserGroup']; ?></td>	
-	<td class="td-center"><a href="#" class="tourguide" data-type="select" data-source="[{value: 0, text: 'No'},{value: 1, text: 'Yes'}]" data-url="updates/updatetourguide.php" data-value="<?php echo $row['TourGuideFlag']; ?>" data-pk="<?php echo $row['StaffID']; ?>" data-name="UserConductsToursFlag"</a></td>
-	<td class="td-center"><? $row['UserName']; ?></td>			
+	<td class="td-center"><a href="#" class="tourguide"  data-url="updates/updatetourguide.php" data-value="<?php echo $row['TourGuideFlag']; ?>" data-pk="<?php echo $row['StaffID']; ?>" data-name="UserConductsToursFlag"</a></td>
+	<td class="td-center"><a href="#" class="useractive"  data-url="updates/updateuseractive.php" data-value="<?php echo $row['UserActiveFlag']; ?>" data-pk="<?php echo $row['StaffID']; ?>" data-name="UserActiveFlag"</a></td>			
 </tr>
 <?php endwhile; ?>	
-<!--
-{
-    echo '<tr>'.
-    		'<td>'.$row['UserName'].'</td>'.
-    		'<td class="td-center">'.$row['UserRole'].'</td>'.
-    		'<td class="td-center">'.$row['UserGroup'].'</td>'.
-//    		'<td class="td-center">'.$row['TourGuide'].'</td>'.
-    		'<td class="td-center">'.'<a href="#" id="tourguide" data-type="select" data-url="updates/updatetourguide.php" data-source="[{value: 0, text: \'No\'},{value: 1, text: \'Yes\'}]"   
-    		 data-value="'.$row['TourGuideFlag'].'" data-pk="'.$row['StaffID'].'"></a></td>'.
-    		'<td class="td-center">'.$row['UserActiveFlag'].'</td>'.
-          '</tr>';
-}
-
--->
-
-
 
                                     </tbody>
                                 </table>
