@@ -259,7 +259,7 @@ exit;
  						 				</tr>
  						 				<tr>
 	 						 				<td>Child's Gender:</td>
-	 						 				<td><a href="#" id="childsgender" data-type="select" data-value="<?php echo $FirstChildsGenderID; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-url="updategender.php" data-title="Select status"></a></td>
+	 						 				<td><a href="#" id="childsgender" data-type="select" data-value="<?php echo $FirstChildsGenderID; ?>" data-pk="<?php echo $EnquiryHistoryID; ?>" data-url="updates/updategender.php" data-title="Select status"></a></td>
  						 				</tr>						                                    						                                    						                                    						                        <tr>
 	 						 				<td>Day's of Week Requested:</td>
 	 						 				<td><?php echo $FirstChildsDOW; ?></td>

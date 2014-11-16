@@ -15,6 +15,16 @@
     <meta name="author" content="">
 
     <?php echo $PageTitle; ?>
+    
+    
+    <!-- jQuery Version 1.11.0 -->
+    <script src="../javascript/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../javascript/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../javascript/sb-admin-2.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -144,33 +154,40 @@ while($row = $ListOfUsers->fetch_assoc()){
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
+                                <table id="user" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Last Login Date</th>
-                                            <th>Access Setting</th>
                                             <th>User Role</th>
-                                            <th>Deactivate User</th>
+                                            <th>System User Group</th>
+                                            <th>Tour Guide?</th>
+                                            <th>User Activate ?</th>
                                         </tr>
                                     </thead>
                                 <tbody>
 <!-- Create table from Query -->
 <?php
 $UserLoginSQL = "SELECT
-					A.USERID
+						A.USERID											AS StaffID
 					,	CONCAT(a.UserFName,' ',a.UserLName) 				AS UserName
-					,	Date_Format(a.UserAddedDate,'%D %M %Y')				AS SignUpDate
-					,	COUNT(*)											AS TotalLoginCount
-					,	Date_Format(MAX(B.LoginDate),'%D %M %Y - %l:%i %p')	AS LastLoginDate
+					,	a.UserGroupID										AS UserGroupID
+					,	b.UserGroupDesc										AS UserGroup
+					,	a.UserRoleID										AS UserRoleID
+					,	c.UserRoleDesc										AS UserRole
+					,	UserConductsToursFlag								AS TourGuideFlag
+					,	UserActiveFlag										AS UserActiveFlag
 				FROM
 					tblUser a
 				LEFT OUTER JOIN
-					tblUserLog b
+					tblUserGroups b
 				ON
-					a.UserID = b.UserID
+					a.UserGroupID = b.UserGroupID
+				Left JOIN
+					tblUserRole c
+				ON
+					a.UserRoleID = c.UserRoleID		
 				WHERE 
-					a.centreid = 1			
+					a.centreid = $CentreID			
 				GROUP BY
 					a.UserID
 				ORDER BY
@@ -178,17 +195,32 @@ $UserLoginSQL = "SELECT
 	 					
 $ListOfUsers = mysqli_query($conn, $UserLoginSQL) or die(mysqli_error($conn));
 
-while($row = $ListOfUsers->fetch_assoc()){
+while($row = $ListOfUsers->fetch_assoc()) : ?>
+
+<tr>
+	<td class="td-center"><?php echo $row['UserName']; ?></td>	
+	<td class="td-center"><?php echo $row['UserRole']; ?></td>	
+	<td class="td-center"><?php echo $row['UserGroup']; ?></td>	
+	<td class="td-center"><a href="#" class="tourguide" data-type="select" data-source="[{value: 0, text: 'No'},{value: 1, text: 'Yes'}]" data-url="updates/updatetourguide.php" data-value="<?php echo $row['TourGuideFlag']; ?>" data-pk="<?php echo $row['StaffID']; ?>" data-name="UserConductsToursFlag"</a></td>
+	<td class="td-center"><? $row['UserName']; ?></td>			
+</tr>
+<?php endwhile; ?>	
+<!--
+{
     echo '<tr>'.
     		'<td>'.$row['UserName'].'</td>'.
-    		'<td class="td-center">'.$row['SignUpDate'].'</td>'.
-    		'<td class="td-center">'.$row['LastLoginDate'].'</td>'.
-    		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
-    		'<td class="td-center">'.$row['TotalLoginCount'].'</td>'.
+    		'<td class="td-center">'.$row['UserRole'].'</td>'.
+    		'<td class="td-center">'.$row['UserGroup'].'</td>'.
+//    		'<td class="td-center">'.$row['TourGuide'].'</td>'.
+    		'<td class="td-center">'.'<a href="#" id="tourguide" data-type="select" data-url="updates/updatetourguide.php" data-source="[{value: 0, text: \'No\'},{value: 1, text: \'Yes\'}]"   
+    		 data-value="'.$row['TourGuideFlag'].'" data-pk="'.$row['StaffID'].'"></a></td>'.
+    		'<td class="td-center">'.$row['UserActiveFlag'].'</td>'.
           '</tr>';
 }
 
-?>
+-->
+
+
 
                                     </tbody>
                                 </table>
@@ -231,15 +263,12 @@ while($row = $ListOfUsers->fetch_assoc()){
         </div>
 </div>
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="../javascript/jquery-1.11.0.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../javascript/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../javascript/sb-admin-2.js"></script>
-
+<script  src="../javascript/bootstrap-editable.js"></script>
+<link href="../css/bootstrap-editable.css" rel="stylesheet">   
+    
+<!-- Update.js -->
+<script src="../javascript/updateadmindetails.js"></script> 
     
 </body>
 
