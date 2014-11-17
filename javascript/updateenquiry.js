@@ -1,6 +1,8 @@
-     //enable / disable
+
+//enable / disable
     $('#enable').click(function() {
         $('#user .editable').editable('toggleDisabled');
+        
     });
 
 $(document).ready(function() {

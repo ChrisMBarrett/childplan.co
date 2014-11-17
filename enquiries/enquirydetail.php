@@ -225,7 +225,7 @@ exit;
                         <div class="panel-heading">
                             Details
                             <div style="float: right;">
-                     <button id="enable" class="btn btn-default">Edit Enquiry</button>
+							<button id="enable" type="button">Edit Entry</button>
                             </div>
                         </div>
                         <!-- /.panel-heading -->
@@ -236,7 +236,7 @@ exit;
                                     <tbody>
  						 				<tr>
 	 						 				<td width="30%">Enquirers Name:</td>
-	 						 				<td><a href="#" id="enquiryname" data-type="text" class="editable-click editable-disabled" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updates/updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
+	 						 				<td><a href="#" id="enquiryname" class="editable-click editable-disabled" data-type="text" class="editable-click editable-disabled" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updates/updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
 	 						 				<td><a href="#" id="enquiryphone" data-type="text" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerPhone" data-url="updates/updatephone.php" data-placement="right" data-title="Enter Contact Phone"><?php echo $EnquiryPhone; ?></a></td>	

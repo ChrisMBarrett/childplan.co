@@ -71,8 +71,8 @@ while($row = $result->fetch_assoc())
 */
 
 // Check to see if the user has been blocked - direct to the access denied page.
-		if ($UserActiveFlag != 1){
-		echo - 'Sorry - Your account is currently blocked!';
+		if ($UserActiveFlag == 0){
+		echo - 'Sorry - Your account is currently blocked, please contact your system administrator to be activated.';
 		//header("location: login-denied.php");
 		exit();
 		}		
