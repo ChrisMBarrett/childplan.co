@@ -17,15 +17,26 @@
                         <li>
                             <a href="/enquiries/"><i class="fa fa-list-ol fa-fw" ></i> Centre Enquiries</a>
                         </li>
-                     <!--    <li>
-                            <a href="/enquiries/calendar.php"><i class="fa fa-calendar fa-fw"></i> Centre Visit's Calendar</a>
-                        </li> -->
+                        <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/enquiries/addenquiry.php"><i class="fa fa-calendar fa-fw"></i> Add New Enquiry</a>
+                        </li>
+                        <li>
+                            <a href="../tours/"><i class="fa fa-calendar fa-fw"></i> View Tours</a>
+                        </li>
+                        <li>
+                            <a href="/enquiries/overdue.php"><i class="fa fa-calendar fa-fw"></i> Overdue Enquiries</a>
+                        </li>
+                        <li>
+                            <a href="/enquiries/closed.php"><i class="fa fa-calendar fa-fw"></i> Closed Enquiries	</a>
+                        </li>
+                        </ul>
                         <li>
                             <a href="/waitlist/"><i class="fa fa-list-alt fa-fw"></i> Centre Waitlist</a>
                         </li>
-                        <li>
+                       <!-- <li>
                             <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Centre Dashboard</a>
-                        </li>
+                        </li> -->
                         
                             </ul>
                             <!-- /.nav-second-level -->
