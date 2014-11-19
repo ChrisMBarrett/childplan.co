@@ -15,30 +15,28 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/enquiries/"><i class="fa fa-list-ol fa-fw" ></i> Centre Enquiries</a>
+                            <a class="active" href="/enquiries/"><i class="fa fa-list-ol fa-fw" ></i> Centre Enquiries<span class="fa arrow"></a>
                         </li>
-                        <ul class="nav nav-second-level">
-                        <li>
-                            <a href="/enquiries/addenquiry.php"><i class="fa fa-calendar fa-fw"></i> Add New Enquiry</a>
-                        </li>
-                        <li>
-                            <a href="../tours/"><i class="fa fa-calendar fa-fw"></i> View Tours</a>
-                        </li>
-                        <li>
-                            <a href="/enquiries/overdue.php"><i class="fa fa-calendar fa-fw"></i> Overdue Enquiries</a>
-                        </li>
-                        <li>
-                            <a href="/enquiries/closed.php"><i class="fa fa-calendar fa-fw"></i> Closed Enquiries	</a>
-                        </li>
-                        </ul>
+                        	<ul class="nav nav-second-level">
+								<li>
+									<a href="/enquiries/addenquiry.php"><i class="fa fa-calendar fa-fw"></i> Add New Enquiry</a>
+								</li>
+								<li>
+									<a href="../tours/"><i class="fa fa-calendar fa-fw"></i> View Tours</a>
+								</li>
+								<li>
+									<a href="/enquiries/overdue.php"><i class="fa fa-calendar fa-fw"></i> Overdue Enquiries</a>
+								</li>
+								<li>
+									<a href="/enquiries/closed.php"><i class="fa fa-calendar fa-fw"></i> Closed Enquiries	</a>
+								</li>
+                        	</ul>
                         <li>
                             <a href="/waitlist/"><i class="fa fa-list-alt fa-fw"></i> Centre Waitlist</a>
                         </li>
                        <!-- <li>
                             <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Centre Dashboard</a>
                         </li> -->
-                        
-                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
@@ -47,8 +45,5 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-<!-- jQuery Version 1.11.0 -->
-<script src="../javascript/jquery-1.11.0.js"></script>
-            
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>        
+            <!-- Metis Menu Plugin JavaScript -->
+			<script src="../javascript/plugins/metisMenu/metisMenu.min.js"></script>      
