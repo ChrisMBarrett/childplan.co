@@ -8,7 +8,7 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
-$OverDueValue					= 2;
+//$OverDueValue					= 2;
 
 // Create Number of Enquiries
 $NumberOfEnquiriesSQL 			= "
@@ -59,13 +59,19 @@ $NumberOfToursCount 			= mysqli_num_rows($NumberofTours);
 // Get Overdue Enquiries
 $NumberOfOverdueEnquiriesSQL 	= "
 	SELECT
-		*
+			a.EnquiryID
+		,	a.CentreID
+		,	b.prefDaysTillOverdue AS prefDaysTillOverDue
 	FROM
-		tblenquiry
+		tblenquiry a
+	LEFT JOIN
+		tblCentre b
+	ON
+		a.CentreID = b.CentreID			
 	WHERE
-		CentreID 				= 1
+		a.CentreID 				= $CentreID
 	AND
-		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= $OverDueValue 
+		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= b.`prefDaysTillOverdue`	
 		";
 	
 $NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));

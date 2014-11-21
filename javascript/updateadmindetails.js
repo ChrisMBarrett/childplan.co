@@ -36,5 +36,19 @@ $(document).ready(function() {
         placement: 'right',
         showbuttons: false
     });
+ 
+ // Days till Overdue
+    $('.daystilloverdue').editable({
+        type: 'select',
+         source: [
+            {value: 2, text: '2'},
+            {value: 5, text: '5'},
+            {value: 10, text: '10'},
+            {value: 20, text: '20'},
+        ],
+        placement: 'right',
+        showbuttons: false
+    });   
+    
      
 });
