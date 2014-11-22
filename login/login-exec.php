@@ -22,6 +22,7 @@ $LoginSQLCode =  "
 		a.CentreID,
 		b.CentreName,
 		b.CentreTimeZone,
+		b.prefDaysTillOverdue,
 		a.UserName,
 		a.UserFName,
 		a.UserLName,
@@ -60,6 +61,7 @@ while($row = $result->fetch_assoc())
 	$CentreID						= $row['CentreID'];
 	$CentreName						= $row['CentreName'];
 	$CentreTimeZone					= $row['CentreTimeZone'];
+
 }
 }
 /*
@@ -89,7 +91,8 @@ session_regenerate_id();
 	$_SESSION['UserGroupID']		= $UserGroupID;
 	$_SESSION['CentreID']		 	= $CentreID;
 	$_SESSION['CentreName']		 	= $CentreName;
-	$_SESSION['CentreTimeZone']	 	= $CentreTimeZone;			
+	$_SESSION['CentreTimeZone']	 	= $CentreTimeZone;	
+	
 			
 session_write_close();
 

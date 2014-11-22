@@ -8,7 +8,24 @@
 include('../includes/DBConnect.inc');
 include('../includes/pagetitle.php');
 
-//$OverDueValue					= 2;
+// Create the number of days a enquiry is open before it is considered overdue.
+$DaysTillOverDueSQL 			= "
+	SELECT
+		prefDaysTillOverdue
+	FROM
+		tblCentre
+	WHERE
+		CentreID 				= $CentreID
+	";
+	
+$DaysTillOverDueCode=	mysqli_query($conn, $DaysTillOverDueSQL) or die(mysqli_error($conn));
+	
+	while($row = $DaysTillOverDueCode->fetch_assoc()){
+	
+	$DaysTillOverDue = $row['prefDaysTillOverdue'];
+}
+
+//$DaysTillOverDue					= 20;
 
 // Create Number of Enquiries
 $NumberOfEnquiriesSQL 			= "
@@ -71,17 +88,12 @@ $NumberOfOverdueEnquiriesSQL 	= "
 	WHERE
 		a.CentreID 				= $CentreID
 	AND
-		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= b.`prefDaysTillOverdue` 
+		DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= b.prefDaysTillOverdue
 		";
 	
-$NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
+		$NumberofOverDueEnquiries 	= mysqli_query($conn, $NumberOfOverdueEnquiriesSQL) or die(mysqli_error($conn));
+		$NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 
-	while ($row = $NumberofOverDueEnquiries->fetch_assoc()){
-	
-	$DaysOverDueValue = $row['prefDaysTillOverDue'];
-	}
-	
-$NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
 ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -236,7 +248,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Open Centre Enquiries
+                            Open Overdue Centre Enquiries
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -302,7 +314,7 @@ $OpenEnquiriesSQL = "
          AND
          	b.EnquiryStatusID = 1
          AND	
-		 	DATEDIFF(curdate(),EnquiryLatestUpdateDateTime) >= '$DaysOverDueValue' 	     	
+		 	DATEDIFF(curdate(),b.EnquiryLatestUpdateDateTime) >= '$DaysTillOverDue' 	     	
          ORDER BY
 		 	EnquiryUpdateDateTime DESC			
      ) x
