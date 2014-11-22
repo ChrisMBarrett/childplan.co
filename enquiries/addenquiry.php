@@ -78,7 +78,7 @@
 <!-- Enquirier's Name -->
 <div class="form-group">
 
-                            <label>Enquirer's Name:</label>
+                            <label>Enquirer's Name(s):</label>
                             <input class="form-control" placeholder="Enter name" name="enquirername">
                             </div>
 

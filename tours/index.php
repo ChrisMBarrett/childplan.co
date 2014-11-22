@@ -225,7 +225,7 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Open Centre Enquiries
+							Upcoming Tours
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -244,6 +244,8 @@ $NumberofOverDueEnquiries 	= mysqli_num_rows($NumberofOverDueEnquiries);
                                     <tbody>
 <!-- Build Table from Query Results -->
 <?php
+	
+	if ($NumberOfToursCount != 0){
 $OpenEnquiriesSQL = "
 	SELECT	
 		EnquiryID												AS EnquiryID
@@ -324,7 +326,13 @@ while($row = $ListOfEnquiries->fetch_assoc()){
     		'<td class="td-center">'.$row['TourWithUserName'].'</td>'.
           '</tr>';
 }
-
+}
+else
+{
+	
+	Echo "There are currently no upcoming tours";
+	
+}
 ?>	 						 										                                    
                                     </tbody>
                                 </table>

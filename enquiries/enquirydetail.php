@@ -235,7 +235,7 @@ exit;
                                 <table id="user" class="table table-striped table-bordered table-hover">                            
                                     <tbody>
  						 				<tr>
-	 						 				<td width="30%">Enquirers Name:</td>
+	 						 				<td width="30%">Enquirers Name(s):</td>
 	 						 				<td><a href="#" id="enquiryname" class="editable-click editable-disabled" data-type="text" class="editable-click editable-disabled" data-pk="<?php echo $EnquiryID; ?>" data-name = "EnquirerName" data-url="updates/updatename.php" data-placement="right" data-title="Enter username"><?php echo $EnquiryName; ?></a></td>	
 	 						 			<tr>
 	 						 				<td>Contact Phone:</td>
